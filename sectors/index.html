@@ -1,0 +1,1089 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>Markets &amp; Economy | D-Advisory</title><meta name="description" content="Macro Desk by D-Advisory: markets, sectors, rates and US vs Canada economy at a glance."><link rel="canonical" href="https://dinian.ca/macro-desk/"><link rel="icon" href="/wp-content/uploads/2025/11/siteicon.png"><style>.da-back{color:var(--band-ink-2);text-decoration:none;font-weight:600;font-size:13px;padding:8px 10px;border-radius:8px;border:1px solid var(--band-line);margin-right:8px;white-space:nowrap}.da-back:hover{color:var(--band-ink);background:var(--band-2)}</style><script>
+/* When shown inside the dinian.ca page, tell the parent how tall we are and keep the address in sync */
+(function(){if(window.parent===window)return;
+  var send=function(){try{window.parent.postMessage({md:'h',h:document.documentElement.scrollHeight},'*')}catch(e){}};
+  document.addEventListener('DOMContentLoaded',function(){new ResizeObserver(send).observe(document.body);send()});window.addEventListener('load',send);
+  window.addEventListener('hashchange',function(){send();try{window.parent.postMessage({md:'nav',hash:location.hash},'*')}catch(e){}});
+  document.documentElement.classList.add('in-frame');
+})();
+</script>
+<style>.in-frame .da-back{display:none}</style><script src="config.js"></script><style>.topnav [data-nav=home],.topnav [data-nav=economy],.topnav [data-nav=macro],.topnav [data-nav=widgets]{display:none!important}</style><script>(function(){var h=location.hash;if(!h||/^#(home|economy|macro|widgets|sources)?$/.test(h))history.replaceState(null,"","#sector-technology")})();</script></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: navy masthead with headline numbers → head-to-head US vs Canada cards → one comparison chart → two country columns side by side → source ledger. Country identity is carried by color: U.S. blue, Canada orange-red. */
+:root{
+  --bg:#eef1f5; --panel:#ffffff; --panel-2:#f7f9fb; --ink:#0e1621; --ink-2:#465263; --muted:#7f8a99;
+  --line:#e2e7ee; --line-2:#c8d0db; --accent:#2a78d6;
+  --us:#2a78d6; --ca:#e0562a; --us-soft:rgba(42,120,214,.12); --ca-soft:rgba(224,86,42,.12);
+  --up:#0f7d3d; --down:#c43a3a; --up-soft:rgba(15,125,61,.13); --down-soft:rgba(196,58,58,.13);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band:#0d1b2e; --band-2:#16283f; --band-ink:#f1f5fa; --band-ink-2:#a9b8cb; --band-line:rgba(255,255,255,.12);
+  --f-display:"Archivo","Public Sans",system-ui,sans-serif;
+  --f-sans:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0b0f15; --panel:#141a22; --panel-2:#10151c; --ink:#edf1f6; --ink-2:#b4bfcc; --muted:#7c8796;
+  --line:#222a35; --line-2:#344050; --accent:#4a93ea;
+  --us:#4a93ea; --ca:#ef7448; --us-soft:rgba(74,147,234,.16); --ca-soft:rgba(239,116,72,.16);
+  --up:#2fbf66; --down:#ef6a6a; --up-soft:rgba(47,191,102,.16); --down-soft:rgba(239,106,106,.16);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band:#111f33; --band-2:#1a2c45; --band-ink:#f1f5fa; --band-ink-2:#a3b3c7; --band-line:rgba(255,255,255,.10); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b0f15; --panel:#141a22; --panel-2:#10151c; --ink:#edf1f6; --ink-2:#b4bfcc; --muted:#7c8796;
+  --line:#222a35; --line-2:#344050; --accent:#4a93ea;
+  --us:#4a93ea; --ca:#ef7448; --us-soft:rgba(74,147,234,.16); --ca-soft:rgba(239,116,72,.16);
+  --up:#2fbf66; --down:#ef6a6a; --up-soft:rgba(47,191,102,.16); --down-soft:rgba(239,106,106,.16);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band:#111f33; --band-2:#1a2c45; --band-ink:#f1f5fa; --band-ink-2:#a3b3c7; --band-line:rgba(255,255,255,.10); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-sans);font-size:14px;line-height:1.45}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:16px;padding-block:16px 48px;display:flex;flex-direction:column;gap:22px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+/* masthead */
+.band{background:var(--band);color:var(--band-ink);border-radius:16px;padding:22px 22px 0;display:flex;flex-direction:column;gap:20px;position:relative;overflow:hidden}
+.band::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 79px,var(--band-line) 79px 80px);opacity:.35;mask-image:linear-gradient(180deg,#000,transparent 70%)}
+.band>*{position:relative;z-index:1}
+.band-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--band-ink-2)}
+.band h1{margin:4px 0 0;font-family:var(--f-display);font-stretch:118%;font-weight:800;font-size:clamp(30px,5vw,44px);letter-spacing:-.01em;line-height:1}
+.asof{font-size:12px;color:var(--band-ink-2);text-align:right;line-height:1.6}
+.asof a{color:var(--band-ink);text-underline-offset:3px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--band-line);border-radius:12px;overflow:hidden}
+.stat{background:var(--band-2);padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat .l{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--band-ink-2);font-weight:600}
+.stat .v{font-family:var(--f-display);font-stretch:105%;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat .c{font-family:var(--f-mono);font-size:12px;font-weight:600}
+.stat .c.up{color:#5fd48c} .stat .c.down{color:#ff8f8f} .stat .c.flat{color:var(--band-ink-2)}
+.tabs{display:flex;gap:6px;overflow-x:auto}
+.tabs button{font:inherit;font-size:14px;font-weight:600;padding:11px 16px;background:transparent;border:0;border-bottom:3px solid transparent;color:var(--band-ink-2);cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--band-ink);border-bottom-color:var(--band-ink)}
+.tabs button:hover{color:var(--band-ink)}
+.tabs button:focus-visible{outline:2px solid var(--band-ink);outline-offset:-2px}
+.panel{display:flex;flex-direction:column;gap:22px}
+.panel[hidden]{display:none!important}
+
+/* section heads */
+.sec-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px}
+.sec-h h2{margin:0;font-family:var(--f-display);font-stretch:112%;font-weight:750;font-size:22px;letter-spacing:-.01em;text-wrap:balance}
+.sec-h p{margin:0;color:var(--ink-2);font-size:13px}
+.key{display:inline-flex;gap:14px;font-size:12px;color:var(--ink-2)}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.key i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+/* head to head */
+.h2h{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.vs{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px 12px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.vs .t{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.vs .t small{letter-spacing:0;text-transform:none;font-weight:500;color:var(--muted)}
+.pair{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px 10px}
+.cc{font-size:11px;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:5px}
+.cc.us{background:var(--us-soft);color:var(--us)} .cc.ca{background:var(--ca-soft);color:var(--ca)}
+.track{height:8px;border-radius:4px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}
+.track i{display:block;height:100%;border-radius:3px}
+.pair .val{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-weight:600;font-size:16px;text-align:right}
+.vs .gap{font-size:12px;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.vs .gap b{font-family:var(--f-mono);font-weight:600;color:var(--ink)}
+.vs svg{display:block;width:100%;height:46px}
+
+/* country columns */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+@media (max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}}
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}
+.col-h{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c)}
+.col-h h2{margin:0;font-family:var(--f-display);font-stretch:112%;font-weight:750;font-size:20px}
+.col-h span{color:var(--muted);font-size:12px;margin-left:auto;text-align:right}
+.col.us{--c:var(--us)} .col.ca{--c:var(--ca)}
+
+/* widgets */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;align-items:start}
+.w{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 14px 10px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.w h3{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.w h3 span.src{letter-spacing:0;text-transform:none;font-weight:500;color:var(--muted);text-align:right}
+.head{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.head .big{font-family:var(--f-display);font-stretch:105%;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
+.head .sub{font-size:12px;color:var(--ink-2)}
+.rows{display:flex;flex-direction:column}
+.r{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:13px}
+.r:first-child{border-top:0}
+.r .nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r .nm small{color:var(--muted);font-family:var(--f-mono);font-size:11px;margin-left:6px}
+.r .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+.board .r{grid-template-columns:minmax(0,1fr) 92px 58px}
+.bar{position:relative;height:8px}
+.bar::before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line-2)}
+.bar i{position:absolute;top:0;height:8px;border-radius:2px}
+.bar i.up{background:var(--up)} .bar i.down{background:var(--down)}
+.chg{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12px;font-weight:600;white-space:nowrap}
+.chg.up{color:var(--up)} .chg.down{color:var(--down)} .chg.flat{color:var(--muted)}
+.spark{width:100%;height:34px;display:block}
+.note{font-size:12px;color:var(--muted)}
+
+/* chart */
+.chartcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.ctrl{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center}
+.ctrl h2{margin:0;font-family:var(--f-display);font-stretch:112%;font-size:22px;font-weight:750;letter-spacing:-.01em;text-wrap:balance}
+.seg{display:flex;gap:4px;flex-wrap:wrap}
+.seg button{font:inherit;font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);cursor:pointer}
+.seg button:hover{border-color:var(--ink-2);color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:16px;height:4px;border-radius:2px;display:inline-block}
+.legend b{color:var(--ink)}
+.plot{position:relative;width:100%}
+.plot svg{display:block;width:100%;height:auto;overflow:visible}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line-2);border-radius:10px;padding:8px 10px;font-size:12px;box-shadow:0 8px 22px rgba(0,0,0,.14);min-width:160px}
+.tip b{display:block;font-weight:600;margin-bottom:4px;color:var(--ink)}
+.tip div{display:flex;justify-content:space-between;gap:12px;color:var(--ink-2)}
+.tip div i{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.axis text{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
+.grid-l{stroke:var(--line);stroke-width:1}
+.base-l{stroke:var(--line-2);stroke-width:1}
+
+
+/* inflation + tech */
+.sec{display:flex;flex-direction:column;gap:12px}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;align-items:start}
+.w.us-top{border-top:4px solid var(--us)} .w.ca-top{border-top:4px solid var(--ca)}
+.tech-sum{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font-size:13px;font-weight:600}
+.pill .chg{font-size:12px}
+.heat{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.grp{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grp-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.grp-h b{font-family:var(--f-display);font-stretch:110%;font-size:16px;font-weight:700}
+.grp-h small{color:var(--muted);font-size:11px;margin-left:6px;font-weight:500}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:6px}
+.tile{border-radius:8px;padding:8px 8px 7px;display:flex;flex-direction:column;gap:1px;min-width:0;border:1px solid var(--line)}
+.tile .s{font-family:var(--f-mono);font-weight:600;font-size:13px;color:var(--ink)}
+.tile .n{font-size:11px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .d{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--ink)}
+.ilegend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-2)}
+.ilegend span{display:inline-flex;align-items:center;gap:6px}
+.ilegend i{width:16px;height:3px;border-radius:2px;display:inline-block}
+
+/* ---------- app shell ---------- */
+:root{--s5:#e87ba4;--s6:#008300;--s7:#4a3aa7;--s8:#e34948;--s9:#898781}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--s5:#d55181;--s6:#008300;--s7:#9085e9;--s8:#e66767;--s9:#898781}}
+:root[data-theme="dark"]{--s5:#d55181;--s6:#008300;--s7:#9085e9;--s8:#e66767;--s9:#898781}
+.topnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--band);color:var(--band-ink);border-bottom:1px solid var(--band-line)}
+.topnav .in{max-width:1280px;margin:0 auto;padding-inline:16px;display:flex;align-items:center;gap:6px;min-height:52px;flex-wrap:wrap}
+.logo{font-family:var(--f-display);font-stretch:120%;font-weight:800;font-size:18px;letter-spacing:-.01em;color:var(--band-ink);text-decoration:none;margin-right:10px}
+.nl{color:var(--band-ink-2);text-decoration:none;font-weight:600;font-size:13px;padding:8px 10px;border-radius:8px;background:none;border:0;font-family:inherit;cursor:pointer}
+.nl:hover,.nl[aria-current="page"]{color:var(--band-ink);background:var(--band-2)}
+.nl:focus-visible{outline:2px solid var(--band-ink);outline-offset:1px}
+details.dd{position:relative}
+details.dd summary{list-style:none}
+details.dd summary::-webkit-details-marker{display:none}
+.ddm{position:absolute;top:calc(100% + 6px);left:0;background:var(--panel);color:var(--ink);border:1px solid var(--line-2);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.18);padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:2px;min-width:300px;z-index:30}
+@media (max-width:640px){.ddm{position:fixed;left:16px;right:16px;top:60px;min-width:0}}
+.ddm a{color:var(--ink);text-decoration:none;font-size:13px;padding:7px 10px;border-radius:7px;display:flex;justify-content:space-between;gap:8px}
+.ddm a:hover{background:var(--panel-2)}
+.navr{margin-left:auto;display:flex;align-items:center;gap:10px}
+.clock{font-size:12px;color:var(--band-ink-2);text-align:right;line-height:1.3}
+.clock b{color:var(--band-ink);font-weight:600}
+.themebtn{font:inherit;font-size:12px;font-weight:600;color:var(--band-ink);background:var(--band-2);border:1px solid var(--band-line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.strip{background:var(--panel);border-bottom:1px solid var(--line);overflow-x:auto}
+.strip .in{max-width:1280px;margin:0 auto;padding-inline:16px;display:flex;gap:0;white-space:nowrap}
+.si{display:flex;flex-direction:column;padding:8px 14px;border-right:1px solid var(--line);min-width:118px}
+.si:first-child{padding-left:0}
+.si .l{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.si .v{font-family:var(--f-mono);font-size:13px;font-weight:600;display:flex;gap:8px;align-items:baseline}
+.view[hidden]{display:none!important}
+.view{display:flex;flex-direction:column;gap:18px}
+.vhead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.vt{margin:0;font-family:var(--f-display);font-stretch:115%;font-weight:800;font-size:clamp(26px,4vw,34px);letter-spacing:-.01em;line-height:1.05}
+.vsub{margin:4px 0 0;color:var(--ink-2);font-size:13px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.ctl .lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.btn{font:inherit;font-size:12px;font-weight:600;padding:7px 12px;border-radius:8px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--ink-2)}
+.btn.primary{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+select,input[type=search]{font:inherit;font-size:13px;padding:7px 10px;border-radius:8px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink)}
+
+/* ---------- widget board ---------- */
+.board{column-width:270px;column-gap:14px}
+.board>*{break-inside:avoid;margin-bottom:14px}
+.wc{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.wc-h{padding:12px 14px 4px;display:flex;flex-direction:column;gap:2px}
+.wc-t{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.wc-t .x{font:inherit;font-size:15px;line-height:1;letter-spacing:0;color:var(--muted);background:none;border:0;cursor:pointer;padding:2px 4px;border-radius:6px}
+.wc-t .x:hover{color:var(--down);background:var(--panel-2)}
+.wc-big{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.wc-big .b{font-family:var(--f-display);font-stretch:105%;font-weight:700;font-size:28px;font-variant-numeric:tabular-nums;line-height:1.1}
+.wc-big .b.up{color:var(--up)} .wc-big .b.down{color:var(--down)}
+.wc-big svg{width:46%;height:38px;flex:none}
+.wc-s{font-size:12px;color:var(--ink-2)}
+.wc-rows{display:flex;flex-direction:column;padding:6px 0 4px}
+.wr{display:grid;grid-template-columns:4px minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:5px 14px 5px 10px;border:0;border-top:1px solid var(--line);background:none;font:inherit;font-size:13px;color:var(--ink);text-align:left;cursor:pointer;width:100%}
+.wr:hover{background:var(--panel-2)}
+.wr[aria-pressed="true"]{background:var(--accent-soft,rgba(42,120,214,.10))}
+.wr:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.wr i{width:4px;height:16px;border-radius:2px;background:var(--line-2)}
+.wr i.up{background:var(--up)} .wr i.down{background:var(--down)}
+.wr .nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+.wr .nm small{color:var(--muted);font-family:var(--f-mono);font-size:10.5px;margin-left:6px;font-weight:400}
+.wr .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12.5px;text-align:right}
+.wr .c{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12px;font-weight:600;text-align:right;min-width:54px}
+.wr .c.up{color:var(--up)} .wr .c.down{color:var(--down)} .wr .c.flat{color:var(--muted)}
+.wc-f{padding:6px 14px 10px;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.addw{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:150px;border-radius:12px;border:2px dashed var(--line-2);color:var(--ink-2);text-decoration:none;font-weight:600;background:transparent}
+.addw:hover{border-color:var(--accent);color:var(--accent)}
+.addw b{font-size:28px;line-height:1}
+
+/* ---------- sectors ---------- */
+.secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;align-items:start}
+.sg{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.sg-h{padding:12px 14px 6px;display:flex;flex-direction:column;gap:2px}
+.sg-n{font-size:12px;font-weight:700;color:var(--ink-2)}
+.sg-m{display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
+.sg-m .b{font-family:var(--f-display);font-weight:700;font-size:24px;font-variant-numeric:tabular-nums}
+.sg-m .b.up{color:var(--up)} .sg-m .b.down{color:var(--down)}
+.sg-m svg{width:50%;height:34px}
+.sg-s{font-size:11px;color:var(--muted)}
+.mem{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:5px 14px;border-top:1px solid var(--line);font-size:12.5px}
+.mem .t{font-family:var(--f-mono);font-weight:600}
+.mem .t small{font-family:var(--f-sans);font-weight:400;color:var(--ink-2);margin-left:6px;font-size:11.5px}
+.mem .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mem .p{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2)}
+.mem .c{font-family:var(--f-mono);font-weight:600;font-size:12px;min-width:58px;text-align:right}
+.rank{display:flex;flex-wrap:wrap;gap:8px}
+
+/* ---------- macro ---------- */
+.mc-ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.mc-ctl label{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--ink-2);font-weight:600}
+.mc-latest{text-align:right}
+.mc-latest .b{font-family:var(--f-display);font-weight:700;font-size:30px;font-variant-numeric:tabular-nums}
+.mc-latest .s{font-size:12px;color:var(--ink-2)}
+#mc-plot{touch-action:none;cursor:grab}
+#mc-plot.drag{cursor:grabbing}
+
+/* ---------- tech map ---------- */
+.tm{position:relative;width:100%;height:clamp(460px,62vw,720px);border-radius:10px;overflow:hidden;background:var(--panel-2)}
+.tmb{position:absolute;box-sizing:border-box;padding:2px}
+.tmb>.sp{position:absolute;left:4px;top:2px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap;overflow:hidden;right:4px;text-overflow:ellipsis}
+.tmc{position:absolute;box-sizing:border-box;border:1.5px solid var(--panel);border-radius:5px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink);padding:2px}
+.tmc .tk{font-family:var(--f-display);font-weight:800;line-height:1}
+.tmc .mc{font-family:var(--f-mono);font-weight:600;line-height:1.2}
+.tmc .ds{color:var(--ink-2);line-height:1.2}
+.tm-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--ink-2);padding-top:10px}
+.tm-legend span{display:inline-flex;gap:6px;align-items:center}
+.tm-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+th.sort{cursor:pointer;user-select:none}
+th.sort:hover{color:var(--ink)}
+
+/* ---------- widget gallery ---------- */
+.gcat{display:flex;flex-direction:column;gap:12px}
+.gcat h2{margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--line);padding-bottom:6px}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.gi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.gi .pv{background:var(--panel-2);border-radius:8px;padding:6px 8px;display:flex;flex-direction:column;gap:2px;font-size:12px}
+.gi .pv div{display:flex;justify-content:space-between;gap:8px}
+.gi .pv span:last-child{font-family:var(--f-mono);font-weight:600}
+.gi b{font-size:14px}
+.gi p{margin:0;font-size:12px;color:var(--ink-2)}
+.gi .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.gi .on{font-size:12px;color:var(--up);font-weight:600}
+
+
+/* sources */
+.ledger{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.ledger h2{margin:0;font-family:var(--f-display);font-stretch:112%;font-size:22px;font-weight:750}
+.ledger p{margin:0;color:var(--ink-2);max-width:78ch}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+th,td{text-align:left;padding:8px 10px;border-top:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;border-top:0}
+td code{font-family:var(--f-mono);font-size:12px;color:var(--ink)}
+td a{color:var(--accent)}
+footer{font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div id="md-loading" style="padding:40px 16px;text-align:center;font:14px system-ui;color:#465263">Loading the latest market data…</div>
+<nav class="topnav" aria-label="Main">
+  <div class="in">
+    <a class="da-back" href="/" target="_top" title="Back to dinian.ca">&larr; D-Advisory</a>
+    <a class="logo" href="#sector-technology">Sectors, Tech &amp; Commodities</a>
+    <a class="nl" href="#home" data-nav="home">Today</a>
+    <details class="dd" id="secdd"><summary class="nl" data-nav="sector">Sectors ▾</summary><div class="ddm" id="secmenu"></div></details>
+    <a class="nl" href="#economy" data-nav="economy">Economy</a>
+    <a class="nl" href="#macro" data-nav="macro">Macro charts</a>
+    <a class="nl" href="#techmap" data-nav="techmap">Tech map</a>
+    <a class="nl" href="#commodities" data-nav="commod">Commodities</a>
+    <a class="nl" href="#widgets" data-nav="widgets">Widgets</a>
+    <div class="navr">
+      <div class="clock" id="clock"></div>
+      <button type="button" class="themebtn" id="themebtn" aria-label="Color theme">Theme: Auto</button>
+    </div>
+  </div>
+</nav>
+<div class="strip" aria-label="Market strip"><div class="in" id="strip"></div></div>
+
+<div class="wrap">
+ <main>
+  <section class="view" id="v-home" aria-label="Today">
+    <div class="vhead">
+      <div><h1 class="vt">Today</h1><p class="vsub">Data as of <span class="md-asof">the latest update</span> · click any row to chart it in the card header</p></div>
+      <div class="ctl"><span class="lab">Stock groups</span><div class="seg" id="home-period" role="group" aria-label="Period for stock groups"></div><button type="button" class="btn" id="home-reset">Reset board</button></div>
+    </div>
+    <div class="board" id="board"></div>
+  </section>
+
+  <section class="view" id="v-sector" aria-label="Sector" hidden>
+    <div class="vhead">
+      <div><h1 class="vt" id="sec-title"></h1><p class="vsub" id="sec-sub"></p></div>
+      <div class="ctl">
+        <span class="lab">Sort</span><div class="seg" id="sec-sort" role="group" aria-label="Sort members"></div>
+        <span class="lab">Average</span><div class="seg" id="sec-avg" role="group" aria-label="Group average"></div>
+        <span class="lab">Period</span><div class="seg" id="sec-period" role="group" aria-label="Period"></div>
+      </div>
+    </div>
+    <div class="seg" id="sec-pick" role="group" aria-label="Sector"></div>
+    <div class="rank" id="sec-rank"></div>
+    <div class="secgrid" id="sec-grid"></div>
+  </section>
+
+  <section class="view" id="v-economy" aria-label="Economy" hidden>
+    <header class="band">
+      <div class="band-top">
+        <div><div class="kicker">United States &amp; Canada</div><h1>Economy</h1></div>
+        <div class="asof">Quotes as of <span class="md-asof">the latest update</span><br>Rates and inflation at latest release · <a href="#sources">Data sources</a></div>
+      </div>
+      <div class="stats" id="stats" style="margin-bottom:22px"></div>
+    </header>
+
+    <section style="display:flex;flex-direction:column;gap:12px">
+      <div class="sec-h"><h2>Head to head</h2><div class="key"><span><i style="background:var(--us)"></i>United States</span><span><i style="background:var(--ca)"></i>Canada</span></div></div>
+      <div class="h2h" id="h2h"></div>
+    </section>
+
+    <section class="sec" aria-label="Inflation">
+      <div class="sec-h"><h2>Inflation</h2><p>Latest readings · both central banks target 2%</p></div>
+      <div class="trio" id="infl"></div>
+    </section>
+
+    <section class="chartcard" aria-label="Comparison charts">
+      <div class="ctrl"><h2 id="na-title"></h2><div class="seg" id="na-ranges" role="group" aria-label="Time range"></div></div>
+      <div class="seg" id="na-picker" role="group" aria-label="Chart"></div>
+      <div class="legend" id="na-legend"></div>
+      <div class="plot" id="na-plot"><div class="tip" id="na-tip" hidden></div></div>
+      <div class="note" id="na-note"></div>
+    </section>
+
+    <section class="cols">
+      <div class="col us">
+        <div class="col-h"><h2>United States</h2><span>USD · Federal Reserve · Treasuries</span></div>
+        <div class="col" id="us-col"></div>
+      </div>
+      <div class="col ca">
+        <div class="col-h"><h2>Canada</h2><span>CAD · Bank of Canada · GoC bonds</span></div>
+        <div class="col" id="ca-col"></div>
+      </div>
+    </section>
+  </section>
+
+  <section class="view" id="v-macro" aria-label="Macro charts" hidden>
+    <div class="vhead">
+      <div><h1 class="vt" id="mc-title"></h1><p class="vsub" id="mc-sub"></p></div>
+      <div class="mc-latest" id="mc-latest"></div>
+    </div>
+    <div class="mc-ctl">
+      <label for="mc-sel">Chart <select id="mc-sel"></select></label>
+      <label for="mc-cmp">Compare with <select id="mc-cmp"></select></label>
+      <div class="seg" id="mc-rng" role="group" aria-label="Time range"></div>
+      <label for="mc-log"><input type="checkbox" id="mc-log"> Log scale</label>
+    </div>
+    <section class="chartcard">
+      <div class="legend" id="mc-legend"></div>
+      <div class="plot" id="mc-plot"><div class="tip" id="mc-tip" hidden></div></div>
+      <div class="note" id="mc-note"></div>
+      <div class="note">Drag to pan · scroll to zoom · double-click to reset</div>
+    </section>
+  </section>
+
+  <section class="view" id="v-commod" aria-label="Commodities and metals" hidden>
+    <div class="vhead"><div><h1 class="vt">Commodities &amp; Metals</h1><p class="vsub">Oil, gas, gold, silver and copper futures, and the energy and mining companies that move with them · data as of <span class="md-asof">the latest update</span> · click any row to chart it in the card header</p></div></div>
+    <div class="board" id="cm-board"></div>
+    <p class="vsub" style="margin-top:14px">Prices are front-month futures (CME / ICE) and exchange quotes via Yahoo Finance, in U.S. dollars except TSX names (Canadian dollars). For information only; not investment advice.</p>
+  </section>
+  <section class="view" id="v-techmap" aria-label="Tech map" hidden>
+    <div class="vhead">
+      <div><h1 class="vt">Future Tech market map</h1><p class="vsub" id="tm-sub"></p></div>
+      <div class="ctl">
+        <div class="seg" id="tm-view" role="group" aria-label="View"></div>
+        <label class="lab" for="tm-space">Space</label><select id="tm-space"></select>
+        <span class="lab">Color</span><div class="seg" id="tm-color" role="group" aria-label="Color by"></div>
+      </div>
+    </div>
+    <section class="chartcard" id="tm-mapcard">
+      <div class="tm" id="tm-map"></div>
+      <div class="tm-legend" id="tm-legend"></div>
+      <div class="note">Box size is market cap. Market caps and moves from Yahoo Finance, <span class="md-asof">latest update</span>.</div>
+    </section>
+    <section class="chartcard" id="tm-tablecard" hidden><div class="tbl"><table id="tm-table"></table></div></section>
+  </section>
+
+  <section class="view" id="v-widgets" aria-label="Widgets" hidden>
+    <div class="vhead">
+      <div><h1 class="vt">Widgets</h1><p class="vsub" id="wg-sub"></p></div>
+      <input type="search" id="wg-q" placeholder="Search widgets" aria-label="Search widgets">
+    </div>
+    <div id="wg-list" style="display:flex;flex-direction:column;gap:22px"></div>
+  </section>
+ </main>
+
+  <section class="ledger" id="sources">
+    <h2>Data sources</h2>
+    <p>Every number on this page comes from a free public source. Market prices are Yahoo Finance quotes (Canadian stocks in CAD). U.S. rates, inflation and jobs come from FRED, the St. Louis Fed's database, which republishes the official Treasury, BLS, BEA, Federal Reserve and Freddie Mac releases. Canadian rates and CPI come straight from the Bank of Canada's Valet data service; the unemployment rate and 3-month rate come from Statistics Canada and the OECD via FRED.</p>
+    <div class="tbl"><table id="srcTbl"></table></div>
+  </section>
+
+  <footer>Weekly points in the charts are each Friday's last available close. Daily changes on tiles are versus the prior session. For information only; not investment advice. Data is provided as-is from third-party sources, may be delayed or inaccurate, and D-Advisory / dinian.ca accepts no responsibility for errors or for decisions made using it. See our <a href="/disclaimer/" target="_top">Disclaimer</a>.</footer>
+</div>
+
+<script>
+window.__MD_RUN=function(D){
+/* ---------- Data: loaded from data.json (see loader below) ---------- */
+const Y=D.Y,F=D.F,STK=D.STK,LONG=D.LONG,CA=D.CA,META=D.meta||{};
+const MON=id=>{const m=(META.months||{})[id];if(!m)return '';return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m.slice(5,7)-1]};
+
+
+
+
+
+
+/* ---------- Helpers ---------- */
+const $=s=>document.querySelector(s);
+const DAY=864e5;
+const fmtPx=(p)=>p>=1000?p.toLocaleString('en-US',{maximumFractionDigits:0}):p>=10?p.toFixed(2):p.toFixed(3);
+const cls=d=>d>0?'up':d<0?'down':'flat';
+const arrow=d=>d>0?'▲':d<0?'▼':'■';
+const pct=d=>`${arrow(d)} ${d>0?'+':''}${d.toFixed(2)}%`;
+const bp=d=>{const b=Math.round(d*100);return `${arrow(b)} ${b>0?'+':''}${b} bp`};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function spark(arr,dir){
+  if(!arr||arr.length<2)return '';
+  const w=120,h=30,pad=3,mn=Math.min(...arr),mx=Math.max(...arr),rg=(mx-mn)||1;
+  const pts=arr.map((v,i)=>[i/(arr.length-1)*w,pad+(1-(v-mn)/rg)*(h-2*pad)]);
+  const d=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+  const col=dir>0?'var(--up)':dir<0?'var(--down)':'var(--muted)';
+  const soft=dir>0?'var(--up-soft)':dir<0?'var(--down-soft)':'var(--line)';
+  const last=pts[pts.length-1];
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><path d="${d} L${w} ${h} L0 ${h} Z" fill="${soft}" stroke="none"/><path d="${d}" fill="none" stroke="${col}" stroke-width="1.5" vector-effect="non-scaling-stroke"/><circle cx="${last[0]}" cy="${last[1]}" r="2.2" fill="${col}"/></svg>`;
+}
+
+/* ---------- Canada data (Bank of Canada Valet; StatCan LFS & 3-month rate via FRED; quotes via Yahoo, CAD) ---------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CA.W.CAUS10=CA.W["BD.CDN.10YR.DQ.YLD"].map((v,i)=>v==null||F.W.DGS10[i]==null?null:Math.round((v-F.W.DGS10[i])*100)/100);
+CA.latest.CAUS10=[CA.latest["BD.CDN.10YR.DQ.YLD"][0],+(CA.latest["BD.CDN.10YR.DQ.YLD"][1]-F.latest.DGS10[1]).toFixed(2),+(CA.latest["BD.CDN.10YR.DQ.YLD"][2]-F.latest.DGS10[2]).toFixed(2)];
+CA.latest.CA2s10s=[CA.latest["BD.CDN.10YR.DQ.YLD"][0],+(CA.latest["BD.CDN.10YR.DQ.YLD"][1]-CA.latest["BD.CDN.2YR.DQ.YLD"][1]).toFixed(2),+(CA.latest["BD.CDN.10YR.DQ.YLD"][2]-CA.latest["BD.CDN.2YR.DQ.YLD"][2]).toFixed(2)];
+
+/* ---------- Derived series ---------- */
+CA.W.CA2s10s=CA.W["BD.CDN.10YR.DQ.YLD"].map((v,i)=>v==null||CA.W["BD.CDN.2YR.DQ.YLD"][i]==null?null:Math.round((v-CA.W["BD.CDN.2YR.DQ.YLD"][i])*100)/100);
+const lastOf=a=>a[a.length-1],prevOf=a=>a[a.length-2];
+
+/* ---------- Widget builders ---------- */
+const tk=t=>t.replace('.TO','').replace('-B','');
+function board(title,src,tickers,sub='Equal-weight average, today'){
+  const list=tickers.map(t=>({t,...Y[t]})).sort((a,b)=>b.d-a.d);
+  const max=Math.max(...list.map(x=>Math.abs(x.d)),0.5);
+  const avg=list.reduce((s,x)=>s+x.d,0)/list.length;
+  return `<div class="w board"><h3>${title}<span class="src">${src}</span></h3>
+  <div class="head"><span class="big chg ${cls(avg)}" style="font-size:22px">${pct(avg)}</span><span class="sub">${sub}</span></div>
+  <div class="rows">${list.map(x=>{const wd=Math.abs(x.d)/max*50;const style=x.d>=0?`left:50%;width:${wd}%`:`right:50%;width:${wd}%`;return `<div class="r"><span class="nm">${esc(x.n)}<small>${esc(tk(x.t))}</small></span><span class="bar"><i class="${x.d>=0?'up':'down'}" style="${style}"></i></span><span class="v chg ${cls(x.d)}">${x.d>0?'+':''}${x.d.toFixed(2)}%</span></div>`}).join('')}</div></div>`;
+}
+function quotes(title,src,tickers,lead,unitFn){
+  const L=Y[lead];
+  return `<div class="w"><h3>${title}<span class="src">${src}</span></h3>
+  <div class="head"><span><span class="big">${unitFn?unitFn(lead,L.p):fmtPx(L.p)}</span> <span class="sub">${esc(L.n)}</span></span><span class="chg ${cls(L.d)}">${pct(L.d)}</span></div>
+  ${spark(L.s,L.d)}
+  <div class="rows">${tickers.map(t=>{const q=Y[t];return `<div class="r"><span class="nm">${esc(q.n)}<small>${esc(tk(t))}</small></span><span class="v">${unitFn?unitFn(t,q.p):fmtPx(q.p)}</span><span class="chg ${cls(q.d)}">${pct(q.d)}</span></div>`}).join('')}</div></div>`;
+}
+function rates({title,src,L,head,headLabel,rows,note}){
+  const h=L[head];
+  return `<div class="w"><h3>${title}<span class="src">${src}</span></h3>
+  <div class="head"><span><span class="big">${h[1].toFixed(2)}%</span> <span class="sub">${headLabel}</span></span><span class="chg ${cls(h[1]-h[2])}">${bp(h[1]-h[2])}</span></div>
+  <div class="rows">${rows.map(([k,n,id])=>{const v=L[k];const unit=['CAUS10','T10Y2Y','CA2s10s'].includes(k)?' pp':'%';return `<div class="r"><span class="nm">${n}<small>${id}</small></span><span class="v">${v[1].toFixed(2)}${unit}</span><span class="chg ${cls(v[1]-v[2])}">${bp(v[1]-v[2])}</span></div>`}).join('')}</div>${note?`<div class="note">${note}</div>`:''}</div>`;
+}
+function infl({title,src,M,rows,head,headLabel,extra,note,dp=2}){
+  const c=M[head];
+  return `<div class="w"><h3>${title}<span class="src">${src}</span></h3>
+  <div class="head"><span><span class="big">${lastOf(c).toFixed(dp)}%</span> <span class="sub">${headLabel}</span></span><span class="chg ${cls(lastOf(c)-prevOf(c))}">${bp(lastOf(c)-prevOf(c))}</span></div>
+  <div class="rows">${rows.map(([k,n,id])=>{const a=M[k];const d=lastOf(a)-prevOf(a);return `<div class="r"><span class="nm">${n}<small>${id}</small></span><span class="v">${lastOf(a).toFixed(dp)}%</span><span class="chg ${cls(d)}">${bp(d)}</span></div>`}).join('')}${extra||''}</div>
+  <div class="note">${note}</div></div>`;
+}
+function curve({title,src,mats,W,L,spreadLabel,spread,color}){
+  const n=W[mats[0][0]].length;
+  const now=mats.map(m=>L[m[0]][1]);const ago=mats.map(m=>W[m[0]][n-53]);
+  const Wd=300,H=150,pl=34,pr=12,pt=12,pb=24;
+  const lo=Math.floor(Math.min(...now,...ago)*2)/2,hi=Math.ceil(Math.max(...now,...ago)*2)/2;
+  const xs=i=>pl+i/(mats.length-1)*(Wd-pl-pr);const ys=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb);
+  let ticks='';for(let v=lo;v<=hi+1e-9;v+=0.5){ticks+=`<line class="grid-l" x1="${pl}" x2="${Wd-pr}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${pl-6}" y="${ys(v)+4}" text-anchor="end">${v.toFixed(1)}</text>`}
+  const path=a=>a.map((v,i)=>(i?'L':'M')+xs(i)+' '+ys(v)).join(' ');
+  const dots=(a,c)=>a.map((v,i)=>`<circle cx="${xs(i)}" cy="${ys(v)}" r="3.5" fill="${c}" stroke="var(--panel)" stroke-width="2"><title>${mats[i][1]}: ${v.toFixed(2)}%</title></circle>`).join('');
+  const i10=mats.findIndex(m=>m[1]==='10Y');
+  return `<div class="w"><h3>${title}<span class="src">${src}</span></h3>
+  <div class="legend" style="font-size:12px"><span><i style="background:${color}"></i>Now</span><span><i style="background:var(--muted)"></i>One year ago</span></div>
+  <svg viewBox="0 0 ${Wd} ${H}" class="axis" role="img" aria-label="${esc(title)}, now versus one year ago">${ticks}
+  ${mats.map((m,i)=>`<text x="${xs(i)}" y="${H-6}" text-anchor="middle">${m[1]}</text>`).join('')}
+  <path d="${path(ago)}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/>${dots(ago,'var(--muted)')}
+  <path d="${path(now)}" fill="none" stroke="${color}" stroke-width="2.5"/>${dots(now,color)}</svg>
+  <div class="note">The 10Y is ${Math.abs(Math.round((now[i10]-ago[i10])*100))} bp ${now[i10]>=ago[i10]?'higher':'lower'} than a year ago; the curve is ${spread>0?'positively sloped':'inverted'} at ${spread.toFixed(2)} pp (${spreadLabel}).</div></div>`;
+}
+const fx=(t,p)=>t==='CAD=X'?p.toFixed(4):fmtPx(p);
+
+/* ---------- Series access ---------- */
+const wStart=Date.parse(F.weekStart+'T00:00:00Z');
+const LMAP={CPI:'CPI',CORECPI:'CORECPI',PCE:'PCE',COREPCE:'COREPCE',UNRATE:'UNRATE',CAUR:'LRUNTTTTCAM156S',CACPI:'CACPI',CATRIM:'CATRIM',CA3M:'IR3TIB01CAM156N'};
+const isMonthly=id=>!(F.W[id]||CA.W[id]);
+function seriesPts(id){
+  const w=F.W[id]||CA.W[id];
+  if(w)return w.map((v,i)=>[wStart+i*7*DAY,v]).filter(p=>p[1]!=null);
+  if(LMAP[id]){const s=LONG[LMAP[id]];const [y,mo]=s.start.split('-').map(Number);return s.v.map((v,i)=>[Date.UTC(y,mo-1+i,1),v]).filter(p=>p[1]!=null)}
+  const m=F.M[id]||CA.M[id];
+  return m.map((v,i)=>[Date.UTC(2017,i,1),v]).filter(p=>p[1]!=null);
+}
+
+/* ---------- Masthead stats ---------- */
+$('#stats').innerHTML=[
+  ['S&P 500',fmtPx(Y['^GSPC'].p),pct(Y['^GSPC'].d),cls(Y['^GSPC'].d)],
+  ['S&P/TSX',fmtPx(Y['^GSPTSE'].p),pct(Y['^GSPTSE'].d),cls(Y['^GSPTSE'].d)],
+  ['USD/CAD',Y['CAD=X'].p.toFixed(4),pct(Y['CAD=X'].d),cls(Y['CAD=X'].d)],
+  ['Fed vs BoC',`${F.latest.DFF[1].toFixed(2)} / ${CA.latest.V39079[1].toFixed(2)}`,`Gap ${Math.round((F.latest.DFF[1]-CA.latest.V39079[1])*100)} bp`,'flat'],
+  ['10Y UST vs GoC',`${F.latest.DGS10[1].toFixed(2)} / ${CA.latest['BD.CDN.10YR.DQ.YLD'][1].toFixed(2)}`,`Gap ${Math.round(-CA.latest.CAUS10[1]*100)} bp`,'flat'],
+].map(([l,v,c,k])=>`<div class="stat"><span class="l">${l}</span><span class="v">${v}</span><span class="c ${k}">${c}</span></div>`).join('');
+
+/* ---------- Head to head ---------- */
+const H2H=[
+  {t:'Policy rate',u:['DFF',F.latest.DFF[1],'Fed funds'],c:['V39079',CA.latest.V39079[1],'Overnight target']},
+  {t:'2-year yield',u:['DGS2',F.latest.DGS2[1],'Treasury'],c:['BD.CDN.2YR.DQ.YLD',CA.latest['BD.CDN.2YR.DQ.YLD'][1],'GoC']},
+  {t:'10-year yield',u:['DGS10',F.latest.DGS10[1],'Treasury'],c:['BD.CDN.10YR.DQ.YLD',CA.latest['BD.CDN.10YR.DQ.YLD'][1],'GoC']},
+  {t:'Headline inflation',sub:MON('CPI')+', YoY',u:['CPI',lastOf(F.M.CPI),'CPI'],c:['CACPI',lastOf(CA.M.CACPI),'CPI']},
+  {t:'Core inflation',sub:MON('COREPCE')+', YoY',u:['COREPCE',lastOf(F.M.COREPCE),'Core PCE'],c:['CATRIM',lastOf(CA.M.CATRIM),'CPI-trim']},
+  {t:'Unemployment',sub:'U.S. '+MON('UNRATE')+' · CA '+MON('CAUR'),pp:true,u:['UNRATE',lastOf(F.M.UNRATE),'U-3'],c:['CAUR',lastOf(CA.M.CAUR),'LFS']},
+];
+function miniDual(idU,idC){
+  const W=240,H=46,p=3,since=Date.UTC(2023,9,1);
+  const a=seriesPts(idU).filter(x=>x[0]>=since),b=seriesPts(idC).filter(x=>x[0]>=since);
+  const all=[...a,...b];const t0=Math.min(...all.map(x=>x[0])),t1=Math.max(...all.map(x=>x[0]));
+  const lo=Math.min(...all.map(x=>x[1])),hi=Math.max(...all.map(x=>x[1]));const rg=(hi-lo)||1;
+  const xs=t=>(t-t0)/(t1-t0)*W,ys=v=>p+(1-(v-lo)/rg)*(H-2*p);
+  const path=s=>s.map((x,i)=>(i?'L':'M')+xs(x[0]).toFixed(1)+' '+ys(x[1]).toFixed(1)).join(' ');
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${path(a)}" fill="none" stroke="var(--us)" stroke-width="1.8" vector-effect="non-scaling-stroke"/><path d="${path(b)}" fill="none" stroke="var(--ca)" stroke-width="1.8" vector-effect="non-scaling-stroke"/></svg>`;
+}
+$('#h2h').innerHTML=H2H.map(h=>{
+  const [iu,vu,lu]=h.u,[ic,vc,lc]=h.c;const mx=Math.max(vu,vc)*1.1||1;const gap=Math.round((vu-vc)*100);
+  return `<div class="vs"><div class="t">${h.t}<small>${h.sub||'Latest'}</small></div>
+  <div class="pair"><span class="cc us">US</span><span class="track"><i style="width:${vu/mx*100}%;background:var(--us)"></i></span><span class="val">${vu.toFixed(2)}%</span>
+  <span class="cc ca">CA</span><span class="track"><i style="width:${vc/mx*100}%;background:var(--ca)"></i></span><span class="val">${vc.toFixed(2)}%</span></div>
+  <div class="gap"><span>${lu} vs ${lc}</span><span>${gap===0?'Level':`<b>${h.pp?Math.abs(vu-vc).toFixed(1)+' pp':Math.abs(gap)+' bp'}</b> ${gap>0?'higher in U.S.':'higher in Canada'}`}</span></div>
+  ${miniDual(iu,ic)}<div class="note" style="margin-top:-6px">Last 3 years</div></div>`;
+}).join('');
+
+/* ---------- Country columns ---------- */
+const caUR=CA.M.CAUR;
+$('#us-col').innerHTML=[
+  quotes('U.S. indices','Yahoo · 30 days',['^IXIC','^RUT','^VIX'],'^GSPC'),
+  rates({title:'U.S. yields',src:'FRED · '+F.latest.DGS10[0],L:F.latest,head:'DGS10',headLabel:'10-year Treasury',rows:[['DFF','Fed funds (effective)','DFF'],['DGS2','2-year','DGS2'],['DGS5','5-year','DGS5'],['DGS10','10-year','DGS10'],['DGS30','30-year','DGS30'],['T10Y2Y','10Y − 2Y spread','T10Y2Y'],['MORTGAGE30US','30-yr mortgage','MORTGAGE30US']]}),
+  curve({title:'Treasury curve',src:'FRED · H.15',mats:[['DGS2','2Y'],['DGS5','5Y'],['DGS10','10Y'],['DGS30','30Y']],W:F.W,L:F.latest,spreadLabel:'10Y − 2Y',spread:F.latest.T10Y2Y[1],color:'var(--us)'}),
+  board('S&P sectors','SPDR ETFs · Yahoo',['XLK','XLF','XLE','XLV','XLY','XLP','XLI','XLB','XLU','XLRE','XLC']),
+  board('Themes','Thematic ETFs · Yahoo',['IGV','CIBR','GRID','ARKX','BOTZ','BLOK','IBB','DRIV','QTUM','REMX']),
+].join('');
+$('#ca-col').innerHTML=[
+  quotes('Canadian markets','Yahoo · 30 days · CAD',['CAD=X','XFN.TO','XEG.TO','XGD.TO'],'^GSPTSE',fx),
+  rates({title:'Canadian rates',src:'Bank of Canada · '+CA.latest.V39079[0],L:CA.latest,head:'BD.CDN.10YR.DQ.YLD',headLabel:'10-year GoC',
+    rows:[['V39079','BoC policy rate','V39079'],['CA3M','3-month rate ('+MON('CA3M')+')','IR3TIB01'],['BD.CDN.2YR.DQ.YLD','2-year GoC','BD.CDN.2YR'],['BD.CDN.5YR.DQ.YLD','5-year GoC','BD.CDN.5YR'],['BD.CDN.10YR.DQ.YLD','10-year GoC','BD.CDN.10YR'],['BD.CDN.LONG.DQ.YLD','Long-term GoC','BD.CDN.LONG'],['CA2s10s','10Y − 2Y spread','GoC'],['CAUS10','Canada − U.S. 10-year','vs DGS10']]}),
+  curve({title:'Government of Canada curve',src:'Bank of Canada',mats:[['BD.CDN.2YR.DQ.YLD','2Y'],['BD.CDN.5YR.DQ.YLD','5Y'],['BD.CDN.10YR.DQ.YLD','10Y'],['BD.CDN.LONG.DQ.YLD','Long']],W:CA.W,L:CA.latest,spreadLabel:'10Y − 2Y',spread:CA.latest.CA2s10s[1],color:'var(--ca)'}),
+  board('TSX sectors','iShares & BMO ETFs · Yahoo',['XFN.TO','XEG.TO','XIT.TO','XMA.TO','ZIN.TO','XST.TO','XUT.TO','XRE.TO','XGD.TO']),
+  board('Big Six banks','TSX · Yahoo',['RY.TO','TD.TO','BNS.TO','BMO.TO','CM.TO','NA.TO']),
+  board('Energy & resources','TSX · Yahoo',['CNQ.TO','SU.TO','ENB.TO','TRP.TO','NTR.TO','TECK-B.TO','CCO.TO']),
+].join('');
+
+/* ---------- Inflation section ---------- */
+function inflChart(){
+  const W=600,H=250,pl=40,pr=14,pt=12,pb=26,since=Date.UTC(2021,0,1);
+  const sets=[['CPI','U.S. CPI','var(--us)',''],['COREPCE','U.S. core PCE','var(--us)','5 4'],['CACPI','Canada CPI','var(--ca)',''],['CATRIM','Canada CPI-trim','var(--ca)','5 4']]
+    .map(([id,n,c,dash])=>({id,n,c,dash,pts:seriesPts(id).filter(p=>p[0]>=since)}));
+  const all=sets.flatMap(s=>s.pts);const t0=since,t1=Math.max(...all.map(p=>p[0]));
+  const ticks=niceTicks(Math.min(0,...all.map(p=>p[1])),Math.max(...all.map(p=>p[1])),5);const lo=ticks[0],hi=ticks[ticks.length-1];
+  const xs=t=>pl+(t-t0)/(t1-t0)*(W-pl-pr),ys=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb);
+  let g='';ticks.forEach(v=>g+=`<line class="grid-l" x1="${pl}" x2="${W-pr}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${pl-6}" y="${ys(v)+4}" text-anchor="end">${v}%</text>`);
+  for(let y=2022;y<=2026;y++){const d=Date.UTC(y,0,1);g+=`<text x="${xs(d)}" y="${H-8}" text-anchor="middle">${y}</text>`}
+  g+=`<rect x="${pl}" y="${ys(3)}" width="${W-pl-pr}" height="${ys(1)-ys(3)}" fill="var(--up-soft)" opacity=".7"/><line x1="${pl}" x2="${W-pr}" y1="${ys(2)}" y2="${ys(2)}" stroke="var(--ink-2)" stroke-dasharray="3 4"/><text x="${W-pr}" y="${ys(2)-5}" text-anchor="end">2% target · 1–3% band</text>`;
+  sets.forEach(s=>{g+=`<path d="${s.pts.map((p,i)=>(i?'L':'M')+xs(p[0]).toFixed(1)+' '+ys(p[1]).toFixed(1)).join(' ')}" fill="none" stroke="${s.c}" stroke-width="2.2" ${s.dash?`stroke-dasharray="${s.dash}"`:''}/>`;const l=s.pts[s.pts.length-1];g+=`<circle cx="${xs(l[0])}" cy="${ys(l[1])}" r="3.5" fill="${s.c}" stroke="var(--panel)" stroke-width="2"/>`});
+  return `<div class="w"><h3>Since 2021<span class="src">YoY, monthly</span></h3>
+  <div class="ilegend">${sets.map(s=>`<span><i style="background:${s.c};${s.dash?'opacity:.55':''}"></i>${s.n} <b class="num">${lastOf(s.pts)[1].toFixed(1)}%</b></span>`).join('')}</div>
+  <svg viewBox="0 0 ${W} ${H}" class="axis" role="img" aria-label="Inflation in the U.S. and Canada since 2021">${g}</svg>
+  <div class="note">Solid lines are headline inflation; dashed lines are each central bank’s preferred core gauge. The shaded band is the Bank of Canada’s 1–3% control range.</div></div>`;
+}
+$('#infl').innerHTML=[
+  infl({title:'United States',src:'BLS · BEA',M:F.M,head:'CPI',headLabel:'Headline CPI, YoY',rows:[['CPI','CPI','CPIAUCSL'],['CORECPI','Core CPI','CPILFESL'],['PCE','PCE','PCEPI'],['COREPCE','Core PCE · Fed’s gauge','PCEPILFE']],
+    extra:`<div class="r"><span class="nm">Unemployment rate<small>UNRATE · ${MON('UNRATE')}</small></span><span class="v">${F.latest.UNRATE[1].toFixed(2)}%</span><span class="chg ${cls(F.latest.UNRATE[1]-F.latest.UNRATE[2])}">${bp(F.latest.UNRATE[1]-F.latest.UNRATE[2])}</span></div>`,
+    note:'Change vs. prior month’s reading.'}).replace('<div class="w">','<div class="w us-top">'),
+  infl({title:'Canada',src:'Statistics Canada · BoC',M:CA.M,head:'CACPI',headLabel:'Total CPI, YoY',dp:1,rows:[['CACPI','Total CPI','CPI YoY'],['CATRIM','CPI-trim · BoC core','CPI_TRIM'],['CAMEDIAN','CPI-median · BoC core','CPI_MEDIAN']],
+    extra:`<div class="r"><span class="nm">Unemployment rate<small>LFS · ${MON('CAUR')}</small></span><span class="v">${lastOf(CA.M.CAUR).toFixed(1)}%</span><span class="chg ${cls(lastOf(CA.M.CAUR)-prevOf(CA.M.CAUR))}">${bp(lastOf(CA.M.CAUR)-prevOf(CA.M.CAUR))}</span></div>`,
+    note:'Change vs. prior month’s reading.'}).replace('<div class="w">','<div class="w ca-top">'),
+  inflChart(),
+].join('');
+
+/* ---------- Chart engine ---------- */
+const RANGES=[['1Y',1],['3Y',3],['5Y',5],['All',99]];
+const COLORS=['var(--s1)','var(--s2)','var(--s3)','var(--s4)'];
+function niceTicks(lo,hi,n=5){const span=hi-lo||1;const raw=span/n;const mag=Math.pow(10,Math.floor(Math.log10(raw)));const st=[1,2,2.5,5,10].map(s=>s*mag).find(s=>s>=raw);const a=Math.floor(lo/st)*st,b=Math.ceil(hi/st)*st;const t=[];for(let v=a;v<=b+st*1e-6;v+=st)t.push(+v.toFixed(10));return t}
+const fmtV=(v,u)=>Math.abs(v)>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(2)+(u&&u.startsWith('%')?'%':'');
+const fmtD=(t,monthly)=>new Date(t).toLocaleDateString('en-US',monthly?{month:'short',year:'numeric',timeZone:'UTC'}:{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+
+function makeChart(px,CHARTS){
+  const q=s=>document.getElementById(px+'-'+s);
+  let cur=CHARTS[0],rng=5;
+  q('picker').innerHTML=CHARTS.map(c=>`<button type="button" id="${px}-pk-${c.k}" data-k="${c.k}" aria-pressed="${c===cur}">${c.label}</button>`).join('');
+  q('ranges').innerHTML=RANGES.map(([l,y])=>`<button type="button" id="${px}-rg-${l}" data-y="${y}" aria-pressed="${y===rng}">${l}</button>`).join('');
+  q('picker').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=CHARTS.find(c=>c.k===b.dataset.k);q('picker').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+  q('ranges').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;rng=+b.dataset.y;q('ranges').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+  function draw(){
+    const plot=q('plot'),tip=q('tip');
+    if(!plot.clientWidth)return;
+    const W=Math.max(300,plot.clientWidth),H=Math.round(Math.min(420,Math.max(240,W*0.40)));
+    const pl=52,pr=16,pt=12,pb=28;
+    const data=cur.lines.map(([id,name,col],i)=>({id,name,col:col||COLORS[i],pts:seriesPts(id)}));
+    const end=Math.max(...data.map(d=>d.pts[d.pts.length-1][0]));
+    const start=Math.max(end-rng*365.25*DAY,Math.min(...data.map(d=>d.pts[0][0])));
+    data.forEach(d=>d.vis=d.pts.filter(p=>p[0]>=start));
+    let vals=data.flatMap(d=>d.vis.map(p=>p[1]));if(cur.ref!=null)vals.push(cur.ref);if(cur.zero)vals.push(0);
+    let lo=Math.min(...vals),hi=Math.max(...vals);const padv=(hi-lo)*0.06||1;lo-=padv;hi+=padv;
+    const ticks=niceTicks(lo,hi,5);lo=ticks[0];hi=ticks[ticks.length-1];
+    const xs=t=>pl+(t-start)/(end-start)*(W-pl-pr),ys=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb);
+    let g='';
+    ticks.forEach(v=>{g+=`<line class="grid-l" x1="${pl}" x2="${W-pr}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${pl-8}" y="${ys(v)+4}" text-anchor="end">${fmtV(v,'')}</text>`});
+    const y0=new Date(start).getUTCFullYear(),y1=new Date(end).getUTCFullYear();const step=(y1-y0)>6?2:1;
+    if(rng<=1){for(let m=0;m<=14;m+=3){const d=Date.UTC(new Date(start).getUTCFullYear(),new Date(start).getUTCMonth()+m,1);if(d>start&&d<end){g+=`<line class="grid-l" x1="${xs(d)}" x2="${xs(d)}" y1="${pt}" y2="${H-pb}" opacity=".6"/><text x="${xs(d)}" y="${H-8}" text-anchor="middle">${new Date(d).toLocaleDateString('en-US',{month:'short',year:'2-digit',timeZone:'UTC'})}</text>`}}}
+    else{for(let y=y0+1;y<=y1;y+=step){const d=Date.UTC(y,0,1);if(d<end-20*DAY)g+=`<text x="${xs(d)}" y="${H-8}" text-anchor="middle">${y}</text>`}}
+    g+=`<line class="base-l" x1="${pl}" x2="${W-pr}" y1="${H-pb}" y2="${H-pb}"/>`;
+    if(cur.zero&&lo<0)g+=`<line x1="${pl}" x2="${W-pr}" y1="${ys(0)}" y2="${ys(0)}" stroke="var(--ink-2)" stroke-width="1"/>`;
+    if(cur.ref!=null)g+=`<line x1="${pl}" x2="${W-pr}" y1="${ys(cur.ref)}" y2="${ys(cur.ref)}" stroke="var(--ink-2)" stroke-width="1" stroke-dasharray="4 4"/><text x="${W-pr}" y="${ys(cur.ref)-5}" text-anchor="end">2% target</text>`;
+    if(data.length===1){const d=data[0];const p=d.vis.map((pp,i)=>(i?'L':'M')+xs(pp[0]).toFixed(1)+' '+ys(pp[1]).toFixed(1)).join(' ');const base=ys(Math.max(lo,Math.min(hi,cur.zero?0:lo)));g+=`<path d="${p} L${xs(d.vis[d.vis.length-1][0])} ${base} L${xs(d.vis[0][0])} ${base} Z" fill="${d.col}" opacity=".10"/>`}
+    data.forEach(d=>{const p=d.vis.map((pp,i)=>(i?'L':'M')+xs(pp[0]).toFixed(1)+' '+ys(pp[1]).toFixed(1)).join(' ');g+=`<path d="${p}" fill="none" stroke="${d.col}" stroke-width="2.2" stroke-linejoin="round"/>`;const l=d.vis[d.vis.length-1];g+=`<circle cx="${xs(l[0])}" cy="${ys(l[1])}" r="4" fill="${d.col}" stroke="var(--panel)" stroke-width="2"/>`});
+    g+=`<g class="hov" style="display:none"><line class="hl" y1="${pt}" y2="${H-pb}" stroke="var(--ink-2)" stroke-width="1" stroke-dasharray="2 3"/>${data.map((d,i)=>`<circle class="hd${i}" r="4.5" fill="${d.col}" stroke="var(--panel)" stroke-width="2"/>`).join('')}</g>`;
+    g+=`<rect x="${pl}" y="${pt}" width="${W-pl-pr}" height="${H-pt-pb}" fill="transparent" class="hit"/>`;
+    plot.querySelector('svg')?.remove();
+    plot.insertAdjacentHTML('afterbegin',`<svg viewBox="0 0 ${W} ${H}" class="axis" role="img" aria-label="${esc(cur.label)} chart">${g}</svg>`);
+    q('title').textContent=cur.label+(cur.unit?` (${cur.unit})`:'');
+    q('legend').innerHTML=data.length>1?data.map(d=>{const l=d.vis[d.vis.length-1];return `<span><i style="background:${d.col}"></i>${esc(d.name)} <b class="num">${fmtV(l[1],cur.unit)}</b></span>`}).join(''):(()=>{const d=data[0],l=d.vis[d.vis.length-1];return `<span><i style="background:${d.col}"></i>${esc(d.name)} <b class="num">${fmtV(l[1],cur.unit)}</b> · ${fmtD(l[0],isMonthly(d.id))}</span>`})();
+    q('note').textContent='Source: '+cur.note;
+    const monthly=isMonthly(data[0].id);
+    const svg=plot.querySelector('svg'),hit=svg.querySelector('.hit'),hov=svg.querySelector('.hov'),hl=svg.querySelector('.hl');
+    function near(pts,t){let a=0,b=pts.length-1;while(b-a>1){const m=(a+b)>>1;if(pts[m][0]<t)a=m;else b=m}return Math.abs(pts[a][0]-t)<Math.abs(pts[b][0]-t)?pts[a]:pts[b]}
+    function move(ev){
+      const r=svg.getBoundingClientRect();const sx=(ev.clientX-r.left)*(W/r.width);
+      const t=start+(sx-pl)/(W-pl-pr)*(end-start);
+      const ps=data.map(d=>near(d.vis,t));const tt=ps[0][0];
+      hov.style.display='';hl.setAttribute('x1',xs(tt));hl.setAttribute('x2',xs(tt));
+      ps.forEach((p,i)=>{const c=svg.querySelector('.hd'+i);c.setAttribute('cx',xs(p[0]));c.setAttribute('cy',ys(p[1]))});
+      tip.innerHTML=`<b>${fmtD(tt,monthly)}</b>`+data.map((d,i)=>`<div><span><i style="background:${d.col}"></i>${esc(d.name)}</span><span class="num">${fmtV(ps[i][1],cur.unit)}</span></div>`).join('');
+      tip.hidden=false;
+      const pxl=xs(tt)*(r.width/W);const tw=tip.offsetWidth;
+      tip.style.left=(pxl+12+tw>r.width?Math.max(0,pxl-tw-12):pxl+12)+'px';tip.style.top='8px';
+    }
+    hit.addEventListener('pointermove',move);hit.addEventListener('pointerdown',move);
+    hit.addEventListener('pointerleave',()=>{hov.style.display='none';tip.hidden=true});
+  }
+  let rt;new ResizeObserver(()=>{clearTimeout(rt);rt=setTimeout(draw,80)}).observe(q('plot'));
+  return {draw};
+}
+
+const US='var(--us)',CAc='var(--ca)';
+const charts={
+  na:makeChart('na',[
+    {k:'policy',label:'Policy rates',unit:'%',lines:[['DFF','Fed funds (effective)',US],['V39079','BoC overnight target',CAc]],note:'Effective federal funds rate (Federal Reserve, FRED: DFF) and the Bank of Canada target for the overnight rate (Valet: V39079).'},
+    {k:'y2',label:'2-year yields',unit:'%',lines:[['DGS2','U.S. Treasury',US],['BD.CDN.2YR.DQ.YLD','Government of Canada',CAc]],note:'2-year government bond yields, weekly. FRED: DGS2; Bank of Canada Valet: BD.CDN.2YR.DQ.YLD.'},
+    {k:'y10',label:'10-year yields',unit:'%',lines:[['DGS10','U.S. Treasury',US],['BD.CDN.10YR.DQ.YLD','Government of Canada',CAc]],note:'10-year government bond yields, weekly. FRED: DGS10; Bank of Canada Valet: BD.CDN.10YR.DQ.YLD.'},
+    {k:'curve',label:'Curve slope (10Y − 2Y)',unit:'pp',zero:true,lines:[['T10Y2Y','U.S.',US],['CA2s10s','Canada',CAc]],note:'10-year minus 2-year yield. Below zero means the curve is inverted. FRED: T10Y2Y; Canada computed from Bank of Canada benchmark yields.'},
+    {k:'gap',label:'Canada − U.S. 10-year',unit:'pp',zero:true,lines:[['CAUS10','10Y GoC minus 10Y Treasury',CAc]],note:'Government of Canada 10-year yield minus U.S. 10-year Treasury yield. Below zero means Canada borrows more cheaply.'},
+    {k:'cpi',label:'Headline inflation',unit:'% YoY',ref:2,lines:[['CPI','U.S. CPI',US],['CACPI','Canada CPI',CAc]],note:'Consumer price inflation, year-over-year. U.S. CPI from BLS (FRED: CPIAUCSL); Canada CPI from Statistics Canada via the Bank of Canada. Dashed line: 2% target.'},
+    {k:'core',label:'Core inflation',unit:'% YoY',ref:2,lines:[['COREPCE','U.S. core PCE',US],['CATRIM','Canada CPI-trim',CAc]],note:'Each central bank’s preferred core gauge: U.S. core PCE (BEA, FRED: PCEPILFE) and Canada CPI-trim (Bank of Canada). Dashed line: 2% target.'},
+    {k:'jobs',label:'Unemployment',unit:'%',lines:[['UNRATE','U.S.',US],['CAUR','Canada',CAc]],note:'Unemployment rate, monthly. U.S. BLS (FRED: UNRATE); Canada Labour Force Survey via OECD/FRED (LRUNTTTTCAM156S). Definitions differ slightly; Canada’s rate runs about 1 pp higher on a like-for-like basis.'},
+    {k:'mort',label:'U.S. mortgage rate',unit:'%',lines:[['MORTGAGE30US','30-yr fixed (Freddie Mac)',US]],note:'Freddie Mac Primary Mortgage Market Survey, weekly. FRED: MORTGAGE30US.'},
+    {k:'spx',label:'S&P 500',unit:'',lines:[['SP500','S&P 500',US]],note:'S&P 500 index, weekly close. FRED: SP500 (S&P Dow Jones Indices).'},
+    {k:'vix',label:'VIX',unit:'',lines:[['VIXCLS','VIX',US]],note:'CBOE Volatility Index, weekly close. FRED: VIXCLS.'},
+  ]),
+};
+
+/* =================================================================
+   APP: navigation, strip, widget board, sectors, macro, tech map
+   ================================================================= */
+const SQ=STK.Q; /* ticker -> [name, price, d%, w%, m%, y%, mcap $B, pos in 52w range] */
+const PI={d:2,w:3,m:4,y:5}, PLAB={d:'Today',w:'1 week',m:'1 month',y:'1 year'};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const sgn=(d,dp=2)=>`${d>0?'+':''}${d.toFixed(dp)}%`;
+const fmtCap=b=>b==null?'—':b>=1000?`$${(b/1000).toFixed(2)}T`:b>=10?`$${Math.round(b)}B`:`$${b.toFixed(1)}B`;
+function sparkSvg(arr,dir,cls_='',w=120,h=36){
+  if(!arr||arr.length<2)return `<svg class="${cls_}" viewBox="0 0 ${w} ${h}" aria-hidden="true"></svg>`;
+  const v=arr.filter(x=>x!=null);const mn=Math.min(...v),mx=Math.max(...v),rg=(mx-mn)||1,p=3;
+  const pts=arr.map((y,i)=>y==null?null:[i/(arr.length-1)*w,p+(1-(y-mn)/rg)*(h-2*p)]).filter(Boolean);
+  const d=pts.map((q,i)=>(i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)).join(' ');
+  const col=dir>0?'var(--up)':dir<0?'var(--down)':'var(--accent)';const soft=dir>0?'var(--up-soft)':dir<0?'var(--down-soft)':'var(--us-soft)';
+  const l=pts[pts.length-1];
+  return `<svg class="${cls_}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><path d="${d} L${l[0]} ${h} L0 ${h} Z" fill="${soft}"/><path d="${d}" fill="none" stroke="${col}" stroke-width="1.6" vector-effect="non-scaling-stroke"/><circle cx="${l[0]}" cy="${l[1]}" r="2.2" fill="${col}"/></svg>`;
+}
+const tint=d=>{const a=Math.round(Math.min(Math.abs(d)/4,1)*42+5);return `background:color-mix(in srgb, var(${d>=0?'--up':'--down'}) ${a}%, var(--panel))`};
+const SECT=[{name:'Technology',slug:'technology',etf:'XLK',groups:STK.TECHG,gk:'tech'}].concat(STK.SEC.map(s=>({name:s[0],slug:s[1],etf:s[2],groups:s[3],gk:s[1]})));
+function grpStats(tks,per){const m=tks.filter(t=>SQ[t]);const ch=m.map(t=>SQ[t][PI[per]]);const caps=m.map(t=>SQ[t][6]||0);const tc=caps.reduce((a,b)=>a+b,0);
+  return {n:m.length,eq:ch.reduce((a,b)=>a+b,0)/(m.length||1),cw:tc?ch.reduce((s,c,i)=>s+c*caps[i],0)/tc:0,up:ch.filter(c=>c>0).length,down:ch.filter(c=>c<0).length,cap:tc}}
+function lastNN(a){for(let i=a.length-1;i>=0;i--)if(a[i]!=null)return [i,a[i]];return [-1,null]}
+function longLast(k){const s=LONG[k];const [i,v]=lastNN(s.v);let j=i-1;while(j>=0&&s.v[j]==null)j--;const [y,m]=s.start.split('-').map(Number);const dt=new Date(Date.UTC(y,m-1+i,1));return {v,prev:s.v[j],date:dt.toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'}),tail:s.v.slice(-36)}}
+
+/* ---------- Market strip ---------- */
+function stripItem(t,label,fmt){const y=Y[t];const q=SQ[t];const p=y?y.p:q[1];const d=y?y.d:q[2];return `<div class="si"><span class="l">${label}</span><span class="v">${fmt?fmt(p):fmtPx(p)} <span class="chg ${cls(d)}">${sgn(d)}</span></span></div>`}
+$('#strip').innerHTML=[['^GSPC','S&P 500'],['^IXIC','Nasdaq'],['^RUT','Russell 2000'],['^GSPTSE','S&P/TSX'],['^VIX','VIX'],['DX-Y.NYB','Dollar index'],['TLT','Long bonds'],['CL=F','WTI'],['GC=F','Gold'],['BTC-USD','Bitcoin'],['CAD=X','USD/CAD',p=>p.toFixed(4)]].map(a=>stripItem(...a)).join('')+
+ `<div class="si"><span class="l">U.S. 10Y</span><span class="v">${F.latest.DGS10[1].toFixed(2)}% <span class="chg ${cls(F.latest.DGS10[1]-F.latest.DGS10[2])}">${Math.round((F.latest.DGS10[1]-F.latest.DGS10[2])*100)} bp</span></span></div><div class="si"><span class="l">Canada 10Y</span><span class="v">${CA.latest['BD.CDN.10YR.DQ.YLD'][1].toFixed(2)}% <span class="chg ${cls(CA.latest['BD.CDN.10YR.DQ.YLD'][1]-CA.latest['BD.CDN.10YR.DQ.YLD'][2])}">${Math.round((CA.latest['BD.CDN.10YR.DQ.YLD'][1]-CA.latest['BD.CDN.10YR.DQ.YLD'][2])*100)} bp</span></span></div>`;
+
+/* ---------- Clock & theme ---------- */
+function tickClock(){const now=new Date();const et=new Date(now.toLocaleString('en-US',{timeZone:'America/New_York'}));const dow=et.getDay(),mins=et.getHours()*60+et.getMinutes();const open=dow>0&&dow<6&&mins>=570&&mins<960;
+  $('#clock').innerHTML=`<b>${et.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})} ET</b> · NYSE ${open?'open':'closed'}<br>Data: ${esc(META.short||'')}`}
+tickClock();setInterval(tickClock,30000);
+const THEMES=['auto','light','dark'];let theme=store.get('md-theme','auto');
+function applyTheme(){const r=document.documentElement;if(theme==='auto')r.removeAttribute('data-theme');else r.setAttribute('data-theme',theme);$('#themebtn').textContent='Theme: '+theme[0].toUpperCase()+theme.slice(1)}
+$('#themebtn').addEventListener('click',()=>{theme=THEMES[(THEMES.indexOf(theme)+1)%3];store.set('md-theme',theme);applyTheme();redrawCharts()});
+applyTheme();
+
+/* ---------- Widget registry ---------- */
+let HPER=store.get('md-per','d');
+function qRow(t,label,fmt){const y=Y[t];if(y){const s=y.s||null;return {label:label||y.n,sub:tk(t),val:fmt?fmt(y.p):fmtPx(y.p),chg:y.d,cf:sgn(y.d),spark:s}}const q=SQ[t];return {label:label||q[0],sub:tk(t),val:fmtPx(q[1]),chg:q[2],cf:sgn(q[2]),spark:null}}
+function rateRow(id,label,src){const L=src==='ca'?CA.latest:F.latest;const W=src==='ca'?CA.W:F.W;const v=L[id];const d=v[1]-v[2];const unit=['T10Y2Y','CAUS10','CA2s10s'].includes(id)?' pp':'%';return {label,sub:id.replace('BD.CDN.','').replace('.DQ.YLD',''),val:v[1].toFixed(2)+unit,chg:d,cf:`${d>0?'+':''}${Math.round(d*100)} bp`,spark:W[id]?W[id].slice(-52):null,lvl:true}}
+function longRow(k,label,sub){const r=longLast(k);const d=r.v-r.prev;return {label,sub:sub||r.date,val:r.v.toFixed(2)+'%',chg:d,cf:`${d>0?'+':''}${d.toFixed(2)} pp`,spark:r.tail,lvl:true}}
+function stockRows(tks,per){return tks.filter(t=>SQ[t]).map(t=>{const q=SQ[t];const c=q[PI[per]];return {label:q[0],sub:tk(t),val:fmtPx(q[1]),chg:c,cf:sgn(c),spark:null,cap:q[6]}}).sort((a,b)=>(b.cap||0)-(a.cap||0))}
+function groupRows(sec,per){return sec.groups.map(([n,tks])=>{const s=grpStats(tks,per);const g=STK.G[sec.gk+'|'+n];return {label:n,sub:`${s.up}↑ ${s.down}↓`,val:'',chg:s.eq,cf:sgn(s.eq),spark:g?g[per==='y'?1:0]:null}}).sort((a,b)=>b.chg-a.chg)}
+const W=[];
+const wdef=(id,cat,title,desc,rows,opt={})=>W.push({id,cat,title,desc,rows,...opt});
+wdef('market','Markets','Market','S&P 500, Nasdaq, Russell, VIX',()=>[qRow('^GSPC'),qRow('^IXIC'),qRow('^RUT'),qRow('^VIX')]);
+wdef('risk','Markets','Risk gauges','VIX, dollar index, long Treasuries',()=>[qRow('^VIX'),qRow('DX-Y.NYB','Dollar index'),qRow('TLT','Long bonds (TLT)')]);
+wdef('canada','Markets','Canada','S&P/TSX, loonie, banks, energy',()=>[qRow('^GSPTSE'),qRow('CAD=X','USD/CAD',p=>p.toFixed(4)),qRow('XFN.TO','TSX financials'),qRow('XEG.TO','TSX energy'),qRow('XGD.TO','TSX gold miners')]);
+wdef('etfs','Markets','S&P sector ETFs','11 SPDR sector funds',per=>stockRows(['XLK','XLF','XLE','XLV','XLY','XLP','XLI','XLB','XLU','XLRE','XLC'].filter(t=>SQ[t]),per).map(r=>({...r,label:r.label.replace('Consumer Discretionary','Consumer disc.')})),{per:true});
+wdef('oil','Commodities','Oil & energy','WTI, Brent, natural gas',()=>[qRow('CL=F'),qRow('BZ=F'),qRow('NG=F')]);
+wdef('metals','Commodities','Metals','Gold, silver, copper',()=>[qRow('GC=F'),qRow('SI=F'),qRow('HG=F')]);
+wdef('crypto','Commodities','Crypto','Bitcoin, Ethereum, Solana',()=>[qRow('BTC-USD'),qRow('ETH-USD'),qRow('SOL-USD')]);
+wdef('usyields','Rates','U.S. yields','Treasury curve, spread, Fed funds, mortgages',()=>[rateRow('DGS2','2-year'),rateRow('DGS5','5-year'),rateRow('DGS10','10-year'),rateRow('DGS30','30-year'),rateRow('T10Y2Y','10Y − 2Y'),rateRow('DFF','Fed funds'),rateRow('MORTGAGE30US','30-yr mortgage')],{lvl:true});
+wdef('cayields','Rates','Canada yields','BoC rate, GoC curve, gap to U.S.',()=>[rateRow('V39079','BoC policy rate','ca'),rateRow('BD.CDN.2YR.DQ.YLD','2-year GoC','ca'),rateRow('BD.CDN.5YR.DQ.YLD','5-year GoC','ca'),rateRow('BD.CDN.10YR.DQ.YLD','10-year GoC','ca'),rateRow('BD.CDN.LONG.DQ.YLD','Long GoC','ca'),rateRow('CAUS10','Canada − U.S. 10Y','ca')],{lvl:true});
+wdef('usinfl','Economy','U.S. inflation','CPI, core CPI, PCE, core PCE (YoY)',()=>[longRow('CPI','CPI'),longRow('CORECPI','Core CPI'),longRow('PCE','PCE'),longRow('COREPCE','Core PCE')],{lvl:true});
+wdef('cainfl','Economy','Canada inflation','Total CPI and BoC core measures (YoY)',()=>[longRow('CACPI','Total CPI'),longRow('CATRIM','CPI-trim'),{...longRow('CATRIM','CPI-median'),val:lastOf(CA.M.CAMEDIAN).toFixed(2)+'%',chg:lastOf(CA.M.CAMEDIAN)-prevOf(CA.M.CAMEDIAN),cf:`${lastOf(CA.M.CAMEDIAN)-prevOf(CA.M.CAMEDIAN)>0?'+':''}${(lastOf(CA.M.CAMEDIAN)-prevOf(CA.M.CAMEDIAN)).toFixed(2)} pp`,spark:CA.M.CAMEDIAN.slice(-36)}],{lvl:true});
+wdef('jobs','Economy','Jobs','Unemployment rate, U.S. and Canada',()=>[longRow('UNRATE','U.S. unemployment'),longRow('LRUNTTTTCAM156S','Canada unemployment')],{lvl:true});
+const TECHSEC=SECT[0];
+wdef('tech','Technology','Tech overview','Every tech group, ranked by move',per=>groupRows(TECHSEC,per),{per:true});
+wdef('caresources','Commodities','Canadian resources','TSX energy, gold miners and materials ETFs',()=>[qRow('XEG.TO','TSX energy'),qRow('XGD.TO','TSX gold miners'),qRow('XMA.TO','TSX materials')]);
+wdef('caenergy','Commodities','Canadian energy & mining','Largest TSX energy, pipeline, fertilizer, uranium and mining names',()=>['CNQ.TO','SU.TO','ENB.TO','TRP.TO','TECK-B.TO','NTR.TO','CCO.TO'].filter(t=>Y[t]).map(t=>qRow(t)).sort((a,b)=>b.chg-a.chg));
+wdef('usenergy','Commodities','U.S. energy majors','Exxon, Chevron, ConocoPhillips, Occidental, SLB',per=>stockRows(['XOM','CVX','COP','OXY','SLB'],per),{per:true});
+wdef('miners','Commodities','Metals & mining','Newmont, Freeport-McMoRan, Nucor, Alcoa, MP Materials',per=>stockRows(['NEM','FCX','NUE','AA','MP'],per),{per:true});
+STK.TECHG.forEach(([n,tks])=>wdef('tg-'+n.toLowerCase().replace(/[^a-z]+/g,'-'),'Tech groups',n,`${tks.length} stocks`,per=>stockRows(tks,per),{per:true,gspark:per=>(STK.G['tech|'+n]||[])[per==='y'?1:0],cap:8}));
+SECT.slice(1).forEach(s=>wdef('sec-'+s.slug,'Sectors',s.name,s.groups.map(g=>g[0]).join(', '),per=>groupRows(s,per),{per:true,link:'#sector-'+s.slug}));
+
+const DEFAULT_BOARD=['market','tech','usyields','cayields','crypto','oil','metals','usinfl','cainfl','risk','canada','jobs'];
+let BOARD=store.get('md-board',DEFAULT_BOARD).filter(id=>W.some(w=>w.id===id));
+const SEL={};
+function card(w,onBoard){
+  let rows=w.rows(HPER);if(w.cap)rows=rows.slice(0,w.cap);
+  const i=Math.min(SEL[w.id]||0,rows.length-1);const r=rows[i];
+  const lvl=w.lvl||r.lvl;
+  const sp=r.spark||(w.gspark?w.gspark(HPER):null);
+  const big=lvl?`<span class="b">${r.val}</span>`:`<span class="b ${cls(r.chg)}">${sgn(r.chg)}</span>`;
+  const sub=lvl?`${esc(r.label)} · <span class="chg ${cls(r.chg)}">${r.cf}</span>`:`${esc(r.label)}${r.val?' · '+r.val:''}${w.per?' · '+PLAB[HPER]:''}`;
+  return `<article class="wc" data-w="${w.id}">
+  <div class="wc-h"><div class="wc-t"><span>${esc(w.title)}</span>${onBoard?`<button type="button" class="x" data-rm="${w.id}" aria-label="Remove ${esc(w.title)} from board" title="Remove">×</button>`:''}</div>
+  <div class="wc-big">${big}${sparkSvg(sp,lvl?0:r.chg)}</div><div class="wc-s">${sub}</div></div>
+  <div class="wc-rows">${rows.map((x,j)=>`<button type="button" class="wr" data-w="${w.id}" data-i="${j}" aria-pressed="${j===i}"><i class="${lvl?'':cls(x.chg)}"></i><span class="nm">${esc(x.label)}${x.sub?`<small>${esc(x.sub)}</small>`:''}</span><span class="v">${x.val}</span><span class="c ${cls(x.chg)}">${x.cf}</span></button>`).join('')}</div>
+  ${w.link?`<div class="wc-f"><span></span><a href="${w.link}">Open sector →</a></div>`:''}</article>`;
+}
+function renderBoard(){
+  $('#home-period').innerHTML=Object.keys(PI).map(k=>`<button type="button" id="hp-${k}" data-p="${k}" aria-pressed="${k===HPER}">${PLAB[k]}</button>`).join('');
+  $('#board').innerHTML=BOARD.map(id=>card(W.find(w=>w.id===id),true)).join('')+`<a class="addw" href="#widgets"><b>+</b>Add widget</a>`;
+}
+document.addEventListener('click',e=>{
+  const r=e.target.closest('.wr');if(r){SEL[r.dataset.w]=+r.dataset.i;const c=r.closest('.wc');const w=W.find(x=>x.id===r.dataset.w);c.outerHTML=card(w,!!c.querySelector('[data-rm]'));return}
+  const x=e.target.closest('[data-rm]');if(x){BOARD=BOARD.filter(id=>id!==x.dataset.rm);store.set('md-board',BOARD);renderBoard();return}
+  const t=e.target.closest('[data-toggle]');if(t){const id=t.dataset.toggle;BOARD=BOARD.includes(id)?BOARD.filter(b=>b!==id):BOARD.concat(id);store.set('md-board',BOARD);renderGallery();return}
+});
+$('#home-period').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;HPER=b.dataset.p;store.set('md-per',HPER);renderBoard()});
+$('#home-reset').addEventListener('click',()=>{BOARD=[...DEFAULT_BOARD];store.set('md-board',BOARD);renderBoard()});
+
+/* ---------- Widget gallery ---------- */
+function renderGallery(){
+  const q=($('#wg-q').value||'').toLowerCase().trim();
+  const list=W.filter(w=>!q||(w.title+' '+w.desc+' '+w.cat).toLowerCase().includes(q));
+  $('#wg-sub').textContent=`${W.length} widgets · ${BOARD.length} on your board · add one and it appears on Today`;
+  const cats=[...new Set(list.map(w=>w.cat))];
+  $('#wg-list').innerHTML=cats.length?cats.map(c=>`<section class="gcat"><h2>${c}</h2><div class="ggrid">${list.filter(w=>w.cat===c).map(w=>{const rows=w.rows('d').slice(0,4);const on=BOARD.includes(w.id);
+    return `<div class="gi"><div class="pv">${rows.map(r=>`<div><span>${esc(r.label)}</span><span class="chg ${cls(r.chg)}">${w.lvl||r.lvl?r.val:r.cf}</span></div>`).join('')}</div><b>${esc(w.title)}</b><p>${esc(w.desc)}</p><div class="row">${on?'<span class="on">✓ On your board</span>':'<span></span>'}<button type="button" class="btn ${on?'':'primary'}" data-toggle="${w.id}">${on?'Remove':'Add to board'}</button></div></div>`}).join('')}</div></section>`).join(''):'<p class="vsub">No widgets match that search.</p>';
+}
+$('#wg-q').addEventListener('input',renderGallery);
+
+/* ---------- Sectors ---------- */
+let SEC_SORT=store.get('md-sort','cap'),SEC_AVG=store.get('md-avg','eq'),SEC_PER=store.get('md-sper','d'),CUR_SEC='technology';
+$('#secmenu').innerHTML=SECT.map(s=>{const d=SQ[s.etf][2];return `<a href="#sector-${s.slug}">${s.name}<span class="chg ${cls(d)}">${sgn(d)}</span></a>`}).join('');
+document.querySelectorAll('#secmenu a').forEach(a=>a.addEventListener('click',()=>{$('#secdd').open=false}));
+function segBtns(el,opts,cur,attr){el.innerHTML=opts.map(([k,l])=>`<button type="button" id="${el.id}-${k}" data-${attr}="${k}" aria-pressed="${k===cur}">${l}</button>`).join('')}
+function renderSector(){
+  const s=SECT.find(x=>x.slug===CUR_SEC)||SECT[0];
+  segBtns($('#sec-sort'),[['cap','Market cap'],['move','Move'],['name','Name']],SEC_SORT,'v');
+  segBtns($('#sec-avg'),[['eq','Equal weight'],['cw','Cap weight']],SEC_AVG,'v');
+  segBtns($('#sec-period'),Object.keys(PI).map(k=>[k,PLAB[k]]),SEC_PER,'v');
+  segBtns($('#sec-pick'),SECT.map(x=>[x.slug,x.name]),s.slug,'v');
+  const etf=SQ[s.etf];const ec=etf[PI[SEC_PER]];
+  const all=s.groups.flatMap(g=>g[1]);const st=grpStats([...new Set(all)],SEC_PER);
+  $('#sec-title').textContent=s.name;
+  $('#sec-sub').innerHTML=`${s.etf} ${fmtPx(etf[1])} <span class="chg ${cls(ec)}">${sgn(ec)}</span> ${PLAB[SEC_PER].toLowerCase()} · ${st.n} stocks in ${s.groups.length} groups · ${st.up} up, ${st.down} down · ${fmtCap(st.cap)} combined`;
+  const gs=s.groups.map(([n,tks])=>({n,tks,st:grpStats(tks,SEC_PER),g:STK.G[s.gk+'|'+n]}));
+  const av=x=>SEC_AVG==='eq'?x.st.eq:x.st.cw;
+  $('#sec-rank').innerHTML=[...gs].sort((a,b)=>av(b)-av(a)).map(x=>`<span class="pill">${esc(x.n)} <span class="chg ${cls(av(x))}">${sgn(av(x))}</span></span>`).join('');
+  $('#sec-grid').innerHTML=gs.map(x=>{
+    let m=x.tks.filter(t=>SQ[t]).map(t=>({t,q:SQ[t]}));
+    m.sort(SEC_SORT==='cap'?(a,b)=>(b.q[6]||0)-(a.q[6]||0):SEC_SORT==='move'?(a,b)=>b.q[PI[SEC_PER]]-a.q[PI[SEC_PER]]:(a,b)=>a.t.localeCompare(b.t));
+    const a=av(x),other=SEC_AVG==='eq'?x.st.cw:x.st.eq;
+    return `<div class="sg"><div class="sg-h"><span class="sg-n">${esc(x.n)}</span><div class="sg-m"><span class="b ${cls(a)}">${sgn(a)}</span>${sparkSvg(x.g?x.g[SEC_PER==='y'?1:0]:null,a)}</div><span class="sg-s">${x.st.up}↑ ${x.st.down}↓ · ${SEC_AVG==='eq'?'cap-wtd':'equal-wtd'} ${sgn(other)} · ${fmtCap(x.st.cap)}</span></div>
+    ${m.map(({t,q})=>{const c=q[PI[SEC_PER]];return `<div class="mem" style="${tint(c)}" title="${esc(q[0])} · ${fmtCap(q[6])} · ${q[7]!=null?q[7]+'% of 52-week range':''}"><span class="t">${esc(tk(t))}<small>${esc(q[0])}</small></span><span class="p">${fmtPx(q[1])}</span><span class="c">${sgn(c)}</span></div>`}).join('')}</div>`}).join('');
+}
+$('#sec-sort').addEventListener('click',e=>{const b=e.target.closest('button');if(b){SEC_SORT=b.dataset.v;store.set('md-sort',SEC_SORT);renderSector()}});
+$('#sec-avg').addEventListener('click',e=>{const b=e.target.closest('button');if(b){SEC_AVG=b.dataset.v;store.set('md-avg',SEC_AVG);renderSector()}});
+$('#sec-period').addEventListener('click',e=>{const b=e.target.closest('button');if(b){SEC_PER=b.dataset.v;store.set('md-sper',SEC_PER);renderSector()}});
+$('#sec-pick').addEventListener('click',e=>{const b=e.target.closest('button');if(b)location.hash='sector-'+b.dataset.v});
+
+/* ---------- Macro charts (long history, pan & zoom) ---------- */
+function monthly(key,src){const s=src[key];const [y,m]=s.start.split('-').map(Number);return s.v.map((v,i)=>[Date.UTC(y,m-1+i,15),v]).filter(p=>p[1]!=null)}
+function weeklyPts(arr){return arr.map((v,i)=>[wStart+i*7*DAY,v]).filter(p=>p[1]!=null)}
+function splice(mon,wk){if(!wk||!wk.length)return mon;const t0=wk[0][0];return mon.filter(p=>p[0]<t0).concat(wk)}
+const MS=[
+ ['spx','S&P 500','Markets','index',true,()=>splice(monthly('^GSPC',STK.H),weeklyPts(F.W.SP500)),'Yahoo Finance (monthly, 1985–2016) and S&P Dow Jones Indices via FRED: SP500 (weekly since 2016).'],
+ ['ndx','Nasdaq Composite','Markets','index',true,()=>splice(monthly('^IXIC',STK.H),weeklyPts(F.W.NASDAQCOM)),'Yahoo Finance (monthly) and Nasdaq via FRED: NASDAQCOM (weekly).'],
+ ['tsx','S&P/TSX Composite','Markets','index',true,()=>monthly('^GSPTSE',STK.H),'Yahoo Finance, monthly close.'],
+ ['vix','VIX','Markets','index',false,()=>splice(monthly('VIXCLS',LONG),weeklyPts(F.W.VIXCLS)),'CBOE Volatility Index via FRED: VIXCLS.'],
+ ['usd','U.S. dollar (broad)','Markets','index',false,()=>splice(monthly('DTWEXBGS',LONG),weeklyPts(F.W.DTWEXBGS)),'Federal Reserve nominal broad dollar index via FRED: DTWEXBGS.'],
+ ['gold','Gold','Markets','$',true,()=>monthly('GC=F',STK.H),'Gold futures, Yahoo Finance, monthly close.'],
+ ['btc','Bitcoin','Markets','$',true,()=>monthly('BTC-USD',STK.H),'Bitcoin in USD, Yahoo Finance, monthly close.'],
+ ['wti','WTI crude','Markets','$/bbl',false,()=>splice(monthly('DCOILWTICO',LONG),weeklyPts(F.W.DCOILWTICO)),'U.S. EIA spot price via FRED: DCOILWTICO.'],
+ ['brent','Brent crude','Markets','$/bbl',false,()=>splice(monthly('DCOILBRENTEU',LONG),weeklyPts(F.W.DCOILBRENTEU)),'U.S. EIA spot price via FRED: DCOILBRENTEU.'],
+ ['dff','Fed funds rate','U.S. rates','%',false,()=>splice(monthly('DFF',LONG),weeklyPts(F.W.DFF)),'Effective federal funds rate via FRED: DFF.'],
+ ['us2','U.S. 2-year Treasury','U.S. rates','%',false,()=>splice(monthly('DGS2',LONG),weeklyPts(F.W.DGS2)),'U.S. Treasury via Fed H.15, FRED: DGS2.'],
+ ['us10','U.S. 10-year Treasury','U.S. rates','%',false,()=>splice(monthly('DGS10',LONG),weeklyPts(F.W.DGS10)),'U.S. Treasury via Fed H.15, FRED: DGS10.'],
+ ['us30','U.S. 30-year Treasury','U.S. rates','%',false,()=>splice(monthly('DGS30',LONG),weeklyPts(F.W.DGS30)),'U.S. Treasury via Fed H.15, FRED: DGS30. Not issued 2002–2006.'],
+ ['curve','U.S. 10Y − 2Y spread','U.S. rates','pp',false,()=>splice(monthly('T10Y2Y',LONG),weeklyPts(F.W.T10Y2Y)),'FRED: T10Y2Y. Below zero means the curve is inverted.'],
+ ['mort','30-year mortgage rate','U.S. rates','%',false,()=>splice(monthly('MORTGAGE30US',LONG),weeklyPts(F.W.MORTGAGE30US)),'Freddie Mac PMMS via FRED: MORTGAGE30US.'],
+ ['cpi','U.S. CPI inflation','U.S. economy','% YoY',false,()=>monthly('CPI',LONG),'BLS CPI-U, year-over-year, via FRED: CPIAUCSL. October 2025 was not published.'],
+ ['ccpi','U.S. core CPI','U.S. economy','% YoY',false,()=>monthly('CORECPI',LONG),'BLS CPI less food and energy, YoY, via FRED: CPILFESL.'],
+ ['pce','U.S. PCE inflation','U.S. economy','% YoY',false,()=>monthly('PCE',LONG),'BEA PCE price index, YoY, via FRED: PCEPI.'],
+ ['cpce','U.S. core PCE','U.S. economy','% YoY',false,()=>monthly('COREPCE',LONG),'BEA core PCE price index, YoY, via FRED: PCEPILFE.'],
+ ['ur','U.S. unemployment','U.S. economy','%',false,()=>monthly('UNRATE',LONG),'BLS U-3 unemployment rate via FRED: UNRATE.'],
+ ['boc','BoC policy rate','Canada','%',false,()=>splice(monthly('BOC',LONG),weeklyPts(CA.W.V39079)),'Bank of Canada target for the overnight rate, Valet: V39079 (series starts 2009).'],
+ ['ca3m','Canada 3-month rate','Canada','%',false,()=>monthly('IR3TIB01CAM156N',LONG),'OECD 3-month interbank rate via FRED: IR3TIB01CAM156N.'],
+ ['ca10','Canada 10-year bond','Canada','%',false,()=>splice(monthly('IRLTLT01CAM156N',LONG),weeklyPts(CA.W['BD.CDN.10YR.DQ.YLD'])),'OECD long-term rate via FRED (monthly) and Bank of Canada 10-year benchmark (weekly since 2016).'],
+ ['cacpi','Canada CPI inflation','Canada','% YoY',false,()=>monthly('CACPI',LONG),'Statistics Canada total CPI, YoY, via Bank of Canada Valet.'],
+ ['catrim','Canada CPI-trim','Canada','% YoY',false,()=>monthly('CATRIM',LONG),'Bank of Canada CPI-trim core measure.'],
+ ['caur','Canada unemployment','Canada','%',false,()=>monthly('LRUNTTTTCAM156S',LONG),'Statistics Canada Labour Force Survey via OECD/FRED: LRUNTTTTCAM156S.'],
+].map(([k,label,grp,unit,logOk,get,src])=>({k,label,grp,unit,logOk,get,src}));
+let MC={k:store.get('md-mc','cpi'),cmp:'',rng:'all',log:false,win:null};
+const MRNG=[['1y','1Y',1],['5y','5Y',5],['10y','10Y',10],['20y','20Y',20],['all','All',999]];
+const grpsMS=[...new Set(MS.map(m=>m.grp))];
+$('#mc-sel').innerHTML=grpsMS.map(g=>`<optgroup label="${g}">${MS.filter(m=>m.grp===g).map(m=>`<option value="${m.k}">${m.label}</option>`).join('')}</optgroup>`).join('');
+function fillCmp(){const cur=MS.find(m=>m.k===MC.k);const same=MS.filter(m=>m.unit===cur.unit&&m.k!==cur.k);$('#mc-cmp').innerHTML=`<option value="">Nothing</option>`+same.map(m=>`<option value="${m.k}" ${m.k===MC.cmp?'selected':''}>${m.label}</option>`).join('');if(!same.some(m=>m.k===MC.cmp))MC.cmp='';$('#mc-cmp').disabled=!same.length}
+segBtns($('#mc-rng'),MRNG.map(r=>[r[0],r[1]]),MC.rng,'v');
+$('#mc-sel').addEventListener('change',e=>{MC.k=e.target.value;store.set('md-mc',MC.k);MC.win=null;fillCmp();drawMacro()});
+$('#mc-cmp').addEventListener('change',e=>{MC.cmp=e.target.value;drawMacro()});
+$('#mc-log').addEventListener('change',e=>{MC.log=e.target.checked;drawMacro()});
+$('#mc-rng').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;MC.rng=b.dataset.v;MC.win=null;segBtns($('#mc-rng'),MRNG.map(r=>[r[0],r[1]]),MC.rng,'v');drawMacro()});
+function logTicks(lo,hi){const out=[];for(let e=Math.floor(Math.log10(lo));e<=Math.ceil(Math.log10(hi));e++)[1,2,5].forEach(m=>{const v=m*10**e;if(v>=lo&&v<=hi)out.push(v)});return out}
+let MCX=null;
+function drawMacro(){
+  const cur=MS.find(m=>m.k===MC.k)||MS[0];$('#mc-sel').value=cur.k;
+  const plot=$('#mc-plot'),tip=$('#mc-tip');if(!plot.clientWidth)return;
+  const W=Math.max(300,plot.clientWidth),H=Math.round(Math.min(520,Math.max(280,W*0.46)));const pl=58,pr=18,pt=14,pb=30;
+  const sets=[{m:cur,col:'var(--s1)',pts:cur.get()}];if(MC.cmp){const c=MS.find(m=>m.k===MC.cmp);sets.push({m:c,col:'var(--s2)',pts:c.get()})}
+  const tEnd=Math.max(...sets.map(s=>s.pts[s.pts.length-1][0])),tFirst=Math.min(...sets.map(s=>s.pts[0][0]));
+  const yrs=MRNG.find(r=>r[0]===MC.rng)[2];
+  if(!MC.win)MC.win=[Math.max(tFirst,tEnd-yrs*365.25*DAY),tEnd];
+  let [x0,x1]=MC.win;
+  const vis=sets.map(s=>{const i0=Math.max(0,s.pts.findIndex(p=>p[0]>=x0)-1);let i1=s.pts.length-1;while(i1>0&&s.pts[i1-1][0]>x1)i1--;return s.pts.slice(i0,i1+1)});
+  const useLog=MC.log&&cur.logOk&&vis.flat().every(p=>p[1]>0);
+  const vals=vis.flat().filter(p=>p[0]>=x0&&p[0]<=x1).map(p=>p[1]);if(!vals.length)return;
+  let lo=Math.min(...vals),hi=Math.max(...vals);
+  let ticks,ys;
+  if(useLog){lo=lo*0.95;hi=hi*1.05;ticks=logTicks(lo,hi);const l0=Math.log10(lo),l1=Math.log10(hi);ys=v=>pt+(1-(Math.log10(v)-l0)/(l1-l0))*(H-pt-pb)}
+  else{if(cur.unit!=='index'&&cur.unit!=='$'&&cur.unit!=='$/bbl'&&lo>0&&lo<hi*0.4)lo=Math.min(0,lo);const pad=(hi-lo)*0.06||1;ticks=niceTicks(lo-pad,hi+pad,6);lo=ticks[0];hi=ticks[ticks.length-1];ys=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb)}
+  const xs=t=>pl+(t-x0)/(x1-x0)*(W-pl-pr);
+  const fmtY=v=>Math.abs(v)>=1000?(v>=1e4?Math.round(v/1000)+'k':Math.round(v).toLocaleString('en-US')):(+v.toFixed(2)).toString();
+  let g='';
+  ticks.forEach(v=>{if(v<lo-1e-9||v>hi+1e-9)return;g+=`<line class="grid-l" x1="${pl}" x2="${W-pr}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${pl-8}" y="${ys(v)+4}" text-anchor="end">${fmtY(v)}</text>`});
+  const spanY=(x1-x0)/(365.25*DAY);const ty0=new Date(x0).getUTCFullYear(),ty1=new Date(x1).getUTCFullYear();
+  if(spanY<=2.5){for(let k=0;k<40;k++){const d=Date.UTC(ty0,new Date(x0).getUTCMonth()+k,1);if(d>x1)break;if(d<x0)continue;const mo=new Date(d).getUTCMonth();if(spanY>1.2&&mo%3)continue;g+=`<text x="${xs(d)}" y="${H-9}" text-anchor="middle">${new Date(d).toLocaleDateString('en-US',{month:'short',year:'2-digit',timeZone:'UTC'})}</text>`}}
+  else{const step=[1,2,5,10,20].find(s=>spanY/s<=10)||20;for(let y=Math.ceil(ty0/step)*step;y<=ty1;y+=step){const d=Date.UTC(y,0,1);if(d<x0||d>x1)continue;g+=`<line class="grid-l" x1="${xs(d)}" x2="${xs(d)}" y1="${pt}" y2="${H-pb}" opacity=".5"/><text x="${xs(d)}" y="${H-9}" text-anchor="middle">${y}</text>`}}
+  g+=`<line class="base-l" x1="${pl}" x2="${W-pr}" y1="${H-pb}" y2="${H-pb}"/>`;
+  if(!useLog&&lo<0&&hi>0)g+=`<line x1="${pl}" x2="${W-pr}" y1="${ys(0)}" y2="${ys(0)}" stroke="var(--ink-2)"/>`;
+  if(cur.unit==='% YoY'&&!useLog)g+=`<line x1="${pl}" x2="${W-pr}" y1="${ys(2)}" y2="${ys(2)}" stroke="var(--ink-2)" stroke-dasharray="4 4"/><text x="${W-pr}" y="${ys(2)-5}" text-anchor="end">2% target</text>`;
+  g+=`<defs><clipPath id="mcclip"><rect x="${pl}" y="${pt-4}" width="${W-pl-pr}" height="${H-pt-pb+8}"/></clipPath></defs><g clip-path="url(#mcclip)">`;
+  vis.forEach((v,i)=>{let d='',pen=false;v.forEach((p,j)=>{const gap=j>0&&p[0]-v[j-1][0]>200*DAY;d+=(!pen||gap?'M':'L')+xs(p[0]).toFixed(1)+' '+ys(p[1]).toFixed(1)+' ';pen=true});
+    if(sets.length===1){const bl=ys(useLog?lo:Math.max(lo,Math.min(hi,0)));g+=`<path d="${d} L${xs(v[v.length-1][0])} ${bl} L${xs(v[0][0])} ${bl} Z" fill="${sets[i].col}" opacity=".08"/>`}
+    g+=`<path d="${d}" fill="none" stroke="${sets[i].col}" stroke-width="2" stroke-linejoin="round"/>`});
+  g+=`</g><g class="hov" style="display:none"><line class="hl" y1="${pt}" y2="${H-pb}" stroke="var(--ink-2)" stroke-dasharray="2 3"/>${sets.map((s,i)=>`<circle class="hd${i}" r="4.5" fill="${s.col}" stroke="var(--panel)" stroke-width="2"/>`).join('')}</g>`;
+  plot.querySelector('svg')?.remove();
+  plot.insertAdjacentHTML('afterbegin',`<svg viewBox="0 0 ${W} ${H}" class="axis" role="img" aria-label="${esc(cur.label)} chart">${g}</svg>`);
+  const last=sets[0].pts[sets[0].pts.length-1];const prevPt=sets[0].pts[sets[0].pts.length-2];
+  const unitTxt=v=>cur.unit.startsWith('%')?v.toFixed(2)+'%':cur.unit==='pp'?v.toFixed(2)+' pp':cur.unit.startsWith('$')?'$'+fmtPx(v):fmtPx(v);
+  $('#mc-title').textContent=cur.label;$('#mc-sub').textContent=`${cur.grp} · ${cur.unit} · history from ${new Date(tFirst).getUTCFullYear()}`;
+  const dd=last[1]-prevPt[1];
+  $('#mc-latest').innerHTML=`<div class="b">${unitTxt(last[1])}</div><div class="s"><span class="chg ${cls(dd)}">${cur.unit.startsWith('%')||cur.unit==='pp'?(dd>0?'+':'')+dd.toFixed(2)+' pp':sgn((last[1]/prevPt[1]-1)*100)}</span> vs prior ${last[0]-prevPt[0]>20*DAY?'month':'week'} · ${fmtD(last[0],last[0]-prevPt[0]>20*DAY)}</div>`;
+  $('#mc-legend').innerHTML=sets.map(s=>`<span><i style="background:${s.col}"></i>${esc(s.m.label)}</span>`).join('')+(MC.log&&!useLog?' <span class="note">Log scale works for positive price series only.</span>':'');
+  $('#mc-note').textContent='Source: '+sets.map(s=>s.m.src).join(' · ');
+  $('#mc-log').disabled=!cur.logOk;
+  MCX={W,H,pl,pr,pt,pb,xs,ys,x0,x1,sets,vis,tEnd,tFirst};
+  const svg=plot.querySelector('svg'),hov=svg.querySelector('.hov'),hl=svg.querySelector('.hl');
+  svg.addEventListener('pointermove',ev=>{if(drag)return;const r=svg.getBoundingClientRect();const sx=(ev.clientX-r.left)*(W/r.width);if(sx<pl||sx>W-pr){hov.style.display='none';tip.hidden=true;return}
+    const t=x0+(sx-pl)/(W-pl-pr)*(x1-x0);const ps=sets.map((s,i)=>{const v=vis[i];let a=0,b=v.length-1;while(b-a>1){const m=(a+b)>>1;if(v[m][0]<t)a=m;else b=m}return Math.abs(v[a][0]-t)<Math.abs(v[b][0]-t)?v[a]:v[b]});
+    hov.style.display='';hl.setAttribute('x1',xs(ps[0][0]));hl.setAttribute('x2',xs(ps[0][0]));ps.forEach((p,i)=>{const c=svg.querySelector('.hd'+i);c.setAttribute('cx',xs(p[0]));c.setAttribute('cy',ys(p[1]))});
+    tip.innerHTML=`<b>${fmtD(ps[0][0],(ps[0][0]-(vis[0][Math.max(0,vis[0].indexOf(ps[0])-1)]||ps[0])[0])>20*DAY)}</b>`+sets.map((s,i)=>`<div><span><i style="background:${s.col}"></i>${esc(s.m.label)}</span><span class="num">${s.m.unit.startsWith('%')?ps[i][1].toFixed(2)+'%':fmtPx(ps[i][1])}</span></div>`).join('');tip.hidden=false;
+    const px=xs(ps[0][0])*(r.width/W),tw=tip.offsetWidth;tip.style.left=(px+12+tw>r.width?Math.max(0,px-tw-12):px+12)+'px';tip.style.top='8px'});
+  svg.addEventListener('pointerleave',()=>{hov.style.display='none';tip.hidden=true});
+}
+let drag=null;
+(function wireMacro(){const plot=$('#mc-plot');
+  const clampWin=(a,b)=>{const span=b-a;const minS=120*DAY,maxS=MCX.tEnd-MCX.tFirst;let s=Math.min(Math.max(span,minS),maxS);let c=(a+b)/2;a=c-s/2;b=c+s/2;if(a<MCX.tFirst){b+=MCX.tFirst-a;a=MCX.tFirst}if(b>MCX.tEnd){a-=b-MCX.tEnd;b=MCX.tEnd}return [Math.max(a,MCX.tFirst),b]};
+  plot.addEventListener('wheel',e=>{if(!MCX)return;e.preventDefault();const r=plot.getBoundingClientRect();const sx=(e.clientX-r.left)*(MCX.W/r.width);const f=Math.min(Math.max((sx-MCX.pl)/(MCX.W-MCX.pl-MCX.pr),0),1);const [a,b]=MC.win;const span=b-a;const ns=span*(e.deltaY>0?1.18:1/1.18);const t=a+f*span;MC.win=clampWin(t-f*ns,t+(1-f)*ns);drawMacro()},{passive:false});
+  plot.addEventListener('pointerdown',e=>{if(!MCX)return;drag={x:e.clientX,win:[...MC.win]};plot.classList.add('drag');plot.setPointerCapture(e.pointerId)});
+  plot.addEventListener('pointermove',e=>{if(!drag)return;const r=plot.getBoundingClientRect();const dt=-(e.clientX-drag.x)/(r.width*(MCX.W-MCX.pl-MCX.pr)/MCX.W)*(drag.win[1]-drag.win[0]);MC.win=clampWin(drag.win[0]+dt,drag.win[1]+dt);drawMacro()});
+  const end=()=>{drag=null;plot.classList.remove('drag')};plot.addEventListener('pointerup',end);plot.addEventListener('pointercancel',end);
+  plot.addEventListener('dblclick',()=>{MC.win=null;drawMacro()});
+})();
+
+/* ---------- Tech map (treemap) ---------- */
+const SPACES=[...new Set(STK.COMP.map(c=>c[1]))];
+const SPCOL={};SPACES.forEach((s,i)=>SPCOL[s]=`var(--s${(i%9)+1})`);
+let TM={view:'map',space:'',color:'move',sort:['mc',-1]};
+$('#tm-space').innerHTML=`<option value="">All spaces</option>`+SPACES.map(s=>`<option>${esc(s)}</option>`).join('');
+function squarify(items,x,y,w,h){const out=[];const total=items.reduce((s,i)=>s+i.v,0);if(!total)return out;let rest=items.slice().sort((a,b)=>b.v-a.v);const scale=(w*h)/total;rest=rest.map(i=>({...i,a:i.v*scale}));
+  while(rest.length){const short=Math.min(w,h);let row=[rest[0]],best=worst(row,short),i=1;while(i<rest.length){const t=row.concat(rest[i]);const wv=worst(t,short);if(wv<=best){row=t;best=wv;i++}else break}
+    const sum=row.reduce((s,r)=>s+r.a,0);if(w>=h){const cw=sum/h;let cy=y;row.forEach(r=>{const rh=r.a/cw;out.push({...r,x,y:cy,w:cw,h:rh});cy+=rh});x+=cw;w-=cw}else{const rh=sum/w;let cx=x;row.forEach(r=>{const rw=r.a/rh;out.push({...r,x:cx,y,w:rw,h:rh});cx+=rw});y+=rh;h-=rh}rest=rest.slice(row.length)}
+  return out;function worst(row,s){const sum=row.reduce((a,r)=>a+r.a,0),mx=Math.max(...row.map(r=>r.a)),mn=Math.min(...row.map(r=>r.a));return Math.max(s*s*mx/(sum*sum),sum*sum/(s*s*mn))}}
+function renderTechmap(){
+  segBtns($('#tm-view'),[['map','Map'],['table','Table']],TM.view,'v');segBtns($('#tm-color'),[['move','Today’s move'],['space','Space']],TM.color,'v');
+  const comps=STK.COMP.filter(c=>SQ[c[0]]&&SQ[c[0]][6]&&(!TM.space||c[1]===TM.space)).map(c=>({t:c[0],space:c[1],founded:c[2],q:SQ[c[0]],v:SQ[c[0]][6]}));
+  const tot=comps.reduce((s,c)=>s+c.v,0);const avg=comps.reduce((s,c)=>s+c.q[2],0)/comps.length;
+  $('#tm-sub').textContent=`${comps.length} public companies with a future-tech story · ${fmtCap(tot)} combined · equal-weight move today ${sgn(avg)}`;
+  $('#tm-mapcard').hidden=TM.view!=='map';$('#tm-tablecard').hidden=TM.view!=='table';
+  if(TM.view==='table'){const [sk,sd]=TM.sort;const key={t:c=>c.t,name:c=>c.q[0],space:c=>c.space,founded:c=>c.founded,mc:c=>c.v,d:c=>c.q[2],y:c=>c.q[5]}[sk];comps.sort((a,b)=>{const A=key(a),B=key(b);return (A>B?1:A<B?-1:0)*sd});
+    const th=(k,l)=>`<th class="sort" data-sort="${k}">${l}${TM.sort[0]===k?(TM.sort[1]>0?' ▲':' ▼'):''}</th>`;
+    $('#tm-table').innerHTML=`<thead><tr>${th('t','Ticker')}${th('name','Company')}${th('space','Space')}${th('founded','Founded')}${th('mc','Market cap')}${th('d','Today')}${th('y','1 year')}</tr></thead><tbody>${comps.map(c=>`<tr><td><code>${esc(c.t)}</code></td><td>${esc(c.q[0])}</td><td><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${SPCOL[c.space]};margin-right:6px"></span>${esc(c.space)}</td><td class="num">${c.founded}</td><td class="num">${fmtCap(c.v)}</td><td class="chg ${cls(c.q[2])}">${sgn(c.q[2])}</td><td class="chg ${cls(c.q[5])}">${sgn(c.q[5],1)}</td></tr>`).join('')}</tbody>`;return}
+  const box=$('#tm-map');const W=box.clientWidth,H=box.clientHeight;if(!W)return;
+  const bySpace=SPACES.filter(s=>!TM.space||s===TM.space).map(s=>({s,v:comps.filter(c=>c.space===s).reduce((a,c)=>a+c.v,0)})).filter(x=>x.v>0);
+  let html='';
+  squarify(bySpace,0,0,W,H).forEach(b=>{const hd=b.h>40&&b.w>60?16:0;html+=`<div class="tmb" style="left:${b.x}px;top:${b.y}px;width:${b.w}px;height:${b.h}px">${hd?`<span class="sp" style="color:${SPCOL[b.s]}">${esc(b.s)} · ${fmtCap(b.v)}</span>`:''}</div>`;
+    squarify(comps.filter(c=>c.space===b.s),b.x+2,b.y+2+hd,b.w-4,b.h-4-hd).forEach(c=>{const side=Math.min(c.w,c.h);const fs=Math.max(9,Math.min(34,side/3.2));const bg=TM.color==='move'?tint(c.q[2]):`background:color-mix(in srgb, ${SPCOL[c.space]} 28%, var(--panel))`;
+      const lab=c.w>34&&c.h>22?`<span class="tk" style="font-size:${fs}px">${esc(tk(c.t))}</span>${c.h>fs*2.2&&c.w>50?`<span class="mc" style="font-size:${Math.max(9,fs*0.45)}px">${fmtCap(c.v)}</span>`:''}${c.h>fs*3.4&&c.w>90?`<span class="ds" style="font-size:${Math.max(9,fs*0.36)}px">${TM.color==='move'?sgn(c.q[2]):esc(c.q[0])}</span>`:''}`:'';
+      html+=`<div class="tmc" style="left:${c.x}px;top:${c.y}px;width:${c.w}px;height:${c.h}px;${bg}" title="${esc(c.t)} · ${esc(c.q[0])} · ${fmtCap(c.v)} · ${sgn(c.q[2])} today · ${esc(c.space)}">${lab}</div>`})});
+  box.innerHTML=html;
+  $('#tm-legend').innerHTML=TM.color==='move'?`<span><i style="background:color-mix(in srgb,var(--down) 47%,var(--panel))"></i>−4% or worse</span><span><i style="background:color-mix(in srgb,var(--down) 15%,var(--panel))"></i>−1%</span><span><i style="background:var(--panel)"></i>0%</span><span><i style="background:color-mix(in srgb,var(--up) 15%,var(--panel))"></i>+1%</span><span><i style="background:color-mix(in srgb,var(--up) 47%,var(--panel))"></i>+4% or better</span>`:SPACES.map(s=>`<span><i style="background:${SPCOL[s]}"></i>${esc(s)}</span>`).join('');
+}
+$('#tm-view').addEventListener('click',e=>{const b=e.target.closest('button');if(b){TM.view=b.dataset.v;renderTechmap()}});
+$('#tm-color').addEventListener('click',e=>{const b=e.target.closest('button');if(b){TM.color=b.dataset.v;renderTechmap()}});
+$('#tm-space').addEventListener('change',e=>{TM.space=e.target.value;renderTechmap()});
+$('#tm-table').addEventListener('click',e=>{const th=e.target.closest('[data-sort]');if(!th)return;const k=th.dataset.sort;TM.sort=[k,TM.sort[0]===k?-TM.sort[1]:(k==='t'||k==='name'||k==='space'?1:-1)];renderTechmap()});
+
+/* ---------- Router ---------- */
+const VIEWS=['home','sector','economy','macro','techmap','widgets','commod'];
+let CUR_VIEW='home';
+function route(){
+  const h=(location.hash||'#home').slice(1);let v=h,sec=null;
+  if(h.startsWith('sector-')){v='sector';sec=h.slice(7)}
+  if(h==='commodities')v='commod';
+  if(h==='sources'){v=CUR_VIEW}
+  if(!VIEWS.includes(v))v='home';
+  CUR_VIEW=v;
+  VIEWS.forEach(x=>document.getElementById('v-'+x).hidden=x!==v);
+  document.querySelectorAll('[data-nav]').forEach(a=>a.getAttribute('data-nav')===v?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+  if(v==='home')renderBoard();
+  if(v==='sector'){CUR_SEC=SECT.some(s=>s.slug===sec)?sec:'technology';renderSector()}
+  if(v==='economy')requestAnimationFrame(()=>charts.na.draw());
+  if(v==='macro'){fillCmp();requestAnimationFrame(drawMacro)}
+  if(v==='techmap')requestAnimationFrame(renderTechmap);
+  if(v==='commod')$('#cm-board').innerHTML=['oil','metals','caresources','caenergy','usenergy','miners'].map(id=>card(W.find(w=>w.id===id),false)).join('');
+  if(v==='widgets')renderGallery();
+  if(h!=='sources')window.scrollTo(0,0);
+}
+function redrawCharts(){if(CUR_VIEW==='economy')charts.na.draw();if(CUR_VIEW==='macro')drawMacro();if(CUR_VIEW==='techmap')renderTechmap()}
+window.addEventListener('hashchange',route);
+let rz;window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(CUR_VIEW==='macro')drawMacro();if(CUR_VIEW==='techmap')renderTechmap()},120)});
+route();
+
+
+/* ---------- Source ledger ---------- */
+const SRC=[
+  ['Market tape, sectors, themes','Index levels and ETF prices, daily % change','Yahoo Finance','^GSPC ^IXIC ^RUT ^VIX ^GSPTSE · XLK…XLC · IGV CIBR GRID…','Real time / daily','https://finance.yahoo.com'],
+  ['Crypto','BTC, ETH, SOL in USD','Yahoo Finance (CoinMarketCap feed)','BTC-USD ETH-USD SOL-USD','24/7','https://finance.yahoo.com/crypto'],
+  ['Oil, gas, metals','Front-month futures','Yahoo Finance (CME / ICE)','CL=F BZ=F NG=F GC=F SI=F HG=F','Daily','https://finance.yahoo.com/commodities'],
+  ['Canada: markets','TSX composite, USD/CAD, TSX sector ETFs, Big Six banks, energy & resources','Yahoo Finance (TMX)','^GSPTSE CAD=X XFN XEG XIT XMA ZIN XST XUT XRE XGD · RY TD BNS BMO CM NA · CNQ SU ENB TRP NTR TECK.B CCO','Daily','https://finance.yahoo.com/quote/%5EGSPTSE'],
+  ['Canada: policy rate','Target for the overnight rate','Bank of Canada Valet','V39079','Daily','https://www.bankofcanada.ca/valet/series/V39079'],
+  ['Canada: GoC yields','Benchmark bond yields, 2Y / 5Y / 10Y / long','Bank of Canada Valet','BD.CDN.2YR / 5YR / 10YR / LONG.DQ.YLD','Daily','https://www.bankofcanada.ca/rates/interest-rates/canadian-bonds/'],
+  ['Canada: 3-month rate','3-month interbank rate','OECD, on FRED','IR3TIB01CAM156N','Monthly','https://fred.stlouisfed.org/series/IR3TIB01CAM156N'],
+  ['Canada: CPI','Total CPI YoY, CPI-trim, CPI-median','Statistics Canada via Bank of Canada Valet','STATIC_TOTALCPICHANGE CPI_TRIM CPI_MEDIAN','Monthly','https://www.bankofcanada.ca/rates/price-indexes/cpi/'],
+  ['Canada: unemployment','Labour Force Survey unemployment rate','Statistics Canada via OECD, on FRED','LRUNTTTTCAM156S','Monthly','https://fred.stlouisfed.org/series/LRUNTTTTCAM156S'],
+  ['Sector pages','~190 stocks across 10 sectors: price, day / week / month / year change, market cap, 52-week position; group indexes are equal-weighted','Yahoo Finance (NYSE, Nasdaq)','see each sector page; sector ETFs XLK XLF XLE XLV XLY XLP XLI XLB XLU XLRE XLC','Daily close','https://finance.yahoo.com'],
+  ['Technology & tech overview','16 groups, ~150 stocks including Canadian tech','Yahoo Finance (Nasdaq, NYSE, TSX)','e.g. NVDA AAPL MSFT · CRWD PANW · SHOP CSU CLS','Daily close','https://finance.yahoo.com'],
+  ['Tech map','86 future-tech companies sized by market cap, grouped by space','Yahoo Finance market caps','see Tech map table view','Daily close','https://finance.yahoo.com'],
+  ['Risk gauges','VIX, dollar index, 20+ year Treasury ETF','Yahoo Finance (CBOE, ICE, iShares)','^VIX DX-Y.NYB TLT','Daily','https://finance.yahoo.com/quote/TLT'],
+  ['Macro charts (long history)','Monthly averages back to 1948 (CPI, unemployment), 1954 (Fed funds), 1962 (10-year), 1985 (S&P 500, Nasdaq, TSX), joined to weekly data since 2016','FRED (BLS, BEA, Fed, Treasury, Freddie Mac, EIA, OECD), Bank of Canada Valet, Yahoo Finance','CPIAUCSL UNRATE DFF DGS10 DGS2 DGS30 MORTGAGE30US VIXCLS DTWEXBGS DCOILWTICO IRLTLT01CAM156N LRUNTTTTCAM156S · V39079 · ^GSPC ^IXIC ^GSPTSE','Monthly + weekly','https://fred.stlouisfed.org'],
+  ['Global: FX','U.S. dollar index, USD/CAD','Yahoo Finance (ICE)','DX-Y.NYB CAD=X','Daily','https://finance.yahoo.com'],
+  ['U.S. yields & curve','Treasury constant-maturity yields','U.S. Treasury via Fed H.15, on FRED','DGS2 DGS5 DGS10 DGS30 T10Y2Y','Daily','https://fred.stlouisfed.org/series/DGS10'],
+  ['Policy rate','Effective federal funds rate','Federal Reserve Bank of New York, on FRED','DFF','Daily','https://fred.stlouisfed.org/series/DFF'],
+  ['Mortgage rate','30-year fixed (PMMS)','Freddie Mac, on FRED','MORTGAGE30US','Weekly (Thu)','https://fred.stlouisfed.org/series/MORTGAGE30US'],
+  ['CPI & Core CPI','Consumer price index, all items / ex food & energy','BLS, on FRED','CPIAUCSL CPILFESL','Monthly','https://fred.stlouisfed.org/series/CPIAUCSL'],
+  ['PCE & Core PCE','PCE price index, total / ex food & energy','BEA, on FRED','PCEPI PCEPILFE','Monthly','https://fred.stlouisfed.org/series/PCEPILFE'],
+  ['Unemployment','U-3 unemployment rate','BLS, on FRED','UNRATE','Monthly','https://fred.stlouisfed.org/series/UNRATE'],
+  ['Long-run charts','S&P 500, VIX, mortgage rate (main view); Nasdaq, broad dollar, WTI, Brent (Global tab)','S&P DJI, Nasdaq, CBOE, Fed, EIA — on FRED','SP500 NASDAQCOM VIXCLS DTWEXBGS DCOILWTICO DCOILBRENTEU','Daily','https://fred.stlouisfed.org'],
+];
+$('#srcTbl').innerHTML='<thead><tr><th>Widget</th><th>What</th><th>Provider</th><th>Ticker / series ID</th><th>Frequency</th></tr></thead><tbody>'+SRC.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td><a href="${r[5]}" target="_blank" rel="noopener">${esc(r[2])}</a></td><td><code>${esc(r[3])}</code></td><td>${esc(r[4])}</td></tr>`).join('')+'</tbody>';
+document.querySelectorAll('.md-asof').forEach(e=>e.textContent=META.label||'');
+};
+(function(){
+  var REMOTE=(window.MD_FEED||'');
+  var LOCAL='data.json';
+  function get(u,ms){return new Promise(function(res,rej){var c=new AbortController();var t=setTimeout(function(){c.abort()},ms);
+    fetch(u+(u.indexOf('?')<0?'?':'&')+'v='+Math.floor(Date.now()/120000),{signal:c.signal,cache:'no-store'})
+    .then(function(r){clearTimeout(t);if(!r.ok)throw 0;return r.json()}).then(res,rej)})}
+  function age(d){return d&&d.meta&&d.meta.built?Date.parse(d.meta.built):0}
+  Promise.all([get(LOCAL,8000).catch(function(){return null}), REMOTE?get(REMOTE,6000).catch(function(){return null}):Promise.resolve(null)]).then(function(r){
+    var D=r[0],S=r[1];
+    var ld=document.getElementById('md-loading');
+    if(!D){if(ld)ld.textContent='Market data could not be loaded right now. Please refresh in a minute.';return}
+    /* live stock prices (Y, STK quotes and groups) come from the GitHub feed; economic history stays from the local copy */
+    if(S&&S.STK&&S.Y&&age(S)>=age(D)){D.Y=S.Y;['SEC','TECHG','COMP','Q','G'].forEach(function(k){if(S.STK[k])D.STK[k]=S.STK[k]});D.meta=Object.assign({},D.meta,S.meta,{months:(D.meta||{}).months})}
+    if(ld)ld.remove();
+    window.__MD_RUN(D);
+  });
+})();
+</script>
+
+<script>
+/* Match the brand and disclaimer link to the website showing this page (dinian.ca or idadvisory.ca) */
+(function(){var host='';try{host=new URL(document.referrer).hostname}catch(e){}
+  var id=/idadvisory/i.test(host);
+  function fix(){document.querySelectorAll('footer').forEach(function(f){
+    if(id)f.innerHTML=f.innerHTML.replace('D-Advisory / dinian.ca','ID-Advisory / idadvisory.ca');
+    f.querySelectorAll('a[href="/disclaimer/"]').forEach(function(a){a.href=id?'https://idadvisory.ca/disclaimer/':'https://dinian.ca/disclaimer/';a.target='_top'});});}
+  if(document.readyState!=='loading')fix();else document.addEventListener('DOMContentLoaded',fix);
+})();
+</script></body></html>
