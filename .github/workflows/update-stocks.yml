@@ -1,0 +1,54 @@
+name: Update stock prices (Sectors and Tech map)
+
+# Hourly on weekdays during market hours (10:05 a.m. - 4:05 p.m. Toronto time),
+# plus a full refresh after the close (1-year stats and group charts).
+# Writes data/stocks.json, which the Sectors and Tech map pages on dinian.ca read.
+on:
+  schedule:
+    - cron: "5 14-20 * * 1-5"
+    - cron: "35 21 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "quick = prices only, full = prices + 1-year stats"
+        default: "full"
+        type: choice
+        options: [full, quick]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch stock prices
+        run: |
+          MODE="quick"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then MODE="${{ inputs.mode }}"; fi
+          if [ "${{ github.event.schedule }}" = "35 21 * * 1-5" ]; then MODE="full"; fi
+          python scripts/update_stocks.py --stocks-only --mode "$MODE" --seed data/stocks.json --out data/stocks.json
+
+      - name: Save if anything changed
+        run: |
+          if git diff --quiet -- data/stocks.json; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/stocks.json
+          git commit -m "Update stock prices"
+          git pull --rebase
+          git push
