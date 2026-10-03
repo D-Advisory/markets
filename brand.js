@@ -4,6 +4,20 @@
   var host = '';
   try { host = new URL(document.referrer).hostname; } catch (e) {}
   var isID = /idadvisory/i.test(host) || /[?&]brand=id\b/i.test(location.search);
+  var framed = window.top !== window.self;
+
+  /* "See full disclaimer": inside the website frame the page cannot scroll to the
+     bottom section, so open the website's own Disclaimer page instead. */
+  function fixDisclaimerLinks() {
+    if (!framed) return;
+    var site = isID ? 'https://idadvisory.ca' : 'https://dinian.ca';
+    document.querySelectorAll('a[href="#disclaimer"]').forEach(function (a) {
+      a.href = site + '/disclaimer/';
+      a.target = '_top';
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fixDisclaimerLinks); else fixDisclaimerLinks();
+
   if (!isID) return;
 
   function fixText(s) {
