@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markets &amp; Economy | D-Advisory</title>
+<meta name="description" content="Live markets and the U.S. and Canadian economy at a glance, from D-Advisory Group.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: brand header with tabs → short notice → live ticker tape → tab content (TradingView market widgets, custom economy charts) → full disclaimer.
+   Single light theme to sit inside dinian.ca. Brand: D-Advisory navy + orange. */
+:root{
+  color-scheme:light;
+  --navy:#0a3d5a; --navy-2:#082f46; --navy-3:#0e4c70; --orange:#cc6600; --orange-soft:#fbeee0;
+  --bg:#f3f6f9; --panel:#ffffff; --panel-2:#f6f8fa; --ink:#18252f; --ink-2:#4f5c67; --muted:#86919b;
+  --line:#e2e8ee; --line-2:#c9d2db;
+  --us:#1c6db0; --ca:#cc5500; --us-soft:rgba(28,109,176,.12); --ca-soft:rgba(204,85,0,.12);
+  --up:#0f7d3d; --down:#c43a3a;
+  --s1:#1c6db0; --s2:#cc5500; --s3:#1baf7a; --s4:#7a5cc0;
+  --f-head:"Rajdhani","Open Sans",system-ui,sans-serif;
+  --f-body:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.5}
+a{color:var(--navy-3)}
+.in{max-width:1280px;margin:0 auto;padding-inline:16px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
+
+/* header */
+.hd{background:var(--navy);color:#fff}
+.hd .top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px;padding-block:18px 10px}
+.hd .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#f0a65c;font-weight:700}
+.hd h1{margin:2px 0 0;font-family:var(--f-head);font-weight:700;font-size:clamp(28px,4.5vw,40px);line-height:1;letter-spacing:.01em}
+.asof{font-size:12px;color:#b9cad8;text-align:right;line-height:1.6}
+.asof b{color:#fff;font-weight:600}
+.tabs{display:flex;gap:4px;overflow-x:auto}
+.tabs button{font:inherit;font-size:14px;font-weight:600;color:#b9cad8;background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;cursor:pointer;white-space:nowrap}
+.tabs button:hover{color:#fff}
+.tabs button[aria-selected="true"]{color:#fff;border-bottom-color:var(--orange)}
+.tabs button:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.notice{font-size:12.5px;color:var(--ink-2);padding-block:9px;display:flex;gap:8px;align-items:flex-start}
+.notice b{color:var(--orange)}
+.tape{background:var(--panel);border-block:1px solid var(--line);min-height:46px}
+
+/* layout */
+main{display:flex;flex-direction:column;gap:22px;padding-block:18px 28px}
+.tab{display:flex;flex-direction:column;gap:22px}
+.sec-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
+.sec-h h2{margin:0;font-family:var(--f-head);font-weight:700;font-size:24px;color:var(--navy);letter-spacing:.01em}
+.sec-h p{margin:0;color:var(--ink-2);font-size:13px;max-width:70ch}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.g2{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}
+.tvbox{padding:0}
+.tvbox .tradingview-widget-copyright{font-size:11px;padding:6px 12px;color:var(--muted)}
+.tvbox .tradingview-widget-copyright a{color:var(--muted);text-decoration:none}
+.tvload{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:13px}
+
+/* economy */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stat{background:var(--panel);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.stat .l{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.stat .v{font-family:var(--f-head);font-size:26px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1.15}
+.stat .c{font-size:12px;color:var(--ink-2)}
+.key{display:inline-flex;gap:14px;font-size:12px;color:var(--ink-2)}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.key i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.h2h{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.vs{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px 12px;display:flex;flex-direction:column;gap:10px}
+.vs .t{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.vs .t small{letter-spacing:0;text-transform:none;font-weight:500;color:var(--muted)}
+.pair{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px 10px}
+.cc{font-size:11px;font-weight:700;padding:2px 6px;border-radius:5px}
+.cc.us{background:var(--us-soft);color:var(--us)} .cc.ca{background:var(--ca-soft);color:var(--ca)}
+.track{height:8px;border-radius:4px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}
+.track i{display:block;height:100%;border-radius:3px}
+.val{font-family:var(--f-mono);font-weight:600;font-size:15px;text-align:right}
+.gap{font-size:12px;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.gap b{font-family:var(--f-mono);color:var(--ink)}
+.vs svg{display:block;width:100%;height:44px}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;align-items:start}
+.w{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 14px 10px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.w.us-top{border-top:4px solid var(--us)} .w.ca-top{border-top:4px solid var(--ca)}
+.w h3{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.w h3 span{letter-spacing:0;text-transform:none;font-weight:500;color:var(--muted)}
+.head{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.head .big{font-family:var(--f-head);font-size:28px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.head .sub{font-size:12px;color:var(--ink-2)}
+.rows{display:flex;flex-direction:column}
+.r{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:13px}
+.r:first-child{border-top:0}
+.r .nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r .nm small{color:var(--muted);font-family:var(--f-mono);font-size:10.5px;margin-left:6px}
+.r .v{font-family:var(--f-mono);text-align:right}
+.chg{font-family:var(--f-mono);font-size:12px;font-weight:600;white-space:nowrap}
+.chg.up{color:var(--up)} .chg.down{color:var(--down)} .chg.flat{color:var(--muted)}
+.note{font-size:12px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+@media (max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}}
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}
+.col-h{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c)}
+.col-h h2{margin:0;font-family:var(--f-head);font-weight:700;font-size:22px;color:var(--navy)}
+.col-h span{color:var(--muted);font-size:12px;margin-left:auto;text-align:right}
+.col.us{--c:var(--us)} .col.ca{--c:var(--ca)}
+
+/* charts */
+.chartcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.ctrl{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center}
+.ctrl h2,.ctrl h3{margin:0;font-family:var(--f-head);font-weight:700;font-size:22px;color:var(--navy)}
+.seg{display:flex;gap:4px;flex-wrap:wrap}
+.seg button{font:inherit;font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink-2);cursor:pointer}
+.seg button:hover{border-color:var(--navy-3);color:var(--navy)}
+.seg button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.seg button:focus-visible,select:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+select{font:inherit;font-size:13px;padding:7px 10px;border-radius:8px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink)}
+.mc-ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.mc-ctl label{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--ink-2);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:16px;height:4px;border-radius:2px;display:inline-block}
+.legend b{color:var(--ink)}
+.plot{position:relative;width:100%}
+.plot svg{display:block;width:100%;height:auto;overflow:visible}
+#mc-plot{touch-action:pan-y;cursor:grab}
+.tip{position:absolute;pointer-events:none;background:#fff;border:1px solid var(--line-2);border-radius:10px;padding:8px 10px;font-size:12px;box-shadow:0 8px 22px rgba(10,61,90,.16);min-width:160px}
+.tip b{display:block;margin-bottom:4px}
+.tip div{display:flex;justify-content:space-between;gap:12px;color:var(--ink-2)}
+.tip div i{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.axis text{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
+.grid-l{stroke:var(--line);stroke-width:1}
+.base-l{stroke:var(--line-2);stroke-width:1}
+.mc-latest{text-align:right}
+.mc-latest .b{font-family:var(--f-head);font-weight:700;font-size:30px;color:var(--navy)}
+.mc-latest .s{font-size:12px;color:var(--ink-2)}
+
+/* sources + disclaimer */
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+th,td{text-align:left;padding:8px 10px;border-top:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;border-top:0}
+td code{font-family:var(--f-mono);font-size:12px}
+.disc{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:10px;padding:16px 18px;font-size:12.5px;color:var(--ink-2);display:flex;flex-direction:column;gap:8px}
+.disc h2{margin:0;font-family:var(--f-head);font-size:18px;color:var(--navy)}
+.disc p{margin:0;max-width:110ch}
+footer{padding-block:0 28px;display:flex;flex-direction:column;gap:12px}
+.foot{font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="in top">
+    <div><div class="k">D-Advisory insights</div><h1>Markets &amp; Economy</h1></div>
+    <div class="asof" id="asof"></div>
+  </div>
+  <nav class="in tabs" role="tablist" aria-label="Sections">
+    <button type="button" role="tab" id="tb-markets" data-tab="markets" aria-selected="true">Markets</button>
+    <button type="button" role="tab" id="tb-economy" data-tab="economy" aria-selected="false">Economy: U.S. &amp; Canada</button>
+    <button type="button" role="tab" id="tb-charts" data-tab="charts" aria-selected="false">Long-term charts</button>
+    <button type="button" role="tab" id="tb-sources" data-tab="sources" aria-selected="false">Sources</button>
+  </nav>
+</header>
+<div class="in notice" role="note"><b>Note</b><span>Data may be delayed, revised or contain errors. For general information only; not investment, financial, tax or legal advice. <a href="#disclaimer">See full disclaimer</a>.</span></div>
+<div class="tape"><div class="in" id="tv-tape" style="height:46px"></div></div>
+
+<main class="in">
+  <!-- ===================== MARKETS (TradingView) ===================== -->
+  <section class="tab" id="t-markets" role="tabpanel" aria-labelledby="tb-markets">
+    <div class="sec-h"><h2>Markets today</h2><p>Live prices from TradingView; some exchanges are delayed. Click any name for a full chart.</p></div>
+    <div class="g2">
+      <div class="card tvbox" style="height:560px" id="tv-overview"><div class="tvload">Loading market overview…</div></div>
+      <div class="card tvbox" style="height:560px" id="tv-cal"><div class="tvload">Loading economic calendar…</div></div>
+    </div>
+    <div class="sec-h"><h2>Stock heat map</h2><p>Box size is market cap, color is today's move. Use the menu at the top of the map to switch to the Nasdaq 100 and other indexes.</p></div>
+    <div class="card tvbox" style="height:640px" id="tv-heat"><div class="tvload">Loading heat map…</div></div>
+    <div class="sec-h"><h2>Watchlists</h2><p>Technology groups (our focus at D-Advisory) and Canadian leaders.</p></div>
+    <div class="g2">
+      <div class="card tvbox" style="height:640px" id="tv-tech"><div class="tvload">Loading tech watchlist…</div></div>
+      <div class="card tvbox" style="height:640px" id="tv-canada"><div class="tvload">Loading Canada watchlist…</div></div>
+    </div>
+    <div class="sec-h"><h2>Market news</h2></div>
+    <div class="card tvbox" style="height:540px" id="tv-news"><div class="tvload">Loading news…</div></div>
+  </section>
+
+  <!-- ===================== ECONOMY (custom) ===================== -->
+  <section class="tab" id="t-economy" role="tabpanel" aria-labelledby="tb-economy" hidden>
+    <div class="stats" id="stats"></div>
+    <section style="display:flex;flex-direction:column;gap:12px">
+      <div class="sec-h"><h2>Head to head</h2><div class="key"><span><i style="background:var(--us)"></i>United States</span><span><i style="background:var(--ca)"></i>Canada</span></div></div>
+      <div class="h2h" id="h2h"></div>
+    </section>
+    <section style="display:flex;flex-direction:column;gap:12px">
+      <div class="sec-h"><h2>Inflation &amp; jobs</h2><p>Latest official readings · both central banks target 2% inflation</p></div>
+      <div class="trio" id="infl"></div>
+    </section>
+    <section class="chartcard" aria-label="Comparison chart">
+      <div class="ctrl"><h3 id="na-title"></h3><div class="seg" id="na-ranges" role="group" aria-label="Time range"></div></div>
+      <div class="seg" id="na-picker" role="group" aria-label="Chart"></div>
+      <div class="legend" id="na-legend"></div>
+      <div class="plot" id="na-plot"><div class="tip" id="na-tip" hidden></div></div>
+      <div class="note" id="na-note"></div>
+    </section>
+    <section class="cols">
+      <div class="col us"><div class="col-h"><h2>United States</h2><span>Federal Reserve · Treasuries</span></div><div class="col" id="us-col"></div></div>
+      <div class="col ca"><div class="col-h"><h2>Canada</h2><span>Bank of Canada · GoC bonds</span></div><div class="col" id="ca-col"></div></div>
+    </section>
+  </section>
+
+  <!-- ===================== LONG-TERM CHARTS ===================== -->
+  <section class="tab" id="t-charts" role="tabpanel" aria-labelledby="tb-charts" hidden>
+    <section class="chartcard">
+      <div class="ctrl"><div><h3 id="mc-title"></h3><div class="note" id="mc-sub"></div></div><div class="mc-latest" id="mc-latest"></div></div>
+      <div class="mc-ctl">
+        <label for="mc-sel">Series <select id="mc-sel"></select></label>
+        <label for="mc-cmp">Compare with <select id="mc-cmp"></select></label>
+        <div class="seg" id="mc-rng" role="group" aria-label="Time range"></div>
+      </div>
+      <div class="legend" id="mc-legend"></div>
+      <div class="plot" id="mc-plot"><div class="tip" id="mc-tip" hidden></div></div>
+      <div class="note" id="mc-note"></div>
+      <div class="note">Drag to pan · scroll to zoom · double-click to reset</div>
+    </section>
+    <div class="sec-h"><h2>Market chart</h2><p>Any stock, index, currency or commodity. Type a symbol in the chart's search box.</p></div>
+    <div class="card tvbox" style="height:600px" id="tv-chart"><div class="tvload">Loading chart…</div></div>
+  </section>
+
+  <!-- ===================== SOURCES ===================== -->
+  <section class="tab" id="t-sources" role="tabpanel" aria-labelledby="tb-sources" hidden>
+    <div class="sec-h"><h2>Data sources</h2><p>Market prices are shown through TradingView's widgets under TradingView's own data licenses. Economic figures come from official public sources and refresh automatically every 15 minutes on weekdays.</p></div>
+    <div class="card" style="padding:6px 8px"><div class="tbl"><table id="srcTbl"></table></div></div>
+  </section>
+</main>
+
+<footer class="in" id="disclaimer">
+  <div class="disc">
+    <h2>Disclaimer</h2>
+    <p>The information on this page is provided for general informational and educational purposes only. It does not constitute investment, financial, accounting, tax, or legal advice, or a recommendation to buy, sell, or hold any security. Market and economic data are obtained from third-party sources believed to be reliable, including TradingView, the Federal Reserve Bank of St. Louis (FRED), and the Bank of Canada. D-Advisory Group does not independently verify this data and makes no representation or warranty, express or implied, as to its accuracy, completeness, or timeliness. Data may be delayed, revised by the original source, or contain errors or omissions. You should not rely on this information for any decision; consult the original source and a qualified professional before acting.</p>
+    <p>D-Advisory Group, its owners, employees, and affiliates accept no liability for any loss or damage of any kind arising from the use of, or reliance on, this information. Use of this page is at your own risk. Past performance is not indicative of future results. See also our <a href="https://dinian.ca/disclaimer/" target="_blank" rel="noopener">website disclaimer</a> and <a href="https://dinian.ca/terms-and-condition/" target="_blank" rel="noopener">terms and conditions</a>.</p>
+  </div>
+  <div class="foot"><span>© D-Advisory Group · <a href="https://dinian.ca" target="_blank" rel="noopener">dinian.ca</a></span><span>Economic data: FRED (U.S. Treasury, Federal Reserve, BLS, BEA, Freddie Mac, EIA, OECD) and the Bank of Canada · Market data: TradingView</span></div>
+</footer>
+
+<script src="data/data.js"></script>
+<script>
+/* ================= helpers ================= */
+const MD=window.MD;
+const $=s=>document.querySelector(s);
+const DAY=864e5;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cls=d=>d>0?'up':d<0?'down':'flat';
+const arrow=d=>d>0?'▲':d<0?'▼':'■';
+const bp=d=>{const b=Math.round(d*100);return `${arrow(b)} ${b>0?'+':''}${b} bp`};
+const pp=d=>`${arrow(d)} ${d>0?'+':''}${d.toFixed(2)} pp`;
+const L=k=>MD.L[k];
+const wStart=Date.parse(MD.weekStart+'T00:00:00Z');
+function monthSeries(key){const s=MD.M[key];if(!s)return [];const [y,m]=s.start.split('-').map(Number);return s.v.map((v,i)=>[Date.UTC(y,m-1+i,15),v]).filter(p=>p[1]!=null)}
+function weekSeries(id){const a=MD.W[id];if(!a)return [];return a.map((v,i)=>[wStart+i*7*DAY,v]).filter(p=>p[1]!=null)}
+function splice(mon,wk){if(!wk.length)return mon;const t0=wk[0][0];return mon.filter(p=>p[0]<t0).concat(wk)}
+function mLast(key){const p=monthSeries(key);const a=p[p.length-1],b=p[p.length-2];return {v:a[1],prev:b[1],t:a[0],label:new Date(a[0]).toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'})}}
+const fmtD=(t,monthly)=>new Date(t).toLocaleDateString('en-US',monthly?{month:'short',year:'numeric',timeZone:'UTC'}:{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+function niceTicks(lo,hi,n=5){const span=hi-lo||1;const raw=span/n;const mag=Math.pow(10,Math.floor(Math.log10(raw)));const st=[1,2,2.5,5,10].map(s=>s*mag).find(s=>s>=raw);const a=Math.floor(lo/st)*st,b=Math.ceil(hi/st)*st;const t=[];for(let v=a;v<=b+st*1e-6;v+=st)t.push(+v.toFixed(10));return t}
+const fmtV=(v,u)=>Math.abs(v)>=1000?Math.round(v).toLocaleString('en-US'):v.toFixed(u==='fx'?4:2)+(u&&u.startsWith('%')?'%':'');
+
+/* derived Canada series */
+(function(){const c10=MD.W['BD.CDN.10YR.DQ.YLD']||[],c2=MD.W['BD.CDN.2YR.DQ.YLD']||[],u10=MD.W.DGS10||[];
+  MD.W.CAUS10=c10.map((v,i)=>v==null||u10[i]==null?null:Math.round((v-u10[i])*100)/100);
+  MD.W.CA2s10s=c10.map((v,i)=>v==null||c2[i]==null?null:Math.round((v-c2[i])*100)/100);
+  const a=L('BD.CDN.10YR.DQ.YLD'),b=L('DGS10'),c=L('BD.CDN.2YR.DQ.YLD');
+  MD.L.CAUS10=[a[0],+(a[1]-b[1]).toFixed(2),+(a[2]-b[2]).toFixed(2)];
+  MD.L.CA2s10s=[a[0],+(a[1]-c[1]).toFixed(2),+(a[2]-c[2]).toFixed(2)];
+})();
+
+/* ================= header ================= */
+(function(){const d=new Date(MD.asOf.replace('Z',':00Z'));const t=isNaN(d)?MD.asOf:d.toLocaleString('en-CA',{timeZone:'America/Toronto',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
+  $('#asof').innerHTML=`Market prices: <b>live via TradingView</b><br>Economic data updated <b>${esc(t)} ET</b>`})();
+
+/* ================= TradingView widgets ================= */
+function tv(id,name,cfg){const el=document.getElementById(id);if(!el||el.dataset.done)return;el.dataset.done='1';el.innerHTML='';
+  const c=document.createElement('div');c.className='tradingview-widget-container';c.style.height='100%';c.style.width='100%';
+  const w=document.createElement('div');w.className='tradingview-widget-container__widget';w.style.height='calc(100% - 28px)';w.style.width='100%';
+  const cp=document.createElement('div');cp.className='tradingview-widget-copyright';cp.innerHTML='<a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Market data by TradingView</a>';
+  const s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=`https://s3.tradingview.com/external-embedding/embed-widget-${name}.js`;s.innerHTML=JSON.stringify(cfg);
+  c.append(w,cp,s);el.appendChild(c);}
+const TVBASE={colorTheme:'light',isTransparent:true,locale:'en'};
+const sym=(s,d)=>({s,d}), q=(name,displayName)=>({name,displayName});
+function loadTape(){tv('tv-tape','ticker-tape',{...TVBASE,displayMode:'adaptive',showSymbolLogo:true,symbols:[
+  {proName:'FOREXCOM:SPXUSD',title:'S&P 500'},{proName:'FOREXCOM:NSXUSD',title:'Nasdaq 100'},{proName:'FOREXCOM:DJI',title:'Dow 30'},
+  {proName:'TSX:XIU',title:'TSX 60 (XIU)'},{proName:'FX:USDCAD',title:'USD/CAD'},{proName:'TVC:US10Y',title:'U.S. 10Y'},{proName:'TVC:CA10Y',title:'Canada 10Y'},
+  {proName:'TVC:USOIL',title:'WTI oil'},{proName:'TVC:GOLD',title:'Gold'},{proName:'BITSTAMP:BTCUSD',title:'Bitcoin'}]})}
+function loadMarkets(){
+  tv('tv-overview','market-overview',{...TVBASE,dateRange:'12M',showChart:true,width:'100%',height:'100%',showSymbolLogo:true,showFloatingTooltip:true,
+    plotLineColorGrowing:'rgba(15,125,61,1)',plotLineColorFalling:'rgba(196,58,58,1)',gridLineColor:'rgba(226,232,238,0)',scaleFontColor:'rgba(134,145,155,1)',
+    belowLineFillColorGrowing:'rgba(15,125,61,0.10)',belowLineFillColorFalling:'rgba(196,58,58,0.10)',symbolActiveColor:'rgba(10,61,90,0.10)',
+    tabs:[
+      {title:'U.S.',symbols:[sym('FOREXCOM:SPXUSD','S&P 500'),sym('FOREXCOM:NSXUSD','Nasdaq 100'),sym('FOREXCOM:DJI','Dow 30'),sym('AMEX:IWM','Russell 2000 (IWM)')]},
+      {title:'Canada',symbols:[sym('TSX:XIU','TSX 60 (XIU)'),sym('TSX:XFN','Financials (XFN)'),sym('TSX:XEG','Energy (XEG)'),sym('TSX:XIT','Technology (XIT)'),sym('TSX:XGD','Gold miners (XGD)'),sym('FX:USDCAD','USD/CAD')]},
+      {title:'Rates',symbols:[sym('TVC:US02Y','U.S. 2-year'),sym('TVC:US10Y','U.S. 10-year'),sym('TVC:US30Y','U.S. 30-year'),sym('TVC:CA02Y','Canada 2-year'),sym('TVC:CA10Y','Canada 10-year')]},
+      {title:'Commodities',symbols:[sym('TVC:USOIL','WTI crude'),sym('TVC:UKOIL','Brent crude'),sym('NYMEX:NG1!','Natural gas'),sym('TVC:GOLD','Gold'),sym('TVC:SILVER','Silver'),sym('COMEX:HG1!','Copper')]},
+      {title:'Crypto',symbols:[sym('BITSTAMP:BTCUSD','Bitcoin'),sym('BITSTAMP:ETHUSD','Ethereum'),sym('COINBASE:SOLUSD','Solana')]}]});
+  tv('tv-cal','events',{...TVBASE,width:'100%',height:'100%',importanceFilter:'0,1',countryFilter:'us,ca'});
+  tv('tv-heat','stock-heatmap',{dataSource:'SPX500',blockSize:'market_cap_basic',blockColor:'change',grouping:'sector',locale:'en',symbolUrl:'',colorTheme:'light',exchanges:[],hasTopBar:true,isDataSetEnabled:true,isZoomEnabled:true,hasSymbolTooltip:true,isMonoSize:false,width:'100%',height:'100%'});
+  tv('tv-tech','market-quotes',{...TVBASE,width:'100%',height:'100%',showSymbolLogo:true,symbolsGroups:[
+    {name:'Big Tech',symbols:[q('NASDAQ:AAPL','Apple'),q('NASDAQ:MSFT','Microsoft'),q('NASDAQ:NVDA','Nvidia'),q('NASDAQ:GOOGL','Alphabet'),q('NASDAQ:AMZN','Amazon'),q('NASDAQ:META','Meta'),q('NASDAQ:AVGO','Broadcom'),q('NASDAQ:TSLA','Tesla')]},
+    {name:'Chips',symbols:[q('NYSE:TSM','TSMC'),q('NASDAQ:AMD','AMD'),q('NASDAQ:ASML','ASML'),q('NASDAQ:MU','Micron'),q('NASDAQ:QCOM','Qualcomm'),q('NASDAQ:ARM','Arm'),q('NASDAQ:AMAT','Applied Materials'),q('NASDAQ:INTC','Intel')]},
+    {name:'Software',symbols:[q('NYSE:ORCL','Oracle'),q('NYSE:CRM','Salesforce'),q('NASDAQ:PLTR','Palantir'),q('NYSE:NOW','ServiceNow'),q('NASDAQ:INTU','Intuit'),q('NASDAQ:ADBE','Adobe'),q('NYSE:SNOW','Snowflake'),q('NASDAQ:DDOG','Datadog')]},
+    {name:'Cybersecurity',symbols:[q('NASDAQ:CRWD','CrowdStrike'),q('NASDAQ:PANW','Palo Alto Networks'),q('NASDAQ:FTNT','Fortinet'),q('NYSE:NET','Cloudflare'),q('NASDAQ:ZS','Zscaler'),q('NASDAQ:OKTA','Okta')]},
+    {name:'Fintech',symbols:[q('NYSE:V','Visa'),q('NYSE:MA','Mastercard'),q('NASDAQ:PYPL','PayPal'),q('NYSE:XYZ','Block'),q('NASDAQ:HOOD','Robinhood'),q('NASDAQ:SOFI','SoFi'),q('NASDAQ:AFRM','Affirm')]},
+    {name:'AI infrastructure',symbols:[q('NYSE:DELL','Dell'),q('NYSE:VRT','Vertiv'),q('NYSE:ANET','Arista Networks'),q('NASDAQ:SMCI','Super Micro'),q('NASDAQ:CRWV','CoreWeave'),q('NYSE:ETN','Eaton')]},
+    {name:'Canadian tech',symbols:[q('TSX:SHOP','Shopify'),q('TSX:CSU','Constellation Software'),q('TSX:CLS','Celestica'),q('TSX:GIB.A','CGI'),q('TSX:DSG','Descartes Systems'),q('TSX:OTEX','OpenText')]}]});
+  tv('tv-canada','market-quotes',{...TVBASE,width:'100%',height:'100%',showSymbolLogo:true,symbolsGroups:[
+    {name:'Big Six banks',symbols:[q('TSX:RY','Royal Bank'),q('TSX:TD','TD Bank'),q('TSX:BNS','Scotiabank'),q('TSX:BMO','BMO'),q('TSX:CM','CIBC'),q('TSX:NA','National Bank')]},
+    {name:'Energy & resources',symbols:[q('TSX:CNQ','Canadian Natural'),q('TSX:SU','Suncor'),q('TSX:ENB','Enbridge'),q('TSX:TRP','TC Energy'),q('TSX:NTR','Nutrien'),q('TSX:TECK.B','Teck Resources'),q('TSX:CCO','Cameco')]},
+    {name:'TSX sectors',symbols:[q('TSX:XFN','Financials'),q('TSX:XEG','Energy'),q('TSX:XIT','Technology'),q('TSX:XMA','Materials'),q('TSX:ZIN','Industrials'),q('TSX:XST','Consumer staples'),q('TSX:XUT','Utilities'),q('TSX:XRE','REITs'),q('TSX:XGD','Gold miners')]}]});
+  tv('tv-news','timeline',{...TVBASE,feedMode:'all_symbols',displayMode:'regular',width:'100%',height:'100%'});
+}
+function loadChart(){tv('tv-chart','advanced-chart',{autosize:true,symbol:'FOREXCOM:SPXUSD',interval:'W',timezone:'America/Toronto',theme:'light',style:'1',locale:'en',allow_symbol_change:true,hide_side_toolbar:true,save_image:false,calendar:false,support_host:'https://www.tradingview.com'})}
+
+/* ================= Economy: stats ================= */
+const lu=mLast('UNRATE'),lc=mLast('LRUNTTTTCAM156S'),cpiU=mLast('CPI'),cpiC=mLast('CACPI'),fx=L('FXUSDCAD');
+$('#stats').innerHTML=[
+  ['Fed vs BoC',`${L('DFF')[1].toFixed(2)} / ${L('V39079')[1].toFixed(2)}`,`Policy rates, % · gap ${Math.round((L('DFF')[1]-L('V39079')[1])*100)} bp`],
+  ['10-year yield',`${L('DGS10')[1].toFixed(2)} / ${L('BD.CDN.10YR.DQ.YLD')[1].toFixed(2)}`,`U.S. / Canada, % · gap ${Math.round(-MD.L.CAUS10[1]*100)} bp`],
+  ['Inflation (CPI)',`${cpiU.v.toFixed(1)} / ${cpiC.v.toFixed(1)}`,`U.S. / Canada, % YoY · ${cpiC.label}`],
+  ['Unemployment',`${lu.v.toFixed(1)} / ${lc.v.toFixed(1)}`,`U.S. ${lu.label} / Canada ${lc.label}, %`],
+  ['USD/CAD',fx[1].toFixed(4),`Bank of Canada rate · ${fmtD(Date.parse(fx[0]),false)}`],
+].map(([l,v,c])=>`<div class="stat"><span class="l">${l}</span><span class="v">${v}</span><span class="c">${c}</span></div>`).join('');
+
+/* ================= Economy: head to head ================= */
+function seriesPts(id){
+  const MAP={CPI:'CPI',CORECPI:'CORECPI',PCE:'PCE',COREPCE:'COREPCE',UNRATE:'UNRATE',CAUR:'LRUNTTTTCAM156S',CACPI:'CACPI',CATRIM:'CATRIM',CAMEDIAN:'CAMEDIAN',CA3M:'IR3TIB01CAM156N'};
+  if(MD.W[id])return weekSeries(id);
+  return monthSeries(MAP[id]||id);
+}
+const isMonthly=id=>!MD.W[id];
+function miniDual(a0,b0){const W=240,H=44,p=3,since=Date.UTC(new Date().getUTCFullYear()-3,new Date().getUTCMonth(),1);
+  const a=seriesPts(a0).filter(x=>x[0]>=since),b=seriesPts(b0).filter(x=>x[0]>=since);const all=a.concat(b);if(!all.length)return '';
+  const t0=Math.min(...all.map(x=>x[0])),t1=Math.max(...all.map(x=>x[0])),lo=Math.min(...all.map(x=>x[1])),hi=Math.max(...all.map(x=>x[1])),rg=(hi-lo)||1;
+  const xs=t=>(t-t0)/(t1-t0)*W,ys=v=>p+(1-(v-lo)/rg)*(H-2*p);const path=s=>s.map((x,i)=>(i?'L':'M')+xs(x[0]).toFixed(1)+' '+ys(x[1]).toFixed(1)).join(' ');
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${path(a)}" fill="none" stroke="var(--us)" stroke-width="1.8" vector-effect="non-scaling-stroke"/><path d="${path(b)}" fill="none" stroke="var(--ca)" stroke-width="1.8" vector-effect="non-scaling-stroke"/></svg>`}
+const H2H=[
+  {t:'Policy rate',u:['DFF',L('DFF')[1],'Fed funds'],c:['V39079',L('V39079')[1],'BoC overnight']},
+  {t:'2-year yield',u:['DGS2',L('DGS2')[1],'Treasury'],c:['BD.CDN.2YR.DQ.YLD',L('BD.CDN.2YR.DQ.YLD')[1],'GoC']},
+  {t:'10-year yield',u:['DGS10',L('DGS10')[1],'Treasury'],c:['BD.CDN.10YR.DQ.YLD',L('BD.CDN.10YR.DQ.YLD')[1],'GoC']},
+  {t:'Headline inflation',sub:'YoY',u:['CPI',cpiU.v,'CPI'],c:['CACPI',cpiC.v,'CPI']},
+  {t:'Core inflation',sub:'YoY',u:['COREPCE',mLast('COREPCE').v,'Core PCE'],c:['CATRIM',mLast('CATRIM').v,'CPI-trim']},
+  {t:'Unemployment',sub:`U.S. ${lu.label} · CA ${lc.label}`,pp:true,u:['UNRATE',lu.v,'U-3'],c:['CAUR',lc.v,'LFS']},
+];
+$('#h2h').innerHTML=H2H.map(h=>{const [iu,vu,lbu]=h.u,[ic,vc,lbc]=h.c;const mx=Math.max(vu,vc)*1.1||1;const gap=vu-vc;
+  return `<div class="vs"><div class="t">${h.t}<small>${h.sub||'Latest'}</small></div>
+  <div class="pair"><span class="cc us">US</span><span class="track"><i style="width:${Math.max(0,vu)/mx*100}%;background:var(--us)"></i></span><span class="val">${vu.toFixed(2)}%</span>
+  <span class="cc ca">CA</span><span class="track"><i style="width:${Math.max(0,vc)/mx*100}%;background:var(--ca)"></i></span><span class="val">${vc.toFixed(2)}%</span></div>
+  <div class="gap"><span>${lbu} vs ${lbc}</span><span>${Math.abs(gap)<0.005?'Level':`<b>${h.pp?Math.abs(gap).toFixed(1)+' pp':Math.round(Math.abs(gap)*100)+' bp'}</b> ${gap>0?'higher in U.S.':'higher in Canada'}`}</span></div>
+  ${miniDual(iu,ic)}<div class="note" style="margin-top:-6px">Last 3 years</div></div>`}).join('');
+
+/* ================= Economy: inflation & jobs ================= */
+function mRow(key,label,id,dp=2){const r=mLast(key);const d=r.v-r.prev;return `<div class="r"><span class="nm">${label}<small>${id}</small></span><span class="v">${r.v.toFixed(dp)}%</span><span class="chg ${cls(d)}">${pp(d)}</span></div>`}
+function inflCard(cls_,title,src,headKey,headLabel,rows,note,dp=2){const h=mLast(headKey);const d=h.v-h.prev;
+  return `<div class="w ${cls_}"><h3>${title}<span>${src} · ${h.label}</span></h3><div class="head"><span><span class="big">${h.v.toFixed(dp)}%</span> <span class="sub">${headLabel}</span></span><span class="chg ${cls(d)}">${pp(d)}</span></div>
+  <div class="rows">${rows.join('')}</div><div class="note">${note}</div></div>`}
+function inflChart(){const W=600,H=250,pl=40,pr=14,pt=12,pb=26,since=Date.UTC(2021,0,1);
+  const sets=[['CPI','U.S. CPI','var(--us)',''],['COREPCE','U.S. core PCE','var(--us)','5 4'],['CACPI','Canada CPI','var(--ca)',''],['CATRIM','Canada CPI-trim','var(--ca)','5 4']].map(([id,n,c,dash])=>({id,n,c,dash,pts:seriesPts(id).filter(p=>p[0]>=since)}));
+  const all=sets.flatMap(s=>s.pts);const t0=since,t1=Math.max(...all.map(p=>p[0]));const ticks=niceTicks(Math.min(0,...all.map(p=>p[1])),Math.max(...all.map(p=>p[1])),5);const lo=ticks[0],hi=ticks[ticks.length-1];
+  const xs=t=>pl+(t-t0)/(t1-t0)*(W-pl-pr),ys=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb);
+  let g='';ticks.forEach(v=>g+=`<line class="grid-l" x1="${pl}" x2="${W-pr}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${pl-6}" y="${ys(v)+4}" text-anchor="end">${v}%</text>`);
+  for(let y=new Date(t0).getUTCFullYear()+1;y<=new Date(t1).getUTCFullYear();y++){const d=Date.UTC(y,0,1);g+=`<text x="${xs(d)}" y="${H-8}" text-anchor="middle">${y}</text>`}
+  g+=`<rect x="${pl}" y="${ys(3)}" width="${W-pl-pr}" height="${ys(1)-ys(3)}" fill="rgba(15,125,61,.08)"/><line x1="${pl}" x2="${W-pr}" y1="${ys(2)}" y2="${ys(2)}" stroke="var(--ink-2)" stroke-dasharray="3 4"/><text x="${W-pr}" y="${ys(2)-5}" text-anchor="end">2% target · 1–3% band</text>`;
+  sets.forEach(s=>{g+=`<path d="${s.pts.map((p,i)=>(i?'L':'M')+xs(p[0]).toFixed(1)+' '+ys(p[1]).toFixed(1)).join(' ')}" fill="none" stroke="${s.c}" stroke-width="2.2" ${s.dash?`stroke-dasharray="${s.dash}"`:''}/>`;const l=s.pts[s.pts.length-1];g+=`<circle cx="${xs(l[0])}" cy="${ys(l[1])}" r="3.5" fill="${s.c}" stroke="#fff" stroke-width="2"/>`});
+  return `<div class="w"><h3>Since 2021<span>YoY, monthly</span></h3><div class="legend" style="font-size:12px">${sets.map(s=>`<span><i style="background:${s.c};${s.dash?'opacity:.55':''}"></i>${s.n} <b class="num">${s.pts[s.pts.length-1][1].toFixed(1)}%</b></span>`).join('')}</div>
+  <svg viewBox="0 0 ${W} ${H}" class="axis" role="img" aria-label="Inflation in the U.S. and Canada since 2021">${g}</svg><div class="note">Solid lines are headline inflation; dashed lines are each central bank’s preferred core measure. Shaded band: the Bank of Canada’s 1–3% range.</div></div>`}
+$('#infl').innerHTML=[
+  inflCard('us-top','United States','BLS · BEA','CPI','Headline CPI, YoY',[mRow('CPI','CPI','CPIAUCSL'),mRow('CORECPI','Core CPI','CPILFESL'),mRow('PCE','PCE','PCEPI'),mRow('COREPCE','Core PCE · Fed gauge','PCEPILFE'),mRow('UNRATE','Unemployment rate','UNRATE',1)],'Change vs. the prior month’s reading.'),
+  inflCard('ca-top','Canada','Statistics Canada · BoC','CACPI','Total CPI, YoY',[mRow('CACPI','Total CPI','CPI',1),mRow('CATRIM','CPI-trim · BoC core','CPI_TRIM',1),mRow('CAMEDIAN','CPI-median · BoC core','CPI_MEDIAN',1),mRow('LRUNTTTTCAM156S','Unemployment rate','LFS',1)],'Change vs. the prior month’s reading.',1),
+  inflChart()].join('');
+
+/* ================= Economy: country columns ================= */
+function rateCard(title,src,headKey,headLabel,rows,note){const h=L(headKey);
+  return `<div class="w"><h3>${title}<span>${src} · ${fmtD(Date.parse(h[0]),false)}</span></h3><div class="head"><span><span class="big">${h[1].toFixed(2)}%</span> <span class="sub">${headLabel}</span></span><span class="chg ${cls(h[1]-h[2])}">${bp(h[1]-h[2])}</span></div>
+  <div class="rows">${rows.map(([k,n,id])=>{const v=L(k);if(!v)return '';const u=['CAUS10','T10Y2Y','CA2s10s'].includes(k)?' pp':'%';return `<div class="r"><span class="nm">${n}<small>${id}</small></span><span class="v">${v[1].toFixed(2)}${u}</span><span class="chg ${cls(v[1]-v[2])}">${bp(v[1]-v[2])}</span></div>`}).join('')}</div>${note?`<div class="note">${note}</div>`:''}</div>`}
+function curveCard(title,src,mats,color,spread){const W=MD.W;const n=W[mats[0][0]].length;
+  const now=mats.map(m=>L(m[0])[1]);const ago=mats.map(m=>W[m[0]][n-53]);const Wd=300,H=150,pl=34,pr=12,pt=12,pb=24;
+  const lo=Math.floor(Math.min(...now,...ago)*2)/2,hi=Math.ceil(Math.max(...now,...ago)*2)/2;const xs=i=>pl+i/(mats.length-1)*(Wd-pl-pr),ys=v=>pt+(1-(v-lo)/((hi-lo)||1))*(H-pt-pb);
+  let ticks='';for(let v=lo;v<=hi+1e-9;v+=0.5)ticks+=`<line class="grid-l" x1="${pl}" x2="${Wd-pr}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${pl-6}" y="${ys(v)+4}" text-anchor="end">${v.toFixed(1)}</text>`;
+  const path=a=>a.map((v,i)=>(i?'L':'M')+xs(i)+' '+ys(v)).join(' ');const dots=(a,c)=>a.map((v,i)=>`<circle cx="${xs(i)}" cy="${ys(v)}" r="3.5" fill="${c}" stroke="#fff" stroke-width="2"><title>${mats[i][1]}: ${v.toFixed(2)}%</title></circle>`).join('');
+  const i10=mats.findIndex(m=>m[1]==='10Y');
+  return `<div class="w"><h3>${title}<span>${src}</span></h3><div class="legend" style="font-size:12px"><span><i style="background:${color}"></i>Now</span><span><i style="background:var(--muted)"></i>One year ago</span></div>
+  <svg viewBox="0 0 ${Wd} ${H}" class="axis" role="img" aria-label="${esc(title)}, now versus one year ago">${ticks}${mats.map((m,i)=>`<text x="${xs(i)}" y="${H-6}" text-anchor="middle">${m[1]}</text>`).join('')}
+  <path d="${path(ago)}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/>${dots(ago,'var(--muted)')}<path d="${path(now)}" fill="none" stroke="${color}" stroke-width="2.5"/>${dots(now,color)}</svg>
+  <div class="note">The 10Y is ${Math.abs(Math.round((now[i10]-ago[i10])*100))} bp ${now[i10]>=ago[i10]?'higher':'lower'} than a year ago; the curve is ${spread>0?'positively sloped':'inverted'} at ${spread.toFixed(2)} pp (10Y − 2Y).</div></div>`}
+$('#us-col').innerHTML=[
+  rateCard('U.S. rates','FRED','DGS10','10-year Treasury',[['DFF','Fed funds (effective)','DFF'],['DGS2','2-year','DGS2'],['DGS5','5-year','DGS5'],['DGS10','10-year','DGS10'],['DGS30','30-year','DGS30'],['T10Y2Y','10Y − 2Y spread','T10Y2Y'],['MORTGAGE30US','30-yr mortgage','Freddie Mac']]),
+  curveCard('Treasury curve','FRED · H.15',[['DGS2','2Y'],['DGS5','5Y'],['DGS10','10Y'],['DGS30','30Y']],'var(--us)',L('T10Y2Y')[1])].join('');
+$('#ca-col').innerHTML=[
+  rateCard('Canadian rates','Bank of Canada','BD.CDN.10YR.DQ.YLD','10-year GoC',[['V39079','BoC policy rate','V39079'],['BD.CDN.2YR.DQ.YLD','2-year GoC','BD.CDN.2YR'],['BD.CDN.5YR.DQ.YLD','5-year GoC','BD.CDN.5YR'],['BD.CDN.10YR.DQ.YLD','10-year GoC','BD.CDN.10YR'],['BD.CDN.LONG.DQ.YLD','Long-term GoC','BD.CDN.LONG'],['CA2s10s','10Y − 2Y spread','GoC'],['CAUS10','Canada − U.S. 10-year','vs DGS10']],
+    `Canadian 10-year bonds yield ${Math.abs(MD.L.CAUS10[1]).toFixed(2)} pp ${MD.L.CAUS10[1]<0?'less':'more'} than U.S. Treasuries. USD/CAD: ${fx[1].toFixed(4)} (Bank of Canada).`),
+  curveCard('Government of Canada curve','Bank of Canada',[['BD.CDN.2YR.DQ.YLD','2Y'],['BD.CDN.5YR.DQ.YLD','5Y'],['BD.CDN.10YR.DQ.YLD','10Y'],['BD.CDN.LONG.DQ.YLD','Long']],'var(--ca)',MD.L.CA2s10s[1])].join('');
+
+/* ================= Economy: comparison chart ================= */
+const RANGES=[['1Y',1],['3Y',3],['5Y',5],['All',99]];
+function makeChart(px,CHARTS){
+  const g$=s=>document.getElementById(px+'-'+s);let cur=CHARTS[0],rng=5;
+  g$('picker').innerHTML=CHARTS.map(c=>`<button type="button" id="${px}-pk-${c.k}" data-k="${c.k}" aria-pressed="${c===cur}">${c.label}</button>`).join('');
+  g$('ranges').innerHTML=RANGES.map(([l,y])=>`<button type="button" id="${px}-rg-${l}" data-y="${y}" aria-pressed="${y===rng}">${l}</button>`).join('');
+  g$('picker').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=CHARTS.find(c=>c.k===b.dataset.k);g$('picker').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+  g$('ranges').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;rng=+b.dataset.y;g$('ranges').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+  function draw(){const plot=g$('plot'),tip=g$('tip');if(!plot.clientWidth)return;
+    const W=Math.max(300,plot.clientWidth),H=Math.round(Math.min(420,Math.max(240,W*0.40))),pl=52,pr=16,pt=12,pb=28;
+    const data=cur.lines.map(([id,name,col])=>({id,name,col,pts:seriesPts(id)})).filter(d=>d.pts.length);if(!data.length)return;
+    const end=Math.max(...data.map(d=>d.pts[d.pts.length-1][0])),wkStart=wStart;
+    const start=Math.max(end-rng*365.25*DAY,rng>=99?Math.min(...data.map(d=>d.pts[0][0])):0,cur.since||0);
+    data.forEach(d=>d.vis=d.pts.filter(p=>p[0]>=start));
+    let vals=data.flatMap(d=>d.vis.map(p=>p[1]));if(cur.ref!=null)vals.push(cur.ref);if(cur.zero)vals.push(0);
+    let lo=Math.min(...vals),hi=Math.max(...vals);const padv=(hi-lo)*0.06||0.1;const ticks=niceTicks(lo-padv,hi+padv,5);lo=ticks[0];hi=ticks[ticks.length-1];
+    const xs=t=>pl+(t-start)/(end-start)*(W-pl-pr),ys=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb);
+    let g='';ticks.forEach(v=>{g+=`<line class="grid-l" x1="${pl}" x2="${W-pr}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${pl-8}" y="${ys(v)+4}" text-anchor="end">${fmtV(v,cur.unit==='fx'?'fx':'')}</text>`});
+    const y0=new Date(start).getUTCFullYear(),y1=new Date(end).getUTCFullYear();const step=[1,2,5,10,20].find(s=>(y1-y0)/s<=9)||20;
+    if(rng<=1){for(let m=0;m<=14;m+=3){const d=Date.UTC(new Date(start).getUTCFullYear(),new Date(start).getUTCMonth()+m,1);if(d>start&&d<end)g+=`<text x="${xs(d)}" y="${H-8}" text-anchor="middle">${new Date(d).toLocaleDateString('en-US',{month:'short',year:'2-digit',timeZone:'UTC'})}</text>`}}
+    else{for(let y=Math.ceil((y0+1)/step)*step;y<=y1;y+=step){const d=Date.UTC(y,0,1);if(d<end-20*DAY&&d>start)g+=`<text x="${xs(d)}" y="${H-8}" text-anchor="middle">${y}</text>`}}
+    g+=`<line class="base-l" x1="${pl}" x2="${W-pr}" y1="${H-pb}" y2="${H-pb}"/>`;
+    if(cur.zero&&lo<0)g+=`<line x1="${pl}" x2="${W-pr}" y1="${ys(0)}" y2="${ys(0)}" stroke="var(--ink-2)"/>`;
+    if(cur.ref!=null)g+=`<line x1="${pl}" x2="${W-pr}" y1="${ys(cur.ref)}" y2="${ys(cur.ref)}" stroke="var(--ink-2)" stroke-dasharray="4 4"/><text x="${W-pr}" y="${ys(cur.ref)-5}" text-anchor="end">2% target</text>`;
+    if(data.length===1){const d=data[0];const p=d.vis.map((q,i)=>(i?'L':'M')+xs(q[0]).toFixed(1)+' '+ys(q[1]).toFixed(1)).join(' ');const base=ys(cur.zero?Math.max(lo,0):lo);g+=`<path d="${p} L${xs(d.vis[d.vis.length-1][0])} ${base} L${xs(d.vis[0][0])} ${base} Z" fill="${d.col}" opacity=".10"/>`}
+    data.forEach(d=>{const p=d.vis.map((q,i)=>(i?'L':'M')+xs(q[0]).toFixed(1)+' '+ys(q[1]).toFixed(1)).join(' ');g+=`<path d="${p}" fill="none" stroke="${d.col}" stroke-width="2.2" stroke-linejoin="round"/>`;const l=d.vis[d.vis.length-1];g+=`<circle cx="${xs(l[0])}" cy="${ys(l[1])}" r="4" fill="${d.col}" stroke="#fff" stroke-width="2"/>`});
+    g+=`<g class="hov" style="display:none"><line class="hl" y1="${pt}" y2="${H-pb}" stroke="var(--ink-2)" stroke-dasharray="2 3"/>${data.map((d,i)=>`<circle class="hd${i}" r="4.5" fill="${d.col}" stroke="#fff" stroke-width="2"/>`).join('')}</g><rect x="${pl}" y="${pt}" width="${W-pl-pr}" height="${H-pt-pb}" fill="transparent" class="hit"/>`;
+    plot.querySelector('svg')?.remove();plot.insertAdjacentHTML('afterbegin',`<svg viewBox="0 0 ${W} ${H}" class="axis" role="img" aria-label="${esc(cur.label)} chart">${g}</svg>`);
+    g$('title').textContent=cur.label+(cur.unit&&cur.unit!=='fx'?` (${cur.unit})`:'');
+    g$('legend').innerHTML=data.map(d=>{const l=d.vis[d.vis.length-1];return `<span><i style="background:${d.col}"></i>${esc(d.name)} <b class="num">${fmtV(l[1],cur.unit)}</b></span>`}).join('');
+    g$('note').textContent='Source: '+cur.note;
+    const svg=plot.querySelector('svg'),hit=svg.querySelector('.hit'),hov=svg.querySelector('.hov'),hl=svg.querySelector('.hl');const monthly=isMonthly(data[0].id);
+    const near=(pts,t)=>{let a=0,b=pts.length-1;while(b-a>1){const m=(a+b)>>1;if(pts[m][0]<t)a=m;else b=m}return Math.abs(pts[a][0]-t)<Math.abs(pts[b][0]-t)?pts[a]:pts[b]};
+    const move=ev=>{const r=svg.getBoundingClientRect();const sx=(ev.clientX-r.left)*(W/r.width);const t=start+(sx-pl)/(W-pl-pr)*(end-start);const ps=data.map(d=>near(d.vis,t));const tt=ps[0][0];
+      hov.style.display='';hl.setAttribute('x1',xs(tt));hl.setAttribute('x2',xs(tt));ps.forEach((p,i)=>{const c=svg.querySelector('.hd'+i);c.setAttribute('cx',xs(p[0]));c.setAttribute('cy',ys(p[1]))});
+      tip.innerHTML=`<b>${fmtD(tt,monthly)}</b>`+data.map((d,i)=>`<div><span><i style="background:${d.col}"></i>${esc(d.name)}</span><span class="num">${fmtV(ps[i][1],cur.unit)}</span></div>`).join('');tip.hidden=false;
+      const pxl=xs(tt)*(r.width/W),tw=tip.offsetWidth;tip.style.left=(pxl+12+tw>r.width?Math.max(0,pxl-tw-12):pxl+12)+'px';tip.style.top='8px'};
+    hit.addEventListener('pointermove',move);hit.addEventListener('pointerdown',move);hit.addEventListener('pointerleave',()=>{hov.style.display='none';tip.hidden=true});
+  }
+  let rt;new ResizeObserver(()=>{clearTimeout(rt);rt=setTimeout(draw,80)}).observe(g$('plot'));
+  return {draw};
+}
+const US='var(--us)',CAc='var(--ca)';
+const naCharts=[
+  {k:'policy',label:'Policy rates',unit:'%',lines:[['DFF','Fed funds (effective)',US],['V39079','BoC overnight target',CAc]],note:'Federal Reserve via FRED (DFF); Bank of Canada Valet (V39079).'},
+  {k:'y2',label:'2-year yields',unit:'%',lines:[['DGS2','U.S. Treasury',US],['BD.CDN.2YR.DQ.YLD','Government of Canada',CAc]],note:'FRED: DGS2; Bank of Canada benchmark 2-year yield.'},
+  {k:'y10',label:'10-year yields',unit:'%',lines:[['DGS10','U.S. Treasury',US],['BD.CDN.10YR.DQ.YLD','Government of Canada',CAc]],note:'FRED: DGS10; Bank of Canada benchmark 10-year yield.'},
+  {k:'curve',label:'Curve slope (10Y − 2Y)',unit:'pp',zero:true,lines:[['T10Y2Y','U.S.',US],['CA2s10s','Canada',CAc]],note:'10-year minus 2-year yield; below zero means inverted. FRED: T10Y2Y; Canada from Bank of Canada yields.'},
+  {k:'gap',label:'Canada − U.S. 10-year',unit:'pp',zero:true,lines:[['CAUS10','10Y GoC minus 10Y Treasury',CAc]],note:'Below zero means Canada borrows more cheaply than the U.S. Bank of Canada and FRED.'},
+  {k:'cpi',label:'Headline inflation',unit:'% YoY',ref:2,lines:[['CPI','U.S. CPI',US],['CACPI','Canada CPI',CAc]],note:'U.S. CPI from BLS via FRED (CPIAUCSL); Canada CPI from Statistics Canada via the Bank of Canada. October 2025 U.S. CPI was not published.'},
+  {k:'core',label:'Core inflation',unit:'% YoY',ref:2,lines:[['COREPCE','U.S. core PCE',US],['CATRIM','Canada CPI-trim',CAc]],note:'Each central bank’s preferred core measure: BEA core PCE (FRED: PCEPILFE) and Bank of Canada CPI-trim.'},
+  {k:'jobs',label:'Unemployment',unit:'%',lines:[['UNRATE','U.S.',US],['CAUR','Canada',CAc]],note:'BLS via FRED (UNRATE); Statistics Canada LFS via OECD/FRED (LRUNTTTTCAM156S). Definitions differ slightly; compare trends more than levels.'},
+  {k:'fx',label:'USD/CAD',unit:'fx',lines:[['FXUSDCAD','Canadian dollars per U.S. dollar',CAc]],note:'Bank of Canada daily exchange rate (FXUSDCAD), weekly.'},
+  {k:'mort',label:'U.S. mortgage rate',unit:'%',lines:[['MORTGAGE30US','30-year fixed',US]],note:'Freddie Mac Primary Mortgage Market Survey via FRED (MORTGAGE30US).'},
+].filter(c=>c.lines.every(l=>seriesPts(l[0]).length>1));
+const charts={na:makeChart('na',naCharts)};
+
+/* ================= Long-term charts (pan & zoom) ================= */
+const MS=[
+ ['dff','Fed funds rate','U.S. rates','%',()=>splice(monthSeries('DFF'),weekSeries('DFF')),'Federal Reserve via FRED: DFF.'],
+ ['us2','U.S. 2-year Treasury','U.S. rates','%',()=>splice(monthSeries('DGS2'),weekSeries('DGS2')),'U.S. Treasury via Fed H.15, FRED: DGS2.'],
+ ['us10','U.S. 10-year Treasury','U.S. rates','%',()=>splice(monthSeries('DGS10'),weekSeries('DGS10')),'U.S. Treasury via Fed H.15, FRED: DGS10.'],
+ ['us30','U.S. 30-year Treasury','U.S. rates','%',()=>splice(monthSeries('DGS30'),weekSeries('DGS30')),'U.S. Treasury via Fed H.15, FRED: DGS30.'],
+ ['curve','U.S. 10Y − 2Y spread','U.S. rates','pp',()=>splice(monthSeries('T10Y2Y'),weekSeries('T10Y2Y')),'FRED: T10Y2Y. Below zero means the curve is inverted.'],
+ ['mort','30-year mortgage rate','U.S. rates','%',()=>splice(monthSeries('MORTGAGE30US'),weekSeries('MORTGAGE30US')),'Freddie Mac PMMS via FRED: MORTGAGE30US.'],
+ ['cpi','U.S. CPI inflation','U.S. economy','% YoY',()=>monthSeries('CPI'),'BLS CPI-U, year over year, via FRED: CPIAUCSL. October 2025 was not published.'],
+ ['ccpi','U.S. core CPI','U.S. economy','% YoY',()=>monthSeries('CORECPI'),'BLS CPI less food and energy, YoY, via FRED: CPILFESL.'],
+ ['pce','U.S. PCE inflation','U.S. economy','% YoY',()=>monthSeries('PCE'),'BEA PCE price index, YoY, via FRED: PCEPI.'],
+ ['cpce','U.S. core PCE','U.S. economy','% YoY',()=>monthSeries('COREPCE'),'BEA core PCE price index, YoY, via FRED: PCEPILFE.'],
+ ['ur','U.S. unemployment','U.S. economy','%',()=>monthSeries('UNRATE'),'BLS U-3 unemployment rate via FRED: UNRATE.'],
+ ['usd','U.S. dollar (broad index)','U.S. economy','index',()=>splice(monthSeries('DTWEXBGS'),weekSeries('DTWEXBGS')),'Federal Reserve nominal broad dollar index via FRED: DTWEXBGS.'],
+ ['wti','WTI crude oil','U.S. economy','$/bbl',()=>splice(monthSeries('DCOILWTICO'),weekSeries('DCOILWTICO')),'U.S. EIA spot price via FRED: DCOILWTICO.'],
+ ['boc','BoC policy rate','Canada','%',()=>splice(monthSeries('BOC'),weekSeries('V39079')),'Bank of Canada target for the overnight rate, Valet: V39079 (series starts 2009).'],
+ ['ca3m','Canada 3-month rate','Canada','%',()=>monthSeries('IR3TIB01CAM156N'),'OECD 3-month interbank rate via FRED: IR3TIB01CAM156N.'],
+ ['ca10','Canada 10-year bond','Canada','%',()=>splice(monthSeries('IRLTLT01CAM156N'),weekSeries('BD.CDN.10YR.DQ.YLD')),'OECD long-term rate via FRED (monthly), then the Bank of Canada 10-year benchmark (weekly).'],
+ ['cacpi','Canada CPI inflation','Canada','% YoY',()=>monthSeries('CACPI'),'Statistics Canada total CPI, YoY, via the Bank of Canada.'],
+ ['catrim','Canada CPI-trim','Canada','% YoY',()=>monthSeries('CATRIM'),'Bank of Canada CPI-trim core measure.'],
+ ['camed','Canada CPI-median','Canada','% YoY',()=>monthSeries('CAMEDIAN'),'Bank of Canada CPI-median core measure.'],
+ ['caur','Canada unemployment','Canada','%',()=>monthSeries('LRUNTTTTCAM156S'),'Statistics Canada Labour Force Survey via OECD/FRED: LRUNTTTTCAM156S.'],
+ ['fx','USD/CAD','Canada','fx',()=>weekSeries('FXUSDCAD'),'Bank of Canada daily exchange rate, weekly.'],
+].map(([k,label,grp,unit,get,src])=>({k,label,grp,unit,get,src})).filter(m=>m.get().length>1);
+const MRNG=[['5y','5Y',5],['10y','10Y',10],['20y','20Y',20],['all','All',999]];
+let MC={k:'cpi',cmp:'',rng:'all',win:null},MCX=null,drag=null;
+$('#mc-sel').innerHTML=[...new Set(MS.map(m=>m.grp))].map(g=>`<optgroup label="${g}">${MS.filter(m=>m.grp===g).map(m=>`<option value="${m.k}">${m.label}</option>`).join('')}</optgroup>`).join('');
+function segBtns(el,opts,cur){el.innerHTML=opts.map(([k,l])=>`<button type="button" id="${el.id}-${k}" data-v="${k}" aria-pressed="${k===cur}">${l}</button>`).join('')}
+function fillCmp(){const cur=MS.find(m=>m.k===MC.k);const same=MS.filter(m=>m.unit===cur.unit&&m.k!==cur.k);if(!same.some(m=>m.k===MC.cmp))MC.cmp='';$('#mc-cmp').innerHTML='<option value="">Nothing</option>'+same.map(m=>`<option value="${m.k}" ${m.k===MC.cmp?'selected':''}>${m.label}</option>`).join('');$('#mc-cmp').disabled=!same.length}
+segBtns($('#mc-rng'),MRNG.map(r=>[r[0],r[1]]),MC.rng);
+$('#mc-sel').addEventListener('change',e=>{MC.k=e.target.value;MC.win=null;fillCmp();drawMacro()});
+$('#mc-cmp').addEventListener('change',e=>{MC.cmp=e.target.value;drawMacro()});
+$('#mc-rng').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;MC.rng=b.dataset.v;MC.win=null;segBtns($('#mc-rng'),MRNG.map(r=>[r[0],r[1]]),MC.rng);drawMacro()});
+function drawMacro(){
+  const cur=MS.find(m=>m.k===MC.k)||MS[0];$('#mc-sel').value=cur.k;const plot=$('#mc-plot'),tip=$('#mc-tip');if(!plot.clientWidth)return;
+  const W=Math.max(300,plot.clientWidth),H=Math.round(Math.min(500,Math.max(280,W*0.44))),pl=58,pr=18,pt=14,pb=30;
+  const sets=[{m:cur,col:'var(--s1)',pts:cur.get()}];if(MC.cmp){const c=MS.find(m=>m.k===MC.cmp);sets.push({m:c,col:'var(--s2)',pts:c.get()})}
+  const tEnd=Math.max(...sets.map(s=>s.pts[s.pts.length-1][0])),tFirst=Math.min(...sets.map(s=>s.pts[0][0]));const yrs=MRNG.find(r=>r[0]===MC.rng)[2];
+  if(!MC.win)MC.win=[Math.max(tFirst,tEnd-yrs*365.25*DAY),tEnd];const [x0,x1]=MC.win;
+  const vis=sets.map(s=>{const i0=Math.max(0,s.pts.findIndex(p=>p[0]>=x0)-1);let i1=s.pts.length-1;while(i1>0&&s.pts[i1-1][0]>x1)i1--;return s.pts.slice(i0,i1+1)});
+  const vals=vis.flat().filter(p=>p[0]>=x0&&p[0]<=x1).map(p=>p[1]);if(!vals.length)return;
+  let lo=Math.min(...vals),hi=Math.max(...vals);if(cur.unit==='%'&&lo>0&&lo<hi*0.4)lo=0;const pad=(hi-lo)*0.06||0.1;const ticks=niceTicks(lo-pad,hi+pad,6);lo=ticks[0];hi=ticks[ticks.length-1];
+  const ys=v=>pt+(1-(v-lo)/(hi-lo))*(H-pt-pb),xs=t=>pl+(t-x0)/(x1-x0)*(W-pl-pr);
+  let g='';ticks.forEach(v=>{g+=`<line class="grid-l" x1="${pl}" x2="${W-pr}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${pl-8}" y="${ys(v)+4}" text-anchor="end">${+v.toFixed(cur.unit==='fx'?3:2)}</text>`});
+  const span=(x1-x0)/(365.25*DAY),ty0=new Date(x0).getUTCFullYear(),ty1=new Date(x1).getUTCFullYear();
+  if(span<=2.5){for(let k=0;k<40;k++){const d=Date.UTC(ty0,new Date(x0).getUTCMonth()+k,1);if(d>x1)break;if(d<x0)continue;if(span>1.2&&new Date(d).getUTCMonth()%3)continue;g+=`<text x="${xs(d)}" y="${H-9}" text-anchor="middle">${new Date(d).toLocaleDateString('en-US',{month:'short',year:'2-digit',timeZone:'UTC'})}</text>`}}
+  else{const step=[1,2,5,10,20].find(s=>span/s<=10)||20;for(let y=Math.ceil(ty0/step)*step;y<=ty1;y+=step){const d=Date.UTC(y,0,1);if(d<x0||d>x1)continue;g+=`<line class="grid-l" x1="${xs(d)}" x2="${xs(d)}" y1="${pt}" y2="${H-pb}" opacity=".5"/><text x="${xs(d)}" y="${H-9}" text-anchor="middle">${y}</text>`}}
+  g+=`<line class="base-l" x1="${pl}" x2="${W-pr}" y1="${H-pb}" y2="${H-pb}"/>`;
+  if(lo<0&&hi>0)g+=`<line x1="${pl}" x2="${W-pr}" y1="${ys(0)}" y2="${ys(0)}" stroke="var(--ink-2)"/>`;
+  if(cur.unit==='% YoY')g+=`<line x1="${pl}" x2="${W-pr}" y1="${ys(2)}" y2="${ys(2)}" stroke="var(--ink-2)" stroke-dasharray="4 4"/><text x="${W-pr}" y="${ys(2)-5}" text-anchor="end">2% target</text>`;
+  g+=`<defs><clipPath id="mcclip"><rect x="${pl}" y="${pt-4}" width="${W-pl-pr}" height="${H-pt-pb+8}"/></clipPath></defs><g clip-path="url(#mcclip)">`;
+  vis.forEach((v,i)=>{let d='';v.forEach((p,j)=>{const gap=j>0&&p[0]-v[j-1][0]>200*DAY;d+=(j===0||gap?'M':'L')+xs(p[0]).toFixed(1)+' '+ys(p[1]).toFixed(1)+' '});
+    if(sets.length===1){const bl=ys(Math.max(lo,Math.min(hi,0)));g+=`<path d="${d} L${xs(v[v.length-1][0])} ${bl} L${xs(v[0][0])} ${bl} Z" fill="${sets[i].col}" opacity=".08"/>`}
+    g+=`<path d="${d}" fill="none" stroke="${sets[i].col}" stroke-width="2" stroke-linejoin="round"/>`});
+  g+=`</g><g class="hov" style="display:none"><line class="hl" y1="${pt}" y2="${H-pb}" stroke="var(--ink-2)" stroke-dasharray="2 3"/>${sets.map((s,i)=>`<circle class="hd${i}" r="4.5" fill="${s.col}" stroke="#fff" stroke-width="2"/>`).join('')}</g>`;
+  plot.querySelector('svg')?.remove();plot.insertAdjacentHTML('afterbegin',`<svg viewBox="0 0 ${W} ${H}" class="axis" role="img" aria-label="${esc(cur.label)} chart">${g}</svg>`);
+  const last=sets[0].pts[sets[0].pts.length-1],prv=sets[0].pts[sets[0].pts.length-2];const mon=last[0]-prv[0]>20*DAY;const dd=last[1]-prv[1];
+  const fmtU=v=>cur.unit.startsWith('%')?v.toFixed(2)+'%':cur.unit==='pp'?v.toFixed(2)+' pp':cur.unit==='fx'?v.toFixed(4):cur.unit==='$/bbl'?'$'+v.toFixed(2):v.toFixed(2);
+  $('#mc-title').textContent=cur.label;$('#mc-sub').textContent=`${cur.grp} · history from ${new Date(tFirst).getUTCFullYear()}`;
+  $('#mc-latest').innerHTML=`<div class="b">${fmtU(last[1])}</div><div class="s"><span class="chg ${cls(dd)}">${dd>0?'+':''}${dd.toFixed(cur.unit==='fx'?4:2)}${cur.unit.startsWith('%')||cur.unit==='pp'?' pp':''}</span> vs prior ${mon?'month':'week'} · ${fmtD(last[0],mon)}</div>`;
+  $('#mc-legend').innerHTML=sets.map(s=>`<span><i style="background:${s.col}"></i>${esc(s.m.label)}</span>`).join('');
+  $('#mc-note').textContent='Source: '+sets.map(s=>s.m.src).join(' · ');
+  MCX={W,pl,pr,tEnd,tFirst};
+  const svg=plot.querySelector('svg'),hov=svg.querySelector('.hov'),hl=svg.querySelector('.hl');
+  svg.addEventListener('pointermove',ev=>{if(drag)return;const r=svg.getBoundingClientRect();const sx=(ev.clientX-r.left)*(W/r.width);if(sx<pl||sx>W-pr){hov.style.display='none';tip.hidden=true;return}
+    const t=x0+(sx-pl)/(W-pl-pr)*(x1-x0);const ps=vis.map(v=>{let a=0,b=v.length-1;while(b-a>1){const m=(a+b)>>1;if(v[m][0]<t)a=m;else b=m}return Math.abs(v[a][0]-t)<Math.abs(v[b][0]-t)?v[a]:v[b]});
+    hov.style.display='';hl.setAttribute('x1',xs(ps[0][0]));hl.setAttribute('x2',xs(ps[0][0]));ps.forEach((p,i)=>{const c=svg.querySelector('.hd'+i);c.setAttribute('cx',xs(p[0]));c.setAttribute('cy',ys(p[1]))});
+    tip.innerHTML=`<b>${fmtD(ps[0][0],mon)}</b>`+sets.map((s,i)=>`<div><span><i style="background:${s.col}"></i>${esc(s.m.label)}</span><span class="num">${fmtU(ps[i][1])}</span></div>`).join('');tip.hidden=false;
+    const px=xs(ps[0][0])*(r.width/W),tw=tip.offsetWidth;tip.style.left=(px+12+tw>r.width?Math.max(0,px-tw-12):px+12)+'px';tip.style.top='8px'});
+  svg.addEventListener('pointerleave',()=>{hov.style.display='none';tip.hidden=true});
+}
+(function(){const plot=$('#mc-plot');
+  const clamp=(a,b)=>{const minS=180*DAY,maxS=MCX.tEnd-MCX.tFirst;let s=Math.min(Math.max(b-a,minS),maxS),c=(a+b)/2;a=c-s/2;b=c+s/2;if(a<MCX.tFirst){b+=MCX.tFirst-a;a=MCX.tFirst}if(b>MCX.tEnd){a-=b-MCX.tEnd;b=MCX.tEnd}return [Math.max(a,MCX.tFirst),b]};
+  plot.addEventListener('wheel',e=>{if(!MCX)return;e.preventDefault();const r=plot.getBoundingClientRect();const f=Math.min(Math.max(((e.clientX-r.left)*(MCX.W/r.width)-MCX.pl)/(MCX.W-MCX.pl-MCX.pr),0),1);const [a,b]=MC.win,s=b-a,ns=s*(e.deltaY>0?1.18:1/1.18),t=a+f*s;MC.win=clamp(t-f*ns,t+(1-f)*ns);drawMacro()},{passive:false});
+  plot.addEventListener('pointerdown',e=>{if(!MCX||e.pointerType==='touch')return;drag={x:e.clientX,win:[...MC.win]};plot.setPointerCapture(e.pointerId)});
+  plot.addEventListener('pointermove',e=>{if(!drag)return;const r=plot.getBoundingClientRect();const dt=-(e.clientX-drag.x)/(r.width*(MCX.W-MCX.pl-MCX.pr)/MCX.W)*(drag.win[1]-drag.win[0]);MC.win=clamp(drag.win[0]+dt,drag.win[1]+dt);drawMacro()});
+  const end=()=>{drag=null};plot.addEventListener('pointerup',end);plot.addEventListener('pointercancel',end);
+  plot.addEventListener('dblclick',()=>{MC.win=null;drawMacro()});})();
+
+/* ================= Sources table ================= */
+const SRC=[
+  ['Markets tab, ticker tape, market chart','Index, stock, ETF, currency, bond-yield, commodity and crypto prices; heat map; economic calendar; news','TradingView widgets','Displayed under TradingView’s data licenses; some exchanges delayed','https://www.tradingview.com/widget/'],
+  ['U.S. rates','Treasury yields (2, 5, 10, 30-year), 10Y−2Y spread','U.S. Treasury via Federal Reserve H.15, on FRED','DGS2 DGS5 DGS10 DGS30 T10Y2Y','https://fred.stlouisfed.org/series/DGS10'],
+  ['U.S. policy rate','Effective federal funds rate','Federal Reserve, on FRED','DFF','https://fred.stlouisfed.org/series/DFF'],
+  ['U.S. mortgage rate','30-year fixed rate','Freddie Mac PMMS, on FRED','MORTGAGE30US','https://fred.stlouisfed.org/series/MORTGAGE30US'],
+  ['U.S. inflation','CPI and core CPI; PCE and core PCE (year over year)','BLS and BEA, on FRED','CPIAUCSL CPILFESL PCEPI PCEPILFE','https://fred.stlouisfed.org/series/CPIAUCSL'],
+  ['U.S. jobs','Unemployment rate','BLS, on FRED','UNRATE','https://fred.stlouisfed.org/series/UNRATE'],
+  ['U.S. dollar and oil','Broad dollar index; WTI and Brent spot','Federal Reserve; U.S. EIA; on FRED','DTWEXBGS DCOILWTICO DCOILBRENTEU','https://fred.stlouisfed.org/series/DTWEXBGS'],
+  ['Canada rates','Policy rate; Government of Canada benchmark yields','Bank of Canada Valet','V39079 BD.CDN.2YR/5YR/10YR/LONG.DQ.YLD','https://www.bankofcanada.ca/rates/interest-rates/canadian-bonds/'],
+  ['Canada inflation','Total CPI (YoY), CPI-trim, CPI-median','Statistics Canada via Bank of Canada Valet','STATIC_TOTALCPICHANGE CPI_TRIM CPI_MEDIAN','https://www.bankofcanada.ca/rates/price-indexes/cpi/'],
+  ['Canada jobs and long rates','Unemployment rate; 3-month and long-term rates (history)','Statistics Canada and OECD, on FRED','LRUNTTTTCAM156S IR3TIB01CAM156N IRLTLT01CAM156N','https://fred.stlouisfed.org/series/LRUNTTTTCAM156S'],
+  ['USD/CAD','Daily exchange rate','Bank of Canada Valet','FXUSDCAD','https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/'],
+];
+$('#srcTbl').innerHTML='<thead><tr><th>Section</th><th>What</th><th>Provider</th><th>Series / terms</th></tr></thead><tbody>'+SRC.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td><a href="${r[4]}" target="_blank" rel="noopener">${esc(r[2])}</a></td><td><code>${esc(r[3])}</code></td></tr>`).join('')+'</tbody>';
+
+/* ================= tabs, routing, iframe auto-height ================= */
+const TABS=['markets','economy','charts','sources'];
+function postHeight(){try{parent.postMessage({type:'dadv-markets-height',height:document.documentElement.scrollHeight},'*')}catch(e){}}
+function show(k,push){
+  TABS.forEach(t=>{document.getElementById('t-'+t).hidden=t!==k;document.getElementById('tb-'+t).setAttribute('aria-selected',t===k)});
+  if(k==='markets')loadMarkets();
+  if(k==='economy')requestAnimationFrame(()=>charts.na.draw());
+  if(k==='charts'){fillCmp();requestAnimationFrame(drawMacro);loadChart()}
+  if(push){try{history.replaceState(null,'','#'+k)}catch(e){}}
+  setTimeout(postHeight,50);setTimeout(postHeight,1500);
+}
+document.querySelector('.tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-tab]');if(b)show(b.dataset.tab,true)});
+document.querySelector('.tabs').addEventListener('keydown',e=>{if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;const i=TABS.findIndex(t=>document.getElementById('tb-'+t).getAttribute('aria-selected')==='true');const n=TABS[(i+(e.key==='ArrowRight'?1:TABS.length-1))%TABS.length];show(n,true);document.getElementById('tb-'+n).focus()});
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(TABS.includes(h))show(h)});
+let rz;window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(!$('#t-charts').hidden)drawMacro();postHeight()},150)});
+new ResizeObserver(()=>postHeight()).observe(document.body);
+loadTape();
+show(TABS.includes(location.hash.slice(1))?location.hash.slice(1):'markets');
+</script>
+</body>
+</html>

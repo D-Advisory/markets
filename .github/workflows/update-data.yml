@@ -1,0 +1,43 @@
+name: Update economic data
+
+# Runs every 15 minutes on weekdays, 8:00 a.m. to about 7:45 p.m. Toronto time
+# (GitHub schedules are in UTC: 12:00-23:45 UTC). Market prices on the page come
+# from TradingView and update live on their own; this job refreshes the economic
+# data (FRED + Bank of Canada). It commits only when a number actually changes.
+on:
+  schedule:
+    - cron: "*/15 12-23 * * 1-5"
+  workflow_dispatch: {}   # adds a "Run workflow" button for manual refreshes
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch latest data
+        run: python scripts/fetch_data.py
+
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet -- data/data.js; then
+            echo "No change in data."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/data.js
+          git commit -m "Update economic data"
+          git push
